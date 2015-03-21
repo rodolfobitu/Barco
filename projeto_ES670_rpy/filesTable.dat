@@ -1,0 +1,16 @@
+I-Logix-RPY-Archive version 8.5.2 Modeler * 1159120
+
+- filesTable = { IRPYRawContainer 
+	- size = 9;
+	- value = "Projects.rpl" ""
+	"Projeto_ES670.rpy" ""
+	"Projeto_ES670_rpy\\LedSwi.sbs" "LedSwi"
+	"Projeto_ES670_rpy\\MCLAB2.cmp" "MCLAB2"
+	"Projeto_ES670_rpy\\Main.sbs" "Main"
+	"Projeto_ES670_rpy\\McLab2.sbs" "McLab2"
+	"Projeto_ES670_rpy\\Util.sbs" "Util"
+	"Projeto_ES670_rpy\\_Projeto_Pratico.sbs" "_Projeto_Pratico"
+	"Projeto_ES670_rpy\\_Requisitos.sbs" "_Requisitos"
+	
+}
+

@@ -1,0 +1,362 @@
+I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
+{ ISubsystem 
+	- _id = GUID 065e8ea8-3104-4865-9f03-c833c5c57170;
+	- _myState = 8192;
+	- _name = "LedSwi";
+	- _objectCreation = "462192522572015106448146";
+	- _umlDependencyID = "2178";
+	- _theMainDiagram = { IHandle 
+		- _m2Class = "IDiagram";
+		- _filename = "";
+		- _subsystem = "";
+		- _class = "";
+		- _name = "diag_pacotes";
+		- _id = GUID 604328de-2202-48b3-9d1a-353bbeb75331;
+	}
+	- _lastID = 1;
+	- weakCGTime = 1.22.2015::12:56:40;
+	- strongCGTime = 1.22.2015::11:58:19;
+	- _defaultComposite = GUID a82ba236-7531-4d48-8a36-876a6432314f;
+	- _eventsBaseID = -1;
+	- Classes = { IRPYRawContainer 
+		- size = 2;
+		- value = 
+		{ IClass 
+			- _id = GUID a82ba236-7531-4d48-8a36-876a6432314f;
+			- _myState = 40960;
+			- _name = "TopLevel";
+			- _objectCreation = "462192722572015106446146";
+			- _umlDependencyID = "2405";
+			- weakCGTime = 12.31.1969::22:0:0;
+			- strongCGTime = 12.31.1969::22:0:0;
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- _classModifier = Unspecified;
+		}
+		{ IClass 
+			- _id = GUID c0445b4c-197d-4e5f-b22f-c3918af768b2;
+			- _myState = 8192;
+			- _name = "ledswi";
+			- _objectCreation = "462192922572015106444146";
+			- _umlDependencyID = "2242";
+			- Dependencies = { IRPYRawContainer 
+				- size = 1;
+				- value = 
+				{ IDependency 
+					- _id = GUID 81db235c-dc5c-49ca-a5de-e6efb160d63c;
+					- _myState = 2048;
+					- _name = "mclab2";
+					- _objectCreation = "462193122572015106442146";
+					- _umlDependencyID = "2146";
+					- Stereotypes = { IRPYRawContainer 
+						- size = 1;
+						- value = 
+						{ IHandle 
+							- _m2Class = "IStereotype";
+							- _filename = "PredefinedTypes.sbs";
+							- _subsystem = "PredefinedTypes";
+							- _class = "";
+							- _name = "Usage";
+							- _id = GUID 42aa4325-6112-4e88-87ce-66008878f1db;
+						}
+					}
+					- _dependsOn = { INObjectHandle 
+						- _m2Class = "IClass";
+						- _filename = "McLab2.sbs";
+						- _subsystem = "McLab2";
+						- _class = "";
+						- _name = "mclab2";
+						- _id = GUID aa110bb3-0172-4266-a0b1-29e5f9f27d13;
+					}
+				}
+			}
+			- Stereotypes = { IRPYRawContainer 
+				- size = 1;
+				- value = 
+				{ IHandle 
+					- _m2Class = "IStereotype";
+					- _filename = "PredefinedTypesC++.sbs";
+					- _subsystem = "PredefinedTypesCpp";
+					- _class = "";
+					- _name = "Subsystem";
+					- _id = GUID 4ea1c1da-7dc6-4a35-bc5a-313393e8408f;
+				}
+			}
+			- _theMainDiagram = { IHandle 
+				- _m2Class = "IDiagram";
+				- _filename = "";
+				- _subsystem = "";
+				- _class = "";
+				- _name = "diag_definicao_blocos";
+				- _id = GUID a21c9f5f-35bf-494c-a903-3394cfe63ffe;
+			}
+			- _description = { IDescription 
+				- _text = "File name:		 ledswi.c
+File description: This file has a couple of useful functions to control LEDs and Switches from MCLAB2 dev kit  */
+Author name:      dloubach
+Creation date:    20jan2015
+Revision date:    20jan2015
+";
+			}
+			- _lastID = 6;
+			- weakCGTime = 1.22.2015::12:37:9;
+			- strongCGTime = 1.22.2015::12:18:53;
+			- Operations = { IRPYRawContainer 
+				- size = 4;
+				- value = 
+				{ IPrimitiveOperation 
+					- _id = GUID 4099a6e6-63e0-4f1d-8684-a0c1721afc00;
+					- _myState = 8192;
+					- _name = "initLedSwitch";
+					- _objectCreation = "462193322572015106440146";
+					- _umlDependencyID = "2924";
+					- _lastID = 2;
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 2;
+						- value = 
+						{ IArgument 
+							- _id = GUID fa5fbef4-895e-454f-a13c-ff59d1d2c13b;
+							- _name = "cLedNum";
+							- _objectCreation = "462193522572015106438146";
+							- _umlDependencyID = "2274";
+							- _typeOf = { IHandle 
+								- _m2Class = "IType";
+								- _filename = "PredefinedTypesC++.sbs";
+								- _subsystem = "PredefinedTypesCpp";
+								- _class = "";
+								- _name = "char";
+								- _id = GUID 717461b3-278b-47c8-9526-c62c7be55b14;
+							}
+							- _isOrdered = 0;
+							- _argumentDirection = In;
+						}
+						{ IArgument 
+							- _id = GUID 927ae639-940b-47e5-b8b5-f4438e5b1836;
+							- _name = "cSwitchNum";
+							- _objectCreation = "462193722572015106436146";
+							- _umlDependencyID = "2623";
+							- _typeOf = { IHandle 
+								- _m2Class = "IType";
+								- _filename = "PredefinedTypesC++.sbs";
+								- _subsystem = "PredefinedTypesCpp";
+								- _class = "";
+								- _name = "char";
+								- _id = GUID 717461b3-278b-47c8-9526-c62c7be55b14;
+							}
+							- _isOrdered = 0;
+							- _argumentDirection = In;
+						}
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+				{ IPrimitiveOperation 
+					- _id = GUID e5bc592b-4ecc-49e1-b438-0b774c7c9304;
+					- _myState = 8192;
+					- _name = "setLed";
+					- _objectCreation = "462193922572015106434146";
+					- _umlDependencyID = "2203";
+					- _lastID = 1;
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 1;
+						- value = 
+						{ IArgument 
+							- _id = GUID eb09cbc0-23d3-4760-87d2-32f8ec77b649;
+							- _name = "cLedNum";
+							- _objectCreation = "462194122572015106432146";
+							- _umlDependencyID = "2265";
+							- _typeOf = { IHandle 
+								- _m2Class = "IType";
+								- _filename = "PredefinedTypesC++.sbs";
+								- _subsystem = "PredefinedTypesCpp";
+								- _class = "";
+								- _name = "char";
+								- _id = GUID 717461b3-278b-47c8-9526-c62c7be55b14;
+							}
+							- _isOrdered = 0;
+							- _argumentDirection = In;
+						}
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+				{ IPrimitiveOperation 
+					- _id = GUID 5acfbab4-706e-474d-8889-4c6f3302ffcc;
+					- _myState = 8192;
+					- _name = "clearLed";
+					- _objectCreation = "462194322572015106430146";
+					- _umlDependencyID = "2381";
+					- _lastID = 1;
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 1;
+						- value = 
+						{ IArgument 
+							- _id = GUID 33b01de9-1f5e-4811-ad64-b4bc523c592d;
+							- _name = "cLedNum";
+							- _objectCreation = "462194522572015106428146";
+							- _umlDependencyID = "2274";
+							- _typeOf = { IHandle 
+								- _m2Class = "IType";
+								- _filename = "PredefinedTypesC++.sbs";
+								- _subsystem = "PredefinedTypesCpp";
+								- _class = "";
+								- _name = "char";
+								- _id = GUID 717461b3-278b-47c8-9526-c62c7be55b14;
+							}
+							- _isOrdered = 0;
+							- _argumentDirection = In;
+						}
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+				{ IPrimitiveOperation 
+					- _id = GUID a32c770b-17a9-4e1e-a689-3b534e3aa42b;
+					- _myState = 8192;
+					- _name = "ledswi_getSwitchStatus";
+					- _objectCreation = "462194722572015106426146";
+					- _umlDependencyID = "3927";
+					- _lastID = 1;
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 1;
+						- value = 
+						{ IArgument 
+							- _id = GUID 56ac20e1-ed30-4afa-b048-8c464e10cf14;
+							- _name = "cSwitchNum";
+							- _objectCreation = "462194922572015106424146";
+							- _umlDependencyID = "2623";
+							- _typeOf = { IHandle 
+								- _m2Class = "IType";
+								- _filename = "PredefinedTypesC++.sbs";
+								- _subsystem = "PredefinedTypesCpp";
+								- _class = "";
+								- _name = "char";
+								- _id = GUID 717461b3-278b-47c8-9526-c62c7be55b14;
+							}
+							- _isOrdered = 0;
+							- _argumentDirection = In;
+						}
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _id = GUID 900691e8-03e8-440d-8c8b-50515f246b95;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+			}
+			- Attrs = { IRPYRawContainer 
+				- size = 1;
+				- value = 
+				{ IAttribute 
+					- _id = GUID 1afbce5c-41cd-47e7-bb33-c2951cd736d0;
+					- _name = "MAX_LED_SWI";
+					- _objectCreation = "462195122572015106422146";
+					- _umlDependencyID = "2461";
+					- ValueSpecifications = { IRPYRawContainer 
+						- size = 1;
+						- value = 
+						{ ILiteralSpecification 
+							- _id = GUID a68fa3cf-f566-49fd-bcf1-97b749b0e4d9;
+							- _objectCreation = "462195322572015106420146";
+							- _umlDependencyID = "1585";
+							- _value = "04";
+						}
+					}
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "int";
+						- _id = GUID 6024c6ab-fe9e-402e-954f-27aca6d3b5e4;
+					}
+					- _isOrdered = 0;
+					- _protection = iPublic;
+					- _static = 0;
+					- _isReference = 0;
+					- _isConstant = 0;
+				}
+			}
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- _classModifier = Unspecified;
+		}
+	}
+	- Types = { IRPYRawContainer 
+		- size = 1;
+		- value = 
+		{ IType 
+			- _id = GUID 900691e8-03e8-440d-8c8b-50515f246b95;
+			- _myState = 8192;
+			- _name = "switch_status_type_e";
+			- _objectCreation = "462195522572015106418146";
+			- _umlDependencyID = "3764";
+			- _description = { IDescription 
+				- _text = "typedef enum
+{
+	SWITCH_ON,
+	SWITCH_OFF
+} switch_status_type_e;";
+			}
+			- _typedefBaseType = { IClassifierHandle 
+				- _m2Class = "";
+			}
+			- _typedefMultiplicity = "1";
+			- _typedefIsOrdered = 0;
+			- _typedefIsReference = 0;
+			- _typedefIsConstant = 0;
+			- _kind = Typedef;
+		}
+	}
+	- _configurationRelatedTime = 12.31.1969::22:0:0;
+}
+
