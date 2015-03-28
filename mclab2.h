@@ -60,8 +60,4 @@
 #define SEVENSEG_03_DIR	TRISBbits.RB5
 #define SEVENSEG_04_DIR	TRISBbits.RB4
 
-
-#define NUMBER1			0b0000110
-
-
 #endif /* MCLAB2_H */

@@ -1,52 +1,57 @@
 MPLINK 4.45, Linker
-Linker Map File - Created Fri Mar 20 22:39:24 2015
+Linker Map File - Created Fri Mar 27 22:21:42 2015
 
                                  Section Info
                   Section       Type    Address   Location Size(Bytes)
                 ---------  ---------  ---------  ---------  ---------
                _entry_scn       code   0x000000    program   0x000006
                    .cinit    romdata   0x000006    program   0x000002
-             .code_util.o       code   0x000008    program   0x0001d4
-           .code_ledswi.o       code   0x0001dc    program   0x00018c
-         .code_es670_pp.o       code   0x000368    program   0x0000da
-               _cinit_scn       code   0x000442    program   0x00009e
-                     PROG       code   0x0004e0    program   0x000034
-                    .code       code   0x000514    program   0x000020
-             _startup_scn       code   0x000534    program   0x00001c
-         .code_fxd0808u.o       code   0x000550    program   0x00001c
-           .code___init.o       code   0x00056c    program   0x000002
-        .idata___init.o_i    romdata   0x00056e    program   0x000000
-      .romdata_fxd0808u.o    romdata   0x00056e    program   0x000000
-      .idata_fxd0808u.o_i    romdata   0x00056e    program   0x000000
-        .romdata___init.o    romdata   0x00056e    program   0x000000
-          .romdata_util.o    romdata   0x00056e    program   0x000000
-          .idata_util.o_i    romdata   0x00056e    program   0x000000
-        .romdata_ledswi.o    romdata   0x00056e    program   0x000000
-        .idata_ledswi.o_i    romdata   0x00056e    program   0x000000
-      .romdata_es670_pp.o    romdata   0x00056e    program   0x000000
-      .idata_es670_pp.o_i    romdata   0x00056e    program   0x000000
-            .code_c018i.o       code   0x00056e    program   0x000000
-         .romdata_c018i.o    romdata   0x00056e    program   0x000000
-         .idata_c018i.o_i    romdata   0x00056e    program   0x000000
+         .code_sevenseg.o       code   0x000008    program   0x000352
+             .code_util.o       code   0x00035a    program   0x0001d4
+           .code_ledswi.o       code   0x00052e    program   0x00018c
+         .code_es670_pp.o       code   0x0006ba    program   0x0000d0
+               _cinit_scn       code   0x00078a    program   0x00009e
+                     PROG       code   0x000828    program   0x00004c
+         .code_fxd1616u.o       code   0x000874    program   0x00002c
+                    .code       code   0x0008a0    program   0x000020
+             _startup_scn       code   0x0008c0    program   0x00001c
+           .code___init.o       code   0x0008dc    program   0x000002
+         .idata_c018i.o_i    romdata   0x0008de    program   0x000000
+        .romdata___init.o    romdata   0x0008de    program   0x000000
+        .idata___init.o_i    romdata   0x0008de    program   0x000000
+      .romdata_fxd1616u.o    romdata   0x0008de    program   0x000000
+      .idata_fxd1616u.o_i    romdata   0x0008de    program   0x000000
+         .romdata_c018i.o    romdata   0x0008de    program   0x000000
+      .romdata_sevenseg.o    romdata   0x0008de    program   0x000000
+      .idata_sevenseg.o_i    romdata   0x0008de    program   0x000000
+            .code_c018i.o       code   0x0008de    program   0x000000
+          .romdata_util.o    romdata   0x0008de    program   0x000000
+          .idata_util.o_i    romdata   0x0008de    program   0x000000
+        .romdata_ledswi.o    romdata   0x0008de    program   0x000000
+        .idata_ledswi.o_i    romdata   0x0008de    program   0x000000
+      .romdata_es670_pp.o    romdata   0x0008de    program   0x000000
+      .idata_es670_pp.o_i    romdata   0x0008de    program   0x000000
 .config_300000_es670_pp.o    romdata   0x300000    program   0x000001
 .config_300001_es670_pp.o    romdata   0x300001    program   0x000001
 .config_300002_es670_pp.o    romdata   0x300002    program   0x000001
 .config_300003_es670_pp.o    romdata   0x300003    program   0x000001
 .config_300006_es670_pp.o    romdata   0x300006    program   0x000001
                 MATH_DATA      udata   0x000000       data   0x000010
-                 .tmpdata      udata   0x000010       data   0x000001
+                 .tmpdata      udata   0x000010       data   0x000002
            .udata_c018i.o      udata   0x000060       data   0x00000a
-           .idata_c018i.o      idata   0x00006a       data   0x000000
-        .udata_es670_pp.o      udata   0x00006a       data   0x000000
-        .idata_es670_pp.o      idata   0x00006a       data   0x000000
-          .udata_ledswi.o      udata   0x00006a       data   0x000000
-          .idata_ledswi.o      idata   0x00006a       data   0x000000
-            .udata_util.o      udata   0x00006a       data   0x000000
-            .idata_util.o      idata   0x00006a       data   0x000000
-        .udata_fxd0808u.o      udata   0x00006a       data   0x000000
-        .idata_fxd0808u.o      idata   0x00006a       data   0x000000
-          .udata___init.o      udata   0x00006a       data   0x000000
           .idata___init.o      idata   0x00006a       data   0x000000
+          .udata___init.o      udata   0x00006a       data   0x000000
+        .idata_fxd1616u.o      idata   0x00006a       data   0x000000
+        .udata_fxd1616u.o      udata   0x00006a       data   0x000000
+        .idata_sevenseg.o      idata   0x00006a       data   0x000000
+        .udata_sevenseg.o      udata   0x00006a       data   0x000000
+            .idata_util.o      idata   0x00006a       data   0x000000
+            .udata_util.o      udata   0x00006a       data   0x000000
+          .idata_ledswi.o      idata   0x00006a       data   0x000000
+          .udata_ledswi.o      udata   0x00006a       data   0x000000
+        .idata_es670_pp.o      idata   0x00006a       data   0x000000
+        .udata_es670_pp.o      udata   0x00006a       data   0x000000
+           .idata_c018i.o      idata   0x00006a       data   0x000000
                    .stack      udata   0x000300       data   0x000100
             SFR_UNBANKED0      udata   0x000f62       data   0x00009e
 
@@ -55,103 +60,106 @@ Linker Map File - Created Fri Mar 20 22:39:24 2015
                               Program Memory Usage 
                                Start         End      
                            ---------   ---------      
-                            0x000000    0x00056d      
+                            0x000000    0x0008dd      
                             0x300000    0x300003      
                             0x300006    0x300006      
-            1395 out of 33048 program addresses used, program memory utilization is 4%
+            2275 out of 33048 program addresses used, program memory utilization is 6%
 
 
 
                               Symbols - Sorted by Name
                      Name    Address   Location    Storage File                     
                 ---------  ---------  ---------  --------- ---------                
-                   D0808S   0x0004f6    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                D0808SNEG   0x000504    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                 D0808SOK   0x000500    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                  D0808SX   0x00050a    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                  DA0808S   0x0004ec    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                 FXD0808S   0x0004e0    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                 FXD0808U   0x000550    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd0808u.c
-          ___for_lbl00001   0x00003c    program     static                          
-          ___for_lbl00002   0x000040    program     static                          
-          ___for_lbl00003   0x000014    program     static                          
-          ___for_lbl00005   0x000070    program     static                          
-          ___for_lbl00006   0x000074    program     static                          
-          ___for_lbl00007   0x000056    program     static                          
-          ___for_lbl00008   0x0000a0    program     static                          
-          ___for_lbl00009   0x0000a4    program     static                          
-          ___for_lbl00010   0x000076    program     static                          
-          ___for_lbl00012   0x0000d4    program     static                          
-          ___for_lbl00013   0x0000d8    program     static                          
-          ___for_lbl00014   0x0000ba    program     static                          
-          ___for_lbl00015   0x0000f4    program     static                          
-          ___for_lbl00016   0x0000f8    program     static                          
-          ___for_lbl00017   0x0000da    program     static                          
-          ___for_lbl00018   0x000126    program     static                          
-          ___for_lbl00019   0x00012a    program     static                          
-          ___for_lbl00020   0x0000fa    program     static                          
-          ___for_lbl00022   0x00015a    program     static                          
-          ___for_lbl00023   0x00015e    program     static                          
-          ___for_lbl00024   0x000140    program     static                          
-          ___for_lbl00025   0x00017a    program     static                          
-          ___for_lbl00026   0x00017e    program     static                          
-          ___for_lbl00027   0x000160    program     static                          
-          ___for_lbl00028   0x00019a    program     static                          
-          ___for_lbl00029   0x00019e    program     static                          
-          ___for_lbl00030   0x000180    program     static                          
-          ___for_lbl00031   0x0001ce    program     static                          
-          ___for_lbl00032   0x0001d2    program     static                          
-          ___for_lbl00033   0x0001a0    program     static                          
+                   D1616S   0x00084a    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                D1616SNEG   0x000858    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                 D1616SOK   0x000854    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                  D1616SX   0x00086a    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                  DA1616S   0x00083a    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                 FXD1616S   0x000828    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                 FXD1616U   0x000874    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd1616u.c
+          ___for_lbl00001   0x00038e    program     static                          
+          ___for_lbl00002   0x000392    program     static                          
+          ___for_lbl00003   0x000366    program     static                          
+          ___for_lbl00005   0x0003c2    program     static                          
+          ___for_lbl00006   0x0003c6    program     static                          
+          ___for_lbl00007   0x0003a8    program     static                          
+          ___for_lbl00008   0x0003f2    program     static                          
+          ___for_lbl00009   0x0003f6    program     static                          
+          ___for_lbl00010   0x0003c8    program     static                          
+          ___for_lbl00012   0x000426    program     static                          
+          ___for_lbl00013   0x00042a    program     static                          
+          ___for_lbl00014   0x00040c    program     static                          
+          ___for_lbl00015   0x000446    program     static                          
+          ___for_lbl00016   0x00044a    program     static                          
+          ___for_lbl00017   0x00042c    program     static                          
+          ___for_lbl00018   0x000478    program     static                          
+          ___for_lbl00019   0x00047c    program     static                          
+          ___for_lbl00020   0x00044c    program     static                          
+          ___for_lbl00022   0x0004ac    program     static                          
+          ___for_lbl00023   0x0004b0    program     static                          
+          ___for_lbl00024   0x000492    program     static                          
+          ___for_lbl00025   0x0004cc    program     static                          
+          ___for_lbl00026   0x0004d0    program     static                          
+          ___for_lbl00027   0x0004b2    program     static                          
+          ___for_lbl00028   0x0004ec    program     static                          
+          ___for_lbl00029   0x0004f0    program     static                          
+          ___for_lbl00030   0x0004d2    program     static                          
+          ___for_lbl00031   0x000520    program     static                          
+          ___for_lbl00032   0x000524    program     static                          
+          ___for_lbl00033   0x0004f2    program     static                          
        ___return_lbl00000   0x000004    program     static                          
-       ___return_lbl00000   0x00056a    program     static                          
-       ___return_lbl00000   0x000040    program     static                          
-       ___return_lbl00001   0x00054e    program     static                          
-       ___return_lbl00002   0x0004de    program     static                          
-       ___return_lbl00004   0x0000a4    program     static                          
-       ___return_lbl00011   0x00012a    program     static                          
-       ___return_lbl00021   0x0001d2    program     static                          
-               __config_0   0x300000    program     static U:\Barco\es670_pp.c      
-               __config_1   0x300001    program     static U:\Barco\es670_pp.c      
-               __config_2   0x300002    program     static U:\Barco\es670_pp.c      
-               __config_3   0x300003    program     static U:\Barco\es670_pp.c      
-               __config_4   0x300006    program     static U:\Barco\es670_pp.c      
-                   __init   0x00056c    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\stdclib\__init.c
-               __tmplbl_0   0x000026    program     static                          
-               __tmplbl_1   0x000068    program     static                          
-               __tmplbl_2   0x000088    program     static                          
-               __tmplbl_3   0x0000cc    program     static                          
-               __tmplbl_4   0x0000ec    program     static                          
-               __tmplbl_5   0x00010c    program     static                          
-               __tmplbl_6   0x000152    program     static                          
-               __tmplbl_7   0x000172    program     static                          
-               __tmplbl_8   0x000192    program     static                          
-               __tmplbl_9   0x0001b2    program     static                          
-            __zero_memory   0x000514    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\proc\p18f4550.asm
-                _do_cinit   0x000442    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
+       ___return_lbl00000   0x00089e    program     static                          
+       ___return_lbl00000   0x000392    program     static                          
+       ___return_lbl00001   0x0008da    program     static                          
+       ___return_lbl00002   0x000826    program     static                          
+       ___return_lbl00004   0x0003f6    program     static                          
+       ___return_lbl00011   0x00047c    program     static                          
+       ___return_lbl00021   0x000524    program     static                          
+               __config_0   0x300000    program     static U:\Barco-master\es670_pp.c
+               __config_1   0x300001    program     static U:\Barco-master\es670_pp.c
+               __config_2   0x300002    program     static U:\Barco-master\es670_pp.c
+               __config_3   0x300003    program     static U:\Barco-master\es670_pp.c
+               __config_4   0x300006    program     static U:\Barco-master\es670_pp.c
+                   __init   0x0008dc    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\stdclib\__init.c
+               __tmplbl_0   0x000378    program     static                          
+               __tmplbl_1   0x0003ba    program     static                          
+               __tmplbl_2   0x0003da    program     static                          
+               __tmplbl_3   0x00041e    program     static                          
+               __tmplbl_4   0x00043e    program     static                          
+               __tmplbl_5   0x00045e    program     static                          
+               __tmplbl_6   0x0004a4    program     static                          
+               __tmplbl_7   0x0004c4    program     static                          
+               __tmplbl_8   0x0004e4    program     static                          
+               __tmplbl_9   0x000504    program     static                          
+            __zero_memory   0x0008a0    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\proc\p18f4550.asm
+                _do_cinit   0x00078a    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
                    _entry   0x000000    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
-                 _startup   0x000534    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
-                compare_l   0x00052a    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\proc\p18f4550.asm
-                copy_loop   0x0004b4    program     static                          
-            copy_one_byte   0x0004ba    program     static                          
-                     done   0x0004de    program     static                          
-             done_copying   0x0004c8    program     static                          
-                  endloop   0x000566    program     static                          
-          ledswi_clearLed   0x0002b0    program     extern U:\Barco\ledswi.c        
-   ledswi_getSwitchStatus   0x000302    program     extern U:\Barco\ledswi.c        
-     ledswi_initLedSwitch   0x0001dc    program     extern U:\Barco\ledswi.c        
-            ledswi_setLed   0x00025e    program     extern U:\Barco\ledswi.c        
-                     loop   0x000558    program     static                          
-                     loop   0x000544    program     static                          
-                   loop_h   0x000522    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\proc\p18f4550.asm
-                   loop_l   0x00052c    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\proc\p18f4550.asm
-                     main   0x000386    program     extern U:\Barco\es670_pp.c      
-        runInitialization   0x000368    program     extern U:\Barco\es670_pp.c      
-                     test   0x00045c    program     static                          
-       util_genDelay100MS   0x0000ae    program     extern U:\Barco\util.c          
-        util_genDelay10MS   0x00004a    program     extern U:\Barco\util.c          
-         util_genDelay1MS   0x000008    program     extern U:\Barco\util.c          
-       util_genDelay500MS   0x000134    program     extern U:\Barco\util.c          
-               zero_block   0x000522    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\proc\p18f4550.asm
+                 _startup   0x0008c0    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
+                compare_l   0x0008b6    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\proc\p18f4550.asm
+                copy_loop   0x0007fc    program     static                          
+            copy_one_byte   0x000802    program     static                          
+                     done   0x000826    program     static                          
+             done_copying   0x000810    program     static                          
+                  endloop   0x00089a    program     static                          
+          ledswi_clearLed   0x000602    program     extern U:\Barco-master\ledswi.c 
+   ledswi_getSwitchStatus   0x000654    program     extern U:\Barco-master\ledswi.c 
+     ledswi_initLedSwitch   0x00052e    program     extern U:\Barco-master\ledswi.c 
+            ledswi_setLed   0x0005b0    program     extern U:\Barco-master\ledswi.c 
+                     loop   0x00087e    program     static                          
+                     loop   0x0008d0    program     static                          
+                   loop_h   0x0008ae    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\proc\p18f4550.asm
+                   loop_l   0x0008b8    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\proc\p18f4550.asm
+                     main   0x0006da    program     extern U:\Barco-master\es670_pp.c
+        runInitialization   0x0006ba    program     extern U:\Barco-master\es670_pp.c
+            sevenseg_init   0x000008    program     extern U:\Barco-master\sevenseg.c
+             sevenseg_set   0x000022    program     extern U:\Barco-master\sevenseg.c
+      sevenseg_setWithInt   0x000112    program     extern U:\Barco-master\sevenseg.c
+                     test   0x0007a4    program     static                          
+       util_genDelay100MS   0x000400    program     extern U:\Barco-master\util.c   
+        util_genDelay10MS   0x00039c    program     extern U:\Barco-master\util.c   
+         util_genDelay1MS   0x00035a    program     extern U:\Barco-master\util.c   
+       util_genDelay500MS   0x000486    program     extern U:\Barco-master\util.c   
+               zero_block   0x0008ae    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\proc\p18f4550.asm
                    ADCON0   0x000fc2       data     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\proc\p18f4550.asm
                ADCON0bits   0x000fc2       data     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\proc\p18f4550.asm
                    ADCON1   0x000fc1       data     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\proc\p18f4550.asm
@@ -423,9 +431,9 @@ Linker Map File - Created Fri Mar 20 22:39:24 2015
                   __REMB1   0x000004       data     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\math\aarg.asm
                   __REMB2   0x000003       data     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\math\aarg.asm
                   __REMB3   0x000002       data     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\math\aarg.asm
-                  __tmp_0   0x000010       data     static U:\Barco\util.c          
-                  __tmp_0   0x000010       data     static U:\Barco\ledswi.c        
-                  __tmp_0   0x000010       data     static U:\Barco\es670_pp.c      
+                  __tmp_0   0x000010       data     static U:\Barco-master\sevenseg.c
+                  __tmp_0   0x000010       data     static U:\Barco-master\util.c   
+                  __tmp_0   0x000010       data     static U:\Barco-master\ledswi.c 
                 curr_byte   0x000063       data     static E:\3.44\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
                curr_entry   0x000065       data     static E:\3.44\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
                  data_ptr   0x000067       data     static E:\3.44\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
@@ -438,91 +446,94 @@ Linker Map File - Created Fri Mar 20 22:39:24 2015
                 ---------  ---------  ---------  --------- ---------                
                    _entry   0x000000    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
        ___return_lbl00000   0x000004    program     static                          
-         util_genDelay1MS   0x000008    program     extern U:\Barco\util.c          
-          ___for_lbl00003   0x000014    program     static                          
-               __tmplbl_0   0x000026    program     static                          
-          ___for_lbl00001   0x00003c    program     static                          
-       ___return_lbl00000   0x000040    program     static                          
-          ___for_lbl00002   0x000040    program     static                          
-        util_genDelay10MS   0x00004a    program     extern U:\Barco\util.c          
-          ___for_lbl00007   0x000056    program     static                          
-               __tmplbl_1   0x000068    program     static                          
-          ___for_lbl00005   0x000070    program     static                          
-          ___for_lbl00006   0x000074    program     static                          
-          ___for_lbl00010   0x000076    program     static                          
-               __tmplbl_2   0x000088    program     static                          
-          ___for_lbl00008   0x0000a0    program     static                          
-          ___for_lbl00009   0x0000a4    program     static                          
-       ___return_lbl00004   0x0000a4    program     static                          
-       util_genDelay100MS   0x0000ae    program     extern U:\Barco\util.c          
-          ___for_lbl00014   0x0000ba    program     static                          
-               __tmplbl_3   0x0000cc    program     static                          
-          ___for_lbl00012   0x0000d4    program     static                          
-          ___for_lbl00013   0x0000d8    program     static                          
-          ___for_lbl00017   0x0000da    program     static                          
-               __tmplbl_4   0x0000ec    program     static                          
-          ___for_lbl00015   0x0000f4    program     static                          
-          ___for_lbl00016   0x0000f8    program     static                          
-          ___for_lbl00020   0x0000fa    program     static                          
-               __tmplbl_5   0x00010c    program     static                          
-          ___for_lbl00018   0x000126    program     static                          
-       ___return_lbl00011   0x00012a    program     static                          
-          ___for_lbl00019   0x00012a    program     static                          
-       util_genDelay500MS   0x000134    program     extern U:\Barco\util.c          
-          ___for_lbl00024   0x000140    program     static                          
-               __tmplbl_6   0x000152    program     static                          
-          ___for_lbl00022   0x00015a    program     static                          
-          ___for_lbl00023   0x00015e    program     static                          
-          ___for_lbl00027   0x000160    program     static                          
-               __tmplbl_7   0x000172    program     static                          
-          ___for_lbl00025   0x00017a    program     static                          
-          ___for_lbl00026   0x00017e    program     static                          
-          ___for_lbl00030   0x000180    program     static                          
-               __tmplbl_8   0x000192    program     static                          
-          ___for_lbl00028   0x00019a    program     static                          
-          ___for_lbl00029   0x00019e    program     static                          
-          ___for_lbl00033   0x0001a0    program     static                          
-               __tmplbl_9   0x0001b2    program     static                          
-          ___for_lbl00031   0x0001ce    program     static                          
-          ___for_lbl00032   0x0001d2    program     static                          
-       ___return_lbl00021   0x0001d2    program     static                          
-     ledswi_initLedSwitch   0x0001dc    program     extern U:\Barco\ledswi.c        
-            ledswi_setLed   0x00025e    program     extern U:\Barco\ledswi.c        
-          ledswi_clearLed   0x0002b0    program     extern U:\Barco\ledswi.c        
-   ledswi_getSwitchStatus   0x000302    program     extern U:\Barco\ledswi.c        
-        runInitialization   0x000368    program     extern U:\Barco\es670_pp.c      
-                     main   0x000386    program     extern U:\Barco\es670_pp.c      
-                _do_cinit   0x000442    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
-                     test   0x00045c    program     static                          
-                copy_loop   0x0004b4    program     static                          
-            copy_one_byte   0x0004ba    program     static                          
-             done_copying   0x0004c8    program     static                          
-                     done   0x0004de    program     static                          
-       ___return_lbl00002   0x0004de    program     static                          
-                 FXD0808S   0x0004e0    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                  DA0808S   0x0004ec    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                   D0808S   0x0004f6    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                 D0808SOK   0x000500    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                D0808SNEG   0x000504    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                  D0808SX   0x00050a    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-            __zero_memory   0x000514    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\proc\p18f4550.asm
-               zero_block   0x000522    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\proc\p18f4550.asm
-                   loop_h   0x000522    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\proc\p18f4550.asm
-                compare_l   0x00052a    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\proc\p18f4550.asm
-                   loop_l   0x00052c    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\proc\p18f4550.asm
-                 _startup   0x000534    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
-                     loop   0x000544    program     static                          
-       ___return_lbl00001   0x00054e    program     static                          
-                 FXD0808U   0x000550    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd0808u.c
-                     loop   0x000558    program     static                          
-                  endloop   0x000566    program     static                          
-       ___return_lbl00000   0x00056a    program     static                          
-                   __init   0x00056c    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\stdclib\__init.c
-               __config_0   0x300000    program     static U:\Barco\es670_pp.c      
-               __config_1   0x300001    program     static U:\Barco\es670_pp.c      
-               __config_2   0x300002    program     static U:\Barco\es670_pp.c      
-               __config_3   0x300003    program     static U:\Barco\es670_pp.c      
-               __config_4   0x300006    program     static U:\Barco\es670_pp.c      
+            sevenseg_init   0x000008    program     extern U:\Barco-master\sevenseg.c
+             sevenseg_set   0x000022    program     extern U:\Barco-master\sevenseg.c
+      sevenseg_setWithInt   0x000112    program     extern U:\Barco-master\sevenseg.c
+         util_genDelay1MS   0x00035a    program     extern U:\Barco-master\util.c   
+          ___for_lbl00003   0x000366    program     static                          
+               __tmplbl_0   0x000378    program     static                          
+          ___for_lbl00001   0x00038e    program     static                          
+          ___for_lbl00002   0x000392    program     static                          
+       ___return_lbl00000   0x000392    program     static                          
+        util_genDelay10MS   0x00039c    program     extern U:\Barco-master\util.c   
+          ___for_lbl00007   0x0003a8    program     static                          
+               __tmplbl_1   0x0003ba    program     static                          
+          ___for_lbl00005   0x0003c2    program     static                          
+          ___for_lbl00006   0x0003c6    program     static                          
+          ___for_lbl00010   0x0003c8    program     static                          
+               __tmplbl_2   0x0003da    program     static                          
+          ___for_lbl00008   0x0003f2    program     static                          
+          ___for_lbl00009   0x0003f6    program     static                          
+       ___return_lbl00004   0x0003f6    program     static                          
+       util_genDelay100MS   0x000400    program     extern U:\Barco-master\util.c   
+          ___for_lbl00014   0x00040c    program     static                          
+               __tmplbl_3   0x00041e    program     static                          
+          ___for_lbl00012   0x000426    program     static                          
+          ___for_lbl00013   0x00042a    program     static                          
+          ___for_lbl00017   0x00042c    program     static                          
+               __tmplbl_4   0x00043e    program     static                          
+          ___for_lbl00015   0x000446    program     static                          
+          ___for_lbl00016   0x00044a    program     static                          
+          ___for_lbl00020   0x00044c    program     static                          
+               __tmplbl_5   0x00045e    program     static                          
+          ___for_lbl00018   0x000478    program     static                          
+       ___return_lbl00011   0x00047c    program     static                          
+          ___for_lbl00019   0x00047c    program     static                          
+       util_genDelay500MS   0x000486    program     extern U:\Barco-master\util.c   
+          ___for_lbl00024   0x000492    program     static                          
+               __tmplbl_6   0x0004a4    program     static                          
+          ___for_lbl00022   0x0004ac    program     static                          
+          ___for_lbl00023   0x0004b0    program     static                          
+          ___for_lbl00027   0x0004b2    program     static                          
+               __tmplbl_7   0x0004c4    program     static                          
+          ___for_lbl00025   0x0004cc    program     static                          
+          ___for_lbl00026   0x0004d0    program     static                          
+          ___for_lbl00030   0x0004d2    program     static                          
+               __tmplbl_8   0x0004e4    program     static                          
+          ___for_lbl00028   0x0004ec    program     static                          
+          ___for_lbl00029   0x0004f0    program     static                          
+          ___for_lbl00033   0x0004f2    program     static                          
+               __tmplbl_9   0x000504    program     static                          
+          ___for_lbl00031   0x000520    program     static                          
+       ___return_lbl00021   0x000524    program     static                          
+          ___for_lbl00032   0x000524    program     static                          
+     ledswi_initLedSwitch   0x00052e    program     extern U:\Barco-master\ledswi.c 
+            ledswi_setLed   0x0005b0    program     extern U:\Barco-master\ledswi.c 
+          ledswi_clearLed   0x000602    program     extern U:\Barco-master\ledswi.c 
+   ledswi_getSwitchStatus   0x000654    program     extern U:\Barco-master\ledswi.c 
+        runInitialization   0x0006ba    program     extern U:\Barco-master\es670_pp.c
+                     main   0x0006da    program     extern U:\Barco-master\es670_pp.c
+                _do_cinit   0x00078a    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
+                     test   0x0007a4    program     static                          
+                copy_loop   0x0007fc    program     static                          
+            copy_one_byte   0x000802    program     static                          
+             done_copying   0x000810    program     static                          
+                     done   0x000826    program     static                          
+       ___return_lbl00002   0x000826    program     static                          
+                 FXD1616S   0x000828    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                  DA1616S   0x00083a    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                   D1616S   0x00084a    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                 D1616SOK   0x000854    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                D1616SNEG   0x000858    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                  D1616SX   0x00086a    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                 FXD1616U   0x000874    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\math\fxd1616u.c
+                     loop   0x00087e    program     static                          
+                  endloop   0x00089a    program     static                          
+       ___return_lbl00000   0x00089e    program     static                          
+            __zero_memory   0x0008a0    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\proc\p18f4550.asm
+               zero_block   0x0008ae    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\proc\p18f4550.asm
+                   loop_h   0x0008ae    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\proc\p18f4550.asm
+                compare_l   0x0008b6    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\proc\p18f4550.asm
+                   loop_l   0x0008b8    program     static E:\3.44\pic18-lt\cxx-framework\src\traditional\proc\p18f4550.asm
+                 _startup   0x0008c0    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
+                     loop   0x0008d0    program     static                          
+       ___return_lbl00001   0x0008da    program     static                          
+                   __init   0x0008dc    program     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\stdclib\__init.c
+               __config_0   0x300000    program     static U:\Barco-master\es670_pp.c
+               __config_1   0x300001    program     static U:\Barco-master\es670_pp.c
+               __config_2   0x300002    program     static U:\Barco-master\es670_pp.c
+               __config_3   0x300003    program     static U:\Barco-master\es670_pp.c
+               __config_4   0x300006    program     static U:\Barco-master\es670_pp.c
                      SIGN   0x000000       data     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\math\cmath18.asm
                 __FPFLAGS   0x000001       data     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\math\cmath18.asm
             __FPFLAGSbits   0x000001       data     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\math\cmath18.asm
@@ -544,9 +555,9 @@ Linker Map File - Created Fri Mar 20 22:39:24 2015
                  __BARGB1   0x00000d       data     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\math\barg.asm
                  __BARGB0   0x00000e       data     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\math\barg.asm
                    __BEXP   0x00000f       data     extern E:\3.44\pic18-lt\cxx-framework\src\traditional\math\barg.asm
-                  __tmp_0   0x000010       data     static U:\Barco\util.c          
-                  __tmp_0   0x000010       data     static U:\Barco\ledswi.c        
-                  __tmp_0   0x000010       data     static U:\Barco\es670_pp.c      
+                  __tmp_0   0x000010       data     static U:\Barco-master\sevenseg.c
+                  __tmp_0   0x000010       data     static U:\Barco-master\util.c   
+                  __tmp_0   0x000010       data     static U:\Barco-master\ledswi.c 
                      prom   0x000060       data     static E:\3.44\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
                 curr_byte   0x000063       data     static E:\3.44\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
                curr_entry   0x000065       data     static E:\3.44\pic18-lt\cxx-framework\src\traditional\startup\c018i.c

@@ -9,6 +9,7 @@
 #include "es670_pp.h"
 #include "mclab2.h"
 #include "ledswi.h"
+#include "sevenseg.h"
 #include "util.h"
 
 /* uC init configurations */
@@ -47,6 +48,8 @@ void runInitialization(void)
 	
 	/* init leds and switches */
 	ledswi_initLedSwitch(02, 02);
+
+	sevenseg_init();
 }
 
 
@@ -58,8 +61,9 @@ void runInitialization(void)
 /* ************************************************ */
 void main(void)
 {
-	
-	char gui = 0;
+	int cont = 0;
+	char last_state = 0;
+
 
 	switch_status_type_e sstSwitch01;
 	switch_status_type_e sstSwitch02;
@@ -70,60 +74,38 @@ void main(void)
 	/* play with leds */
 	ledswi_setLed(04);
 	
-	SEVENSEG_01_DIR = OUTPUT;
-	SEVENSEG_02_DIR = OUTPUT;
-	SEVENSEG_03_DIR = OUTPUT;
-	SEVENSEG_04_DIR = OUTPUT;
 	
-	TRISDbits.RD0 = OUTPUT;
-	TRISDbits.RD1 = OUTPUT;
-	TRISDbits.RD2 = OUTPUT;
-	TRISDbits.RD3 = OUTPUT;
-	TRISDbits.RD4 = OUTPUT;
-	TRISDbits.RD5 = OUTPUT;
-	TRISDbits.RD6 = OUTPUT;
-	TRISDbits.RD7 = OUTPUT;
 
 	/* main loop */
 	while(TRUE)
 	{
 		
-		PORTD = NUMBER1;
-
 		/* if switch01 is ON, LED03 will be ON */
 		sstSwitch01 = ledswi_getSwitchStatus(01);
-		
+		sstSwitch02 = ledswi_getSwitchStatus(02);		
+
 		if(SWITCH_ON == sstSwitch01){
 			ledswi_setLed(03);
+		
+			if (last_state == 0){
+				last_state = 1;
+				cont++;
+			}
 
-		}
-		else{
+		}	else{
+			last_state = 0;
 			ledswi_clearLed(03);
 		}
-
-		gui = (gui+1)%4;
-		SEVENSEG_01 = LED_OFF;
-		SEVENSEG_02 = LED_OFF;
-		SEVENSEG_03 = LED_OFF;
-		SEVENSEG_04 = LED_OFF;
-		switch (gui) {
-			case 0:
-				SEVENSEG_01 = LED_ON;
-				break;
-			case 1:
-				SEVENSEG_02 = LED_ON;
-				break;
-			case 2:
-				SEVENSEG_03 = LED_ON;
-				break;
-			case 3:
-				SEVENSEG_04 = LED_ON;
-				break;
+		
+		if (SWITCH_ON == sstSwitch02){
+			cont++;
 		}
+
+		
+		sevenseg_setWithInt(cont);
+		
 		
 		/* 100ms delay */	
-		util_genDelay10MS();
-
-		
+		//util_genDelay10MS();
 	}
 }
