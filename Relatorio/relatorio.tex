@@ -14,6 +14,8 @@
 \usepackage{subcaption}
 \usepackage{setspace}
 \usepackage{tikz}
+\usepackage{listings}
+\usepackage{xcolor} 
 
 \patchcmd{\thebibliography}{\section*}{\section}{}{}
 \newcommand{\R}{\ensuremath{\mathbb{R}}}
@@ -40,6 +42,30 @@
 \newtheorem{defn}{Definição}[section]
 
 %opening
+\lstset{ %
+	backgroundcolor=\color{black},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+	basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+	breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+	breaklines=true,                 % sets automatic line breaking
+	captionpos=t,                    % sets the caption-position to bottom
+	commentstyle=\color{green},    % comment style
+	extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+	frame=single,                    % adds a frame around the code
+	keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+	keywordstyle=\color{cyan},       % keyword style
+	language=C,                 % the language of the code
+	numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+	numbersep=5pt,                   % how far the line-numbers are from the code
+	numberstyle=\tiny\color{black}, % the style that is used for the line-numbers
+	rulecolor=\color{gray},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+	showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+	showstringspaces=false,          % underline spaces within strings only
+	showtabs=false,                  % show tabs within strings adding particular underscores
+	stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+	stringstyle=\color{red},     % string literal style
+	tabsize=2,                       % sets default tabsize to 2 spaces
+	basicstyle=\color{orange}
+}
 
 
 \begin{document}
@@ -47,16 +73,15 @@
 
 \onehalfspacing
 \section{Objetivo} 
-O objetivo do projeto é, de maneira incremental, implementar no target os requisitos apresentados no roteiro\cite{bb:roteiro} inicialmente desenvolvendo o modelo e depois implementando cada requisito. Estes requisitos são referentes à configuração e implementação de: entradas de teclado, acionamento de LEDs, display de sete segmentos, protocolo de comunicação, display LCD, medição de velocidade de rotação, PWM, ADC, controlador. 
+O objetivo do projeto é, de maneira incremental, implementar no target os requisitos apresentados no roteiro\cite{bb:roteiro} inicialmente desenvolvendo o modelo e depois implementando cada requisito. Estes requisitos são referentes à configuração e implementação de entradas de teclado, acionamento de LEDs, display de sete segmentos, protocolo de comunicação, display LCD, medição de velocidade de rotação, PWM, ADC e Controlador. 
 	
 \section{Modelagem}
 % Diagramas requisitos implementados, digrama de blocos, etc
-Utilizando o Rational Rhapsody Modeler e tomando como base os requisitos propostos mostrados na figura \ref{fig:requisitos}, complementamos o modelo inicial (requisitos de teclado e LEDs) adicionando um bloco ao modelo referente aos displays de sete segmentos (REQ1C), conforme mostrado na figura \ref{fig:blocos}.
+Utilizando o Rational Rhapsody Modeler e tomando como base os requisitos propostos mostrados na figura \ref{fig:requisitos}, complementamos o modelo inicial\cite{bb:modelo} (requisitos de teclado e LEDs) adicionando um bloco ao modelo referente aos displays de sete segmentos (REQ1C), conforme mostrado na figura \ref{fig:blocos}.
 
-O bloco SevenSeg possui três operações: inicialização, definição de saída (recebendo qual dos displays será usado e qual valor deve ser exibido) e definição de saída com inteiro (recebendo apenas o valor inteiro a ser exibido no conjunto de quatro displays).
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{requisitos}
+	\includegraphics[width=0.9\linewidth]{requisitos}
 	\caption{Diagrama de requisitos}
 	\label{fig:requisitos}
 \end{figure}
@@ -66,6 +91,7 @@ O bloco SevenSeg possui três operações: inicialização, definição de saíd
 	\caption{Diagrama de definição de blocos}
 	\label{fig:blocos}
 \end{figure}
+O bloco SevenSeg possui três operações: inicialização, definição de saída (recebendo qual dos displays será usado e qual valor deve ser exibido) e definição de saída com inteiro (recebendo apenas o valor inteiro a ser exibido no conjunto de quatro displays).
 
 \section{Diagramas Esquemáticos}
 % Diagramas esquemáticos do target utilizados
@@ -87,31 +113,53 @@ Como pode ser visto na figura \ref{fig:esq_7seg}, é necessário fazer um gerenc
 
 \section{Matriz de Rastreabilidade}
 % Matriz de rastreabilidade de requisitos vs implementações
-\begin{table}[H]%TODO
+A matriz de rastreabilidade apresentada na tabela \ref*{tab:rastreabilidade} relaciona cada um dos requisitos com a sua implementação.
+\begin{table}[H]
 	\centering
 	\caption{Matriz de Rastreabilidade}
 	\label{tab:rastreabilidade}
-	\begin{tabular}{|c|c|}
-		\hline ID do Requisito & Implementação \\ 
-		\hline REQ1A 	& \\ 
-						& \\
-						& \\
-		\hline REQ1B 	& \\ 
-		\hline REQ1C 	& \\ 
+	\small
+	\begin{tabular}{|c|l|}
+		\hline \bfseries{ID do Requisito} & \bfseries{Implementação}\\ 
+		\hline REQ1A 	& \texttt{ledswi.c}\\ 
+						& \texttt{- void ledswi\_initLedSwitch(char cLedNum, char cSwitchNum)}\\
+						& \texttt{- switch\_status\_type\_e ledswi\_getSwitchStatus(char cSwitchNum)}\\
+		\hline REQ1B 	& \texttt{ledswi.c}\\ 
+						& \texttt{- void ledswi\_initLedSwitch(char cLedNum, char cSwitchNum)}\\
+						& \texttt{- void ledswi\_setLed(char cLedNum)}\\ 
+						& \texttt{- void ledswi\_clearLed(char cLedNum)}\\
+		\hline REQ1C 	& \texttt{sevenSeg.c}\\ 
+						& \texttt{- void sevenseg\_init(void)}\\
+						& \texttt{- void sevenseg\_set(char cSSNum, sevenseg\_value\_e eValue)}\\
+						& \texttt{- void sevenseg\_setWithInt (int iValue)}\\
 		\hline 
 	\end{tabular} 
+	\normalsize
 \end{table}
 \section{Notas}
 % Dificuldades, observações relevantes, correções, ...
-
 Os maiores problemas identificados foram a dificuldade de conseguir conectar a placa com o computador e alguns mal contatos relacionados aos botões e do próprio PIC. Além disso, houve alguns conflitos com a IDE, pois muitas funcionalidades poderiam ter sido implementadas, já que a função de auto-completar é bem comum em IDE's e o duplo clique poderia selecionar a palavra em vez de colocar um breakpoint.
 
 
-\section{Apêndice}
-% Colocar como apêndice toda a listagem do código fonte
-	
 \begin{thebibliography}{widestlabel}
 	\bibitem{bb:roteiro}{Roteiro de Laboratório - Semanas 04 e 05 (disponibilizado para os alunos)}
+	\bibitem{bb:modelo}{Projeto do Modelo Inicial do Sistema (disponibilizado para os alunos)}
+	\bibitem{bb:codigo}{Código Fonte Inicial em Linguagem C (disponibilizado para os alunos)}
 \end{thebibliography}
+
+\section{Apêndice}
+% Colocar como apêndice toda a listagem do código fonte
+Listagem dos códigos fonte:
+\lstinputlisting[language=C, title = \lstname]{../ledswi.h}
+\lstinputlisting[language=C, title = \lstname]{../ledswi.c}
+\lstinputlisting[language=C, title = \lstname]{../es670_pp.h}
+\lstinputlisting[language=C, title = \lstname]{../es670_pp.c}
+\lstinputlisting[language=C, title = \lstname]{../mclab2.h}
+\lstinputlisting[language=C, title = \lstname]{../util.h}
+\lstinputlisting[language=C, title = \lstname]{../util.c}
+\lstinputlisting[language=C, title = \lstname]{../sevenSeg.h}
+\lstinputlisting[language=C, title = \lstname]{../sevenSeg.c}
+
+%TODO: tiemi
 \end{document}
 
