@@ -82,6 +82,8 @@ O bloco SevenSeg possui três operações: inicialização, definição de saíd
 	\caption{Esquema sete segmentos}
 	\label{fig:esq_7seg}
 \end{figure}
+Como pode ser visto na figura \ref{fig:esq_7seg}, é necessário fazer um gerenciamento das portas RB4-7 e RD0-7 para que sejam mostrados os valores desejados nos displays de sete segmentos. Para isso, é preciso alternar qual RB está ativo fazendo a mudança nos RD0-7 para que cada display esteja mostrando um valor diferente. É importante lembrar que a frequência dessa alternância seja escolhida de modo que o olho humano não perceba que os displays estão ligando e desligando.
+
 
 \section{Matriz de Rastreabilidade}
 % Matriz de rastreabilidade de requisitos vs implementações
@@ -101,6 +103,10 @@ O bloco SevenSeg possui três operações: inicialização, definição de saíd
 \end{table}
 \section{Notas}
 % Dificuldades, observações relevantes, correções, ...
+
+Os maiores problemas identificados foram a dificuldade de conseguir conectar a placa com o computador e alguns mal contatos relacionados aos botões e do próprio PIC. Além disso, houve alguns conflitos com a IDE, pois muitas funcionalidades poderiam ter sido implementadas, já que a função de auto-completar é bem comum em IDE's e o duplo clique poderia selecionar a palavra em vez de colocar um breakpoint.
+
+
 \section{Apêndice}
 % Colocar como apêndice toda a listagem do código fonte
 	

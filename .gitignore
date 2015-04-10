@@ -74,3 +74,9 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Coisas do latex
+Relatorio/relatorio.pdf
+Relatorio/relatorio.log
+Relatorio/relatorio.synctex.gz
+Relatorio/relatorio.aux
