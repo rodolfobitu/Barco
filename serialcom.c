@@ -6,6 +6,9 @@
 /* Revision date:    10abr2015										 */
 /* ***************************************************************** */
 
+#include "serialcom.h"
+#include "mclab2.h"
+
 /* ************************************************ */
 /* Method name: 	   sc_init		   		*/
 /* Method description: This method configures		*/

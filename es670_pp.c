@@ -11,6 +11,7 @@
 #include "ledswi.h"
 #include "sevenseg.h"
 #include "util.h"
+#include "serialcom.h"
 
 /* uC init configurations */
 
@@ -50,6 +51,7 @@ void runInitialization(void)
 	ledswi_initLedSwitch(02, 02);
 
 	sevenseg_init();
+	sc_init();
 }
 
 
