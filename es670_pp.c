@@ -35,8 +35,7 @@
 /* Input params:	   n/a 							*/
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void runInitialization(void)
-{
+void runInitialization(void) {
 	/* clean all ports */
 	PORTA = CLEAN_DATA;
 	PORTB = CLEAN_DATA;
@@ -61,11 +60,9 @@ void runInitialization(void)
 /* Input params:	   n/a 							*/
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void main(void)
-{
+void main(void) {
 	int cont = 0;
 	char last_state = 0;
-
 
 	switch_status_type_e sstSwitch01;
 	switch_status_type_e sstSwitch02;
@@ -76,11 +73,10 @@ void main(void)
 	/* play with leds */
 	ledswi_setLed(04);
 	
+	sc_start();
 	
-
 	/* main loop */
-	while(TRUE)
-	{
+	while(TRUE) {
 		
 		/* if switch01 is ON, LED03 will be ON */
 		sstSwitch01 = ledswi_getSwitchStatus(01);

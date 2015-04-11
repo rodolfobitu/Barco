@@ -20,4 +20,12 @@
 /* ************************************************ */
 void sc_init(void);
 
+/* ************************************************ */
+/* Method name: 	   sc_start		   		*/
+/* Method description: Sends '$' until we receive 'A' */
+/* Input params:	   n/a							*/
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void sc_start(void);
+
 #endif /* SERIALCOM_H */

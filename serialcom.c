@@ -35,3 +35,23 @@ void sc_init(void) {
 	SPBRGH = 0;
 	SPBRG = 77;
 }
+
+/* ************************************************ */
+/* Method name: 	   sc_start		   		*/
+/* Method description: Sends '$' until we receive 'A' */
+/* Input params:	   n/a							*/
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void sc_start(void) {
+	while (TRUE) {
+		// Send
+		TXREG = '$';
+		
+		// Check if we're done
+		if (PIR1bits.RCIF && RCREG == 'A') {
+			break;
+		}
+		
+		util_genDelay100MS();
+	}
+}
