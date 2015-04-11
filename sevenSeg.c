@@ -1,4 +1,4 @@
- /* ***************************************************************** */
+/* ***************************************************************** */
 /* File name:		 sevenSeg.h            							 */
 /* File description: Header file containing the function/methods     */
 /*					 prototypes of sevenSeg.c      					 */
