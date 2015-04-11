@@ -8,6 +8,7 @@
 
 #include "serialcom.h"
 #include "mclab2.h"
+#include "util.h" 
 
 /* ************************************************ */
 /* Method name: 	   sc_init		   		*/
@@ -43,7 +44,7 @@ void sc_init(void) {
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
 void sc_start(void) {
-	while (TRUE) {
+	while (1) {
 		// Send
 		TXREG = '$';
 		
