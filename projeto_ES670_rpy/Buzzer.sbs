@@ -1,0 +1,192 @@
+I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
+{ ISubsystem 
+	- _id = GUID 63b103ec-0744-4eb3-92bc-01fed2752573;
+	- _myState = 8192;
+	- _name = "Buzzer";
+	- _objectCreation = "5611919175720151731973456";
+	- _umlDependencyID = "2303";
+	- _theMainDiagram = { IHandle 
+		- _m2Class = "IDiagram";
+		- _filename = "";
+		- _subsystem = "";
+		- _class = "";
+		- _name = "diag_pacotes";
+		- _id = GUID 604328de-2202-48b3-9d1a-353bbeb75331;
+	}
+	- _lastID = 1;
+	- weakCGTime = 4.17.2015::20:55:57;
+	- strongCGTime = 4.17.2015::20:43:55;
+	- _defaultComposite = GUID b4f0f17f-3b29-46df-adb7-698c600461e9;
+	- _eventsBaseID = -1;
+	- Classes = { IRPYRawContainer 
+		- size = 2;
+		- value = 
+		{ IClass 
+			- _id = GUID b4f0f17f-3b29-46df-adb7-698c600461e9;
+			- _myState = 40960;
+			- _name = "TopLevel";
+			- _objectCreation = "5611921175720151731971456";
+			- _umlDependencyID = "2463";
+			- weakCGTime = 12.31.1969::22:0:0;
+			- strongCGTime = 12.31.1969::22:0:0;
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- _classModifier = Unspecified;
+		}
+		{ IClass 
+			- _id = GUID 244400e5-79fb-4c72-bbd1-e3351d514104;
+			- _myState = 8192;
+			- _name = "Buzzer";
+			- _objectCreation = "5611923175720151731969456";
+			- _umlDependencyID = "2303";
+			- Dependencies = { IRPYRawContainer 
+				- size = 1;
+				- value = 
+				{ IDependency 
+					- _id = GUID 76a99513-e78a-41a5-afa5-09826e464c40;
+					- _myState = 2048;
+					- _name = "mclab2";
+					- _objectCreation = "5611925175720151731967456";
+					- _umlDependencyID = "2222";
+					- Stereotypes = { IRPYRawContainer 
+						- size = 1;
+						- value = 
+						{ IHandle 
+							- _m2Class = "IStereotype";
+							- _filename = "PredefinedTypes.sbs";
+							- _subsystem = "PredefinedTypes";
+							- _class = "";
+							- _name = "Usage";
+							- _id = GUID 42aa4325-6112-4e88-87ce-66008878f1db;
+						}
+					}
+					- _dependsOn = { INObjectHandle 
+						- _m2Class = "IClass";
+						- _filename = "McLab2.sbs";
+						- _subsystem = "McLab2";
+						- _class = "";
+						- _name = "mclab2";
+						- _id = GUID aa110bb3-0172-4266-a0b1-29e5f9f27d13;
+					}
+				}
+			}
+			- Stereotypes = { IRPYRawContainer 
+				- size = 1;
+				- value = 
+				{ IHandle 
+					- _m2Class = "IStereotype";
+					- _filename = "PredefinedTypesC++.sbs";
+					- _subsystem = "PredefinedTypesCpp";
+					- _class = "";
+					- _name = "Subsystem";
+					- _id = GUID 4ea1c1da-7dc6-4a35-bc5a-313393e8408f;
+				}
+			}
+			- _theMainDiagram = { IHandle 
+				- _m2Class = "IDiagram";
+				- _filename = "";
+				- _subsystem = "";
+				- _class = "";
+				- _name = "diag_definicao_blocos";
+				- _id = GUID a21c9f5f-35bf-494c-a903-3394cfe63ffe;
+			}
+			- _lastID = 3;
+			- weakCGTime = 4.17.2015::20:47:19;
+			- strongCGTime = 4.17.2015::20:45:5;
+			- Operations = { IRPYRawContainer 
+				- size = 2;
+				- value = 
+				{ IPrimitiveOperation 
+					- _id = GUID f4109921-381f-4c7a-8b3a-83cff7e45e24;
+					- _myState = 8192;
+					- _name = "setBuzzer";
+					- _objectCreation = "5611927175720151731965456";
+					- _umlDependencyID = "2635";
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+				{ IPrimitiveOperation 
+					- _id = GUID 5c7883ed-8c35-43f3-8dc7-0b9b7db241f2;
+					- _myState = 8192;
+					- _name = "clearBuzzer";
+					- _objectCreation = "5611929175720151731963456";
+					- _umlDependencyID = "2822";
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+			}
+			- _multiplicity = "";
+			- _itsStateChart = { IHandle 
+				- _m2Class = "";
+			}
+			- Associations = { IRPYRawContainer 
+				- size = 1;
+				- value = 
+				{ IAssociationEnd 
+					- _id = GUID 99570ddd-dcc3-4871-ad64-5b6c6363dd5c;
+					- _myState = 10240;
+					- _name = "itsEs670";
+					- _objectCreation = "5611931175720151731961456";
+					- _umlDependencyID = "2329";
+					- _multiplicity = "1";
+					- _otherClass = { IClassifierHandle 
+						- _m2Class = "IClass";
+						- _filename = "Main.sbs";
+						- _subsystem = "Main";
+						- _class = "";
+						- _name = "es670";
+						- _id = GUID 24edaf1f-6db0-4e29-bf9d-2cfd75f2e63c;
+					}
+					- _inverse = { IHandle 
+						- _m2Class = "IAssociationEnd";
+						- _filename = "Main.sbs";
+						- _subsystem = "Main";
+						- _class = "es670";
+						- _name = "itsBuzzer";
+						- _id = GUID 43a24270-bf42-474f-9873-fa97bc4da77f;
+					}
+					- _linkName = "";
+					- _linkType = Assoc;
+					- _navigability = Navigable;
+				}
+			}
+			- _classModifier = Unspecified;
+		}
+	}
+	- _configurationRelatedTime = 12.31.1969::22:0:0;
+}
+

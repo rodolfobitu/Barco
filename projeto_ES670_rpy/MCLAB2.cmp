@@ -3,8 +3,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 	- _id = GUID 97403057-80a5-4323-8421-7b4a31e27ebf;
 	- _myState = 139264;
 	- _name = "MCLAB2";
-	- _objectCreation = "3621068152820151216519136";
-	- _umlDependencyID = "2041";
+	- _objectCreation = "4116881171620151724239441";
+	- _umlDependencyID = "2045";
 	- m_buildType = Executable;
 	- m_libraries = "";
 	- m_additionalSources = "";
@@ -15,8 +15,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 		- _id = GUID cd030cca-69ce-42c3-b700-0f0a5efcf93f;
 		- _myState = 73728;
 		- _name = "Files";
-		- _objectCreation = "3621070152820151216517136";
-		- _umlDependencyID = "2130";
+		- _objectCreation = "4116883171620151724237441";
+		- _umlDependencyID = "2143";
 		- m_path = "";
 		- Elements = { IRPYRawContainer 
 			- size = 0;
@@ -36,8 +36,36 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 			- _id = GUID 9c6beb6d-ead1-40f7-91ed-bc17ed49e6a3;
 			- _myState = 8192;
 			- _name = "DefaultConfig";
-			- _objectCreation = "3621072152820151216515136";
-			- _umlDependencyID = "2938";
+			- _objectCreation = "4116885171620151724235441";
+			- _umlDependencyID = "2951";
+			- HyperLinks = { IRPYRawContainer 
+				- size = 2;
+				- value = 
+				{ IMHyperLink 
+					- _id = GUID 26a7eb51-19c6-4210-b2e3-89bb65641191;
+					- _objectCreation = "4116887171620151724233441";
+					- _umlDependencyID = "1644";
+					- _dependsOn = { INObjectHandle 
+						- _m2Class = "";
+					}
+					- _linkDispName = "Edit Makefile";
+					- _linkType = "FREE";
+					- _linkTarget = "D:\\Graduacao\\9sem\\ES670\\Barco\\MCLAB2\\DefaultConfig\\MCLAB2.mak";
+					- isConfigurationFileHyperLink = 1;
+				}
+				{ IMHyperLink 
+					- _id = GUID 28eee227-b22e-41b9-9fcd-e02308ef9ff0;
+					- _objectCreation = "4116889171620151724231441";
+					- _umlDependencyID = "1644";
+					- _dependsOn = { INObjectHandle 
+						- _m2Class = "";
+					}
+					- _linkDispName = "Edit Main File";
+					- _linkType = "FREE";
+					- _linkTarget = "D:\\Graduacao\\9sem\\ES670\\Barco\\MCLAB2\\DefaultConfig\\MainMCLAB2";
+					- isConfigurationFileHyperLink = 1;
+				}
+			}
 			- _scopeType = Explicit;
 			- _libraries = "";
 			- _additionalSources = "";
@@ -60,8 +88,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 				- _id = GUID 8b47ce15-d669-4f00-8cb5-d262567c6650;
 				- _myState = 8192;
 				- _name = "DefaultConfig";
-				- _objectCreation = "3621074152820151216513136";
-				- _umlDependencyID = "2938";
+				- _objectCreation = "4116891171620151724229441";
+				- _umlDependencyID = "2951";
 				- m_path = "";
 				- Elements = { IRPYRawContainer 
 					- size = 0;
@@ -70,8 +98,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 					- size = 0;
 				}
 			}
-			- weakCGTime = 12.31.1969::22:0:0;
-			- strongCGTime = 12.31.1969::22:0:0;
+			- weakCGTime = 1.2.1990::0:0:0;
+			- strongCGTime = 1.2.1990::0:0:0;
 			- AnimScopeElements = { IRPYRawContainer 
 				- size = 0;
 			}
@@ -79,15 +107,63 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 		}
 	}
 	- HandlesInMe = { IRPYRawContainer 
-		- size = 1;
+		- size = 7;
 		- value = 
 		{ IHandle 
 			- _m2Class = "ISubsystem";
-			- _filename = "Default.sbs";
+			- _filename = "_Projeto_Pratico.sbs";
 			- _subsystem = "";
 			- _class = "";
-			- _name = "Default";
+			- _name = "_Projeto_Pratico";
 			- _id = GUID 20246198-4c47-4bfe-9397-a7aa14ffd20f;
+		}
+		{ IHandle 
+			- _m2Class = "ISubsystem";
+			- _filename = "_Requisitos.sbs";
+			- _subsystem = "";
+			- _class = "";
+			- _name = "_Requisitos";
+			- _id = GUID 83b232d5-cbf5-48de-bd01-d866eaf248e9;
+		}
+		{ IHandle 
+			- _m2Class = "ISubsystem";
+			- _filename = "Util.sbs";
+			- _subsystem = "";
+			- _class = "";
+			- _name = "Util";
+			- _id = GUID f5d6f4c4-ca70-4386-9866-389eed46d9b7;
+		}
+		{ IHandle 
+			- _m2Class = "ISubsystem";
+			- _filename = "McLab2.sbs";
+			- _subsystem = "";
+			- _class = "";
+			- _name = "McLab2";
+			- _id = GUID 9ac6e8be-1171-4050-a109-3666f2506e5d;
+		}
+		{ IHandle 
+			- _m2Class = "ISubsystem";
+			- _filename = "LedSwi.sbs";
+			- _subsystem = "";
+			- _class = "";
+			- _name = "LedSwi";
+			- _id = GUID 065e8ea8-3104-4865-9f03-c833c5c57170;
+		}
+		{ IHandle 
+			- _m2Class = "ISubsystem";
+			- _filename = "Main.sbs";
+			- _subsystem = "";
+			- _class = "";
+			- _name = "Main";
+			- _id = GUID a9bfd00a-eefd-40b0-8807-d7abb8ac9870;
+		}
+		{ IHandle 
+			- _m2Class = "ISubsystem";
+			- _filename = "SevenSeg.sbs";
+			- _subsystem = "";
+			- _class = "";
+			- _name = "SevenSeg";
+			- _id = GUID bc440f0f-f153-4970-881c-9b6a3048869c;
 		}
 	}
 	- VariationPoints = { IRPYRawContainer 
@@ -96,7 +172,7 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 	- SelectedVariants = { IRPYRawContainer 
 		- size = 0;
 	}
-	- weakCGTime = 1.15.2015::14:27:48;
-	- strongCGTime = 1.15.2015::14:27:48;
+	- weakCGTime = 4.17.2015::19:42:54;
+	- strongCGTime = 4.17.2015::19:42:54;
 }
 
