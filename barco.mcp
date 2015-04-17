@@ -5,10 +5,10 @@ device=PIC18F4550
 [PATH_INFO]
 BuildDirPolicy=BuildDirIsProjectDir
 dir_src=
-dir_bin=
-dir_tmp=
+dir_bin=.\bin
+dir_tmp=.\bin
 dir_sin=
-dir_inc=
+dir_inc=.\headers
 dir_lib=
 dir_lkr=
 [CAT_FILTERS]
@@ -60,23 +60,23 @@ file_008=no
 file_009=no
 file_010=no
 [FILE_INFO]
-file_000=es670_pp.c
-file_001=ledswi.c
-file_002=util.c
-file_003=sevenseg.c
-file_004=serialcom.c
-file_005=es670_pp.h
-file_006=ledswi.h
-file_007=mclab2.h
-file_008=util.h
-file_009=sevenseg.h
-file_010=serialcom.h
+file_000=src\es670_pp.c
+file_001=src\ledswi.c
+file_002=src\serialcom.c
+file_003=src\sevenSeg.c
+file_004=src\util.c
+file_005=headers\es670_pp.h
+file_006=headers\ledswi.h
+file_007=headers\mclab2.h
+file_008=headers\serialcom.h
+file_009=headers\sevenSeg.h
+file_010=headers\util.h
 [SUITE_INFO]
 suite_guid={5B7D72DD-9861-47BD-9F60-2BE967BF8416}
 suite_state=
 [TOOL_SETTINGS]
 TS{DD2213A8-6310-47B1-8376-9430CDFC013F}=
-TS{BFD27FBA-4A02-4C0E-A5E5-B812F3E7707C}=/o"$(BINDIR_)$(TARGETBASE).cof" /M"$(BINDIR_)$(TARGETBASE).map" /W
+TS{BFD27FBA-4A02-4C0E-A5E5-B812F3E7707C}=/m"$(BINDIR_)$(TARGETBASE).map" /w /o"$(BINDIR_)$(TARGETBASE).cof"
 TS{C2AF05E7-1416-4625-923D-E114DB6E2B96}=-Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-
 TS{ADE93A55-C7C7-4D4D-A4BA-59305F7D0391}=
 [INSTRUMENTED_TRACE]
