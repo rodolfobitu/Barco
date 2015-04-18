@@ -12,9 +12,9 @@
 /* ************************************************ */
 /* Method name: 	   cm_interpretCmd		   		*/
 /* Method description: Interpret the command		*/	
-/* Input params:	   cCmd = command				*/
+/* Input params:	   cCmd[] = command				*/
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void cm_interpretCmd(char* cCmd);
+void cm_interpretCmd(char cCmd[]);
 
 #endif /* CMDMACHINE_H */

@@ -70,7 +70,7 @@ void main(void) {
 	
 	/* main loop */
 	while(TRUE) {
-		char* buffer[50];
+		char buffer[50];
 		sc_receiveBuffer(buffer);
 		sc_sendBuffer(buffer);
 		cm_interpretCmd(buffer);

@@ -65,15 +65,14 @@ void sc_start(void) {
 /* Input params:	   char* cBuf					*/
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void sc_sendBuffer(char* cBuf) {
-	
-	int i=0;
-	
-	while(cBuf[i] != '\0'){
-		TXREG = cBuf[i++];
+void sc_sendBuffer(char cBuf[]) {
+	int i = 0;
+
+	while (cBuf[i] != '\0') {
+		util_genDelay100MS();
 		while (!PIR1bits.TXIF);
+		TXREG = cBuf[i++];
 	}
-	
 }
 
 /* ************************************************ */
@@ -83,7 +82,7 @@ void sc_sendBuffer(char* cBuf) {
 /* Input params:	   char* cBuf					*/
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void sc_receiveBuffer(char* cBuf) {
+void sc_receiveBuffer(char cBuf[]) {
 	int i=0;
 	while (1) {
 		// Check if we're ready
