@@ -60,4 +60,11 @@
 #define SEVENSEG_03_DIR	TRISBbits.RB5
 #define SEVENSEG_04_DIR	TRISBbits.RB4
 
+/* Buzzer definition */
+
+#define BUZZER   PORTAbits.RA5
+#define BUZZ_DIR TRISAbits.RA5
+#define BUZ_ON 1
+#define BUZ_OFF 0
+
 #endif /* MCLAB2_H */

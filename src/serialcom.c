@@ -9,6 +9,7 @@
 #include "serialcom.h"
 #include "mclab2.h"
 #include "util.h" 
+#include <ctype.h>
 
 /* ************************************************ */
 /* Method name: 	   sc_init		   		*/
@@ -56,3 +57,49 @@ void sc_start(void) {
 		util_genDelay100MS();
 	}
 }
+
+/* ************************************************ */
+/* Method name: 	   sc_sendBuffer		   		*/
+/* Method description: Sends buffer using the serial*/
+/* 						communication.				*/
+/* Input params:	   char* cBuf					*/
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void sc_sendBuffer(char* cBuf) {
+	
+	int i=0;
+	
+	while(cBuf[i] != '\0'){
+		TXREG = cBuf[i++];
+		while (!PIR1bits.TXIF);
+	}
+	
+}
+
+/* ************************************************ */
+/* Method name: 	   sc_receiveBuffer		   		*/
+/* Method description: Receive a buffer using serial*/
+/* 						communication.				*/
+/* Input params:	   char* cBuf					*/
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void sc_receiveBuffer(char* cBuf) {
+	int i=0;
+	while (1) {
+		// Check if we're ready
+		if (PIR1bits.RCIF) {
+			char temp = RCREG;
+			// Check if we're done
+			if (isprint(temp)){
+				cBuf[i] = temp;
+			} else{
+				//we're done
+				cBuf[i] = '\0';
+				break;
+			}
+			i++;
+		}
+	}
+}
+
+

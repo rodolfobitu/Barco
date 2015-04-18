@@ -12,6 +12,7 @@
 #include "sevenseg.h"
 #include "util.h"
 #include "serialcom.h"
+#include "cmdMachine.h"
 
 /* uC init configurations */
 
@@ -61,49 +62,16 @@ void runInitialization(void) {
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
 void main(void) {
-	int cont = 0;
-	char last_state = 0;
-
-	switch_status_type_e sstSwitch01;
-	switch_status_type_e sstSwitch02;
 	
 	/* run uC init configs */
 	runInitialization();
-	
-	/* play with leds */
-	ledswi_setLed(04);
-	
+
 	sc_start();
 	
 	/* main loop */
 	while(TRUE) {
-		
-		/* if switch01 is ON, LED03 will be ON */
-		sstSwitch01 = ledswi_getSwitchStatus(01);
-		sstSwitch02 = ledswi_getSwitchStatus(02);		
-
-		if(SWITCH_ON == sstSwitch01){
-			ledswi_setLed(03);
-		
-			if (last_state == 0){
-				last_state = 1;
-				cont++;
-			}
-
-		}	else{
-			last_state = 0;
-			ledswi_clearLed(03);
-		}
-		
-		if (SWITCH_ON == sstSwitch02){
-			cont++;
-		}
-
-		
-		sevenseg_setWithInt(cont);
-		
-		
-		/* 100ms delay */	
-		//util_genDelay10MS();
+		char* buffer[50];
+		sc_receiveBuffer(buffer);
+		cm_interpretCmd(buffer);
 	}
 }
