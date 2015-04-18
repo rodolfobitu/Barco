@@ -28,4 +28,24 @@ void sc_init(void);
 /* ************************************************ */
 void sc_start(void);
 
+
+/* ************************************************ */
+/* Method name: 	   sc_sendBuffer		   		*/
+/* Method description: Sends buffer using the serial*/
+/* 						communication.				*/
+/* Input params:	   char* cBuf					*/
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void sc_sendBuffer(char* cBuf);
+
+/* ************************************************ */
+/* Method name: 	   sc_receiveBuffer		   		*/
+/* Method description: Receive a buffer using serial*/
+/* 						communication.				*/
+/* Input params:	   char* cBuf					*/
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void sc_receiveBuffer(char* cBuf);
+
+
 #endif /* SERIALCOM_H */
