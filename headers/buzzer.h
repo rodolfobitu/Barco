@@ -20,22 +20,6 @@
 void bz_init(void);
 
 /* ************************************************ */
-/* Method name: 	   bz_set				   		*/
-/* Method description: Turn buzzer on				 */
-/* Input params:	   n/a							*/
-/* Outpu params:	   n/a 							*/
-/* ************************************************ */
-void bz_set(void);
-
-/* ************************************************ */
-/* Method name: 	   bz_clear				   		*/
-/* Method description: Turn buzzer off				 */
-/* Input params:	   n/a							*/
-/* Outpu params:	   n/a 							*/
-/* ************************************************ */
-void bz_clear(void);
-
-/* ************************************************ */
 /* Method name: 	   bz_buzzFor			   		*/
 /* Method description: Turn buzzer on for a time	 */
 /* Input params:	   iTime = time in ms			*/
