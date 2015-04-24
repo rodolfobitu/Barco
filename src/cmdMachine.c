@@ -8,8 +8,10 @@
 
 #include "cmdMachine.h"
 #include "ledswi.h"
+#include "buzzer.h"
 
 void cm_ledCmd(char cCmd[]);
+void cm_buzzerCmd(char cCmd[]);
 
 /* ************************************************ */
 /* Method name: 	   cm_interpretCmd		   		*/
@@ -23,7 +25,7 @@ void cm_interpretCmd(char cCmd[]){
 	} else if (cCmd[0] == 'S'){
 		//Switch
 	} else if (cCmd[0] == 'B'){
-		//Buzzer
+		cm_buzzerCmd(cCmd);
 	} else {
 		//invalid
 	}
@@ -54,5 +56,26 @@ void cm_ledCmd(char cCmd[]){
 			//invalid
 		}
 	}
+
+}
+
+/* ************************************************ */
+/* Method name: 	   cm_buzzerCmd			   		*/
+/* Method description: command buzzer to buzz      */
+/* Input params:	   cCmd[] = command (Bxxxx)	*/
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void cm_buzzerCmd(char cCmd[]){
+	int time = 0;
+	int i;
+	for(i=1;i<5;i++){
+		if ('0' <= cCmd[i] && cCmd[i] <= '9'){
+			time = 10*time + cCmd[i] - '0';
+		}else{
+			return;
+		}
+	}
+
+	bz_buzzFor(time);
 
 }

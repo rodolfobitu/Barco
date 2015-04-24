@@ -13,6 +13,7 @@
 #include "util.h"
 #include "serialcom.h"
 #include "cmdMachine.h"
+#include "buzzer.h"
 
 /* uC init configurations */
 
@@ -52,6 +53,7 @@ void runInitialization(void) {
 
 	sevenseg_init();
 	sc_init();
+	bz_init();
 }
 
 
