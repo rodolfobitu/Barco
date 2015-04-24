@@ -9,8 +9,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler * 1159120
 		{ CGEMdiDiagramParams 
 			- _placement = { CCommon_WINDOWPLACEMENT 
 				- m_nLength = 44;
-				- m_nFlags = 0;
-				- m_showCmd = 1;
+				- m_nFlags = 2;
+				- m_showCmd = 3;
 				- m_ptMinPositionX = -1;
 				- m_ptMinPositionY = -1;
 				- m_ptMaxPositionX = -8;
@@ -30,15 +30,15 @@ I-Logix-RPY-Archive version 8.5.2 Modeler * 1159120
 				- _id = GUID 05ba9a75-4660-42b1-8b10-757cc160d6e9;
 			}
 			- _UpLeft = 0 0 ;
-			- _DownRight = 644 338 ;
+			- _DownRight = 1022 519 ;
 			- _instanceName = "";
 			- m_nDiagramIndex = 0;
 		}
 		{ CGEMdiDiagramParams 
 			- _placement = { CCommon_WINDOWPLACEMENT 
 				- m_nLength = 44;
-				- m_nFlags = 2;
-				- m_showCmd = 3;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
 				- m_ptMinPositionX = -1;
 				- m_ptMinPositionY = -1;
 				- m_ptMaxPositionX = -8;
@@ -57,8 +57,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler * 1159120
 				- _name = "diag_definicao_blocos";
 				- _id = GUID a21c9f5f-35bf-494c-a903-3394cfe63ffe;
 			}
-			- _UpLeft = 0 0 ;
-			- _DownRight = 877 582 ;
+			- _UpLeft = 0 335 ;
+			- _DownRight = 421 842 ;
 			- _instanceName = "";
 			- m_nDiagramIndex = 3;
 		}
@@ -86,7 +86,7 @@ I-Logix-RPY-Archive version 8.5.2 Modeler * 1159120
 				- _id = GUID 604328de-2202-48b3-9d1a-353bbeb75331;
 			}
 			- _UpLeft = 0 0 ;
-			- _DownRight = 342 412 ;
+			- _DownRight = 576 694 ;
 			- _instanceName = "";
 			- m_nDiagramIndex = 2;
 		}
@@ -141,13 +141,13 @@ I-Logix-RPY-Archive version 8.5.2 Modeler * 1159120
 				- _name = "diag_sequencia_interpretador";
 				- _id = GUID a47981bb-282a-4bac-b1a9-5d7c85838379;
 			}
-			- _UpLeft = 0 0 ;
-			- _DownRight = 644 318 ;
+			- _UpLeft = 0 110 ;
+			- _DownRight = 644 428 ;
 			- _instanceName = "";
 			- m_nDiagramIndex = 1;
 		}
 	}
-	- _fullName = "D:\\Graduacao\\9sem\\ES670\\Barco\\Projeto_ES670";
+	- _fullName = "C:\\RodolfoBitu\\Gradua\ç\ão\\11 semestre\\barco\\Barco\\Projeto_ES670";
 	- m_SearchScopeList = { IRPYRawContainer 
 		- size = 0;
 	}

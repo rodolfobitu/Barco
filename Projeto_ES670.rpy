@@ -28,8 +28,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 		}
 	}
 	- _name = "Projeto_ES670";
-	- _objectCreation = "14287321842015114177414";
-	- _umlDependencyID = "2680";
+	- _objectCreation = "20780224102015331294420";
+	- _umlDependencyID = "2664";
 	- _lastID = 10;
 	- _UserColors = { IRPYRawContainer 
 		- size = 16;
@@ -292,8 +292,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 				}
 			}
 			- _name = "diag_requisitos";
-			- _objectCreation = "14287721842015114137414";
-			- _umlDependencyID = "3149";
+			- _objectCreation = "20789824102015331198420";
+			- _umlDependencyID = "3151";
 			- _description = { IDescription 
 				- _textRTF = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\deflang1046{\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}
 \\viewkind4\\uc1\\pard\\fs20 Diagrama de requisitos de sistema do projeto pr\\'e1tico da ES670 \\par
@@ -1662,9 +1662,9 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 				}
 			}
 			- _name = "diag_definicao_blocos";
-			- _objectCreation = "14287741842015114135414";
-			- _umlDependencyID = "3704";
-			- _lastModifiedTime = "4.18.2015::14:2:54";
+			- _objectCreation = "20790024102015331196420";
+			- _umlDependencyID = "3688";
+			- _lastModifiedTime = "4.24.2015::6:9:40";
 			- _graphicChart = { CGIClassChart 
 				- _id = GUID fb0d51a4-b372-4968-8469-f3605c2b4594;
 				- m_type = 0;
@@ -3820,7 +3820,7 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 							- _filename = "Buzzer.sbs";
 							- _subsystem = "Buzzer";
 							- _class = "Buzzer";
-							- _name = "clearBuzzer()";
+							- _name = "bz_buzzFor(int)";
 							- _id = GUID 5c7883ed-8c35-43f3-8dc7-0b9b7db241f2;
 						}
 					}
@@ -4731,8 +4731,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 				}
 			}
 			- _name = "diag_pacotes";
-			- _objectCreation = "14287761842015114133414";
-			- _umlDependencyID = "2788";
+			- _objectCreation = "20790224102015331194420";
+			- _umlDependencyID = "2772";
 			- _lastModifiedTime = "4.17.2015::20:57:38";
 			- _graphicChart = { CGIClassChart 
 				- _id = GUID 84c7ed09-6a53-4e4a-925b-6e70d2f9ea4a;
@@ -5614,9 +5614,9 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 				}
 			}
 			- _name = "diag_sequencia_interpretador";
-			- _objectCreation = "14287781842015114131414";
-			- _umlDependencyID = "4501";
-			- _lastModifiedTime = "4.18.2015::0:49:43";
+			- _objectCreation = "20790424102015331192420";
+			- _umlDependencyID = "4485";
+			- _lastModifiedTime = "4.24.2015::6:9:40";
 			- _graphicChart = { CGIMscChart 
 				- vLadderMargin = 20;
 				- m_usingActivationBar = 0;
@@ -6089,16 +6089,16 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 			}
 			- m_pICollaboration = { ICollaboration 
 				- _id = GUID d40de2a9-7115-4c51-96a6-80ab22932447;
-				- _objectCreation = "14287801842015114129414";
-				- _umlDependencyID = "1537";
+				- _objectCreation = "20790624102015331190420";
+				- _umlDependencyID = "1521";
 				- ClassifierRoles = { IRPYRawContainer 
 					- size = 3;
 					- value = 
 					{ IClassifierRole 
 						- _id = GUID 26cd029a-b4b9-44c0-8336-9841c8e48f45;
 						- _myState = 2048;
-						- _objectCreation = "14287821842015114127414";
-						- _umlDependencyID = "1537";
+						- _objectCreation = "20790824102015331188420";
+						- _umlDependencyID = "1530";
 						- m_eRoleType = CLASS;
 						- m_pBase = { IHandle 
 							- _m2Class = "IClass";
@@ -6115,8 +6115,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 					{ IClassifierRole 
 						- _id = GUID f9c2e570-2cdb-4f79-8f44-a04489126c76;
 						- _myState = 2048;
-						- _objectCreation = "14287841842015114125414";
-						- _umlDependencyID = "1537";
+						- _objectCreation = "20791024102015331186420";
+						- _umlDependencyID = "1521";
 						- m_eRoleType = CLASS;
 						- m_pBase = { IHandle 
 							- _m2Class = "IClass";
@@ -6133,8 +6133,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 					{ IClassifierRole 
 						- _id = GUID 5b5a8618-51ee-4d2d-b82f-db3832ebd2b7;
 						- _myState = 2048;
-						- _objectCreation = "14287861842015114123414";
-						- _umlDependencyID = "1537";
+						- _objectCreation = "20791224102015331184420";
+						- _umlDependencyID = "1521";
 						- m_eRoleType = CLASS;
 						- m_pBase = { IHandle 
 							- _m2Class = "IClass";
@@ -6155,8 +6155,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 					{ IMessage 
 						- _id = GUID 288f17f6-075a-40c2-a03e-cb33ee4a05d6;
 						- _name = "setConfig";
-						- _objectCreation = "14287881842015114121414";
-						- _umlDependencyID = "2467";
+						- _objectCreation = "20791424102015331182420";
+						- _umlDependencyID = "2451";
 						- m_szSequence = "1.";
 						- m_szActualArgs = "";
 						- m_szReturnVal = "";
@@ -6191,8 +6191,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 						- _id = GUID 8ec97f1e-dfd7-43e9-be7d-31b6350cfe3f;
 						- _myState = 8192;
 						- _name = "receiveBuffer";
-						- _objectCreation = "14287901842015114119414";
-						- _umlDependencyID = "2878";
+						- _objectCreation = "20791624102015331180420";
+						- _umlDependencyID = "2862";
 						- m_szSequence = "2.";
 						- m_szActualArgs = "cBuf";
 						- m_szReturnVal = "";
@@ -6226,8 +6226,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 					{ IMessage 
 						- _id = GUID 479bffc5-013a-4db6-9ec9-b299bc2ae97f;
 						- _name = "interpretCmd";
-						- _objectCreation = "14287921842015114117414";
-						- _umlDependencyID = "2802";
+						- _objectCreation = "20791824102015331178420";
+						- _umlDependencyID = "2795";
 						- m_szSequence = "3.";
 						- m_szActualArgs = "cCmd";
 						- m_szReturnVal = "";
@@ -6261,8 +6261,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 					{ IMessage 
 						- _id = GUID 354a65f4-f3e1-4186-a475-ac7ee061a9e6;
 						- _name = "sendBuffer";
-						- _objectCreation = "14287941842015114115414";
-						- _umlDependencyID = "2565";
+						- _objectCreation = "20792024102015331176420";
+						- _umlDependencyID = "2549";
 						- m_szSequence = "4.";
 						- m_szActualArgs = "cBuf";
 						- m_szReturnVal = "";

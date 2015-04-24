@@ -93,11 +93,17 @@ Utilizando o Rational Rhapsody Modeler e tomando como base os requisitos propost
 \end{figure}
 O bloco "SevenSeg" possui três operações: inicialização, definição de saída (recebendo qual dos displays será usado e qual valor deve ser exibido) e definição de saída com inteiro (recebendo apenas o valor inteiro a ser exibido no conjunto de quatro displays).
 
-Com o objetivo de cumprir o requisito de comunicação serial (REQ2), foram adiconados os blocos Serial e CmdMachine. O bloco "Serial" é o bloco responsável pela comunicação serial simples, tendo como funções mandar e receber as mensagens. O bloco "CmdMachine" já tem a função de interpretar o que é recebido pela porta serial.
+Com o objetivo de cumprir o requisito de comunicação serial (REQ2), foram adiconados os blocos Serial e CmdMachine. O bloco "Serial" é o bloco responsável pela comunicação serial simples, tendo como funções mandar e receber as mensagens. O bloco "CmdMachine" já tem a função de interpretar o que é recebido pela porta serial. Ainda foi adiconado o bloco "Buzzer", que controla o funcionamento do buzzer do kit.
 
 \section{Diagramas Esquemáticos}
 % Diagramas esquemáticos do target utilizados
 
+\begin{figure}[H]
+	\centering
+	\includegraphics{pacotes}
+	\caption{Diagrama de pacotes}
+	\label{fig:pacotes}
+\end{figure}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{esq_ledswi}
@@ -116,6 +122,18 @@ Com o objetivo de cumprir o requisito de comunicação serial (REQ2), foram adic
 	\caption{Esquema comunicação serial}
 	\label{fig:serial}
 \end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{interpretador}
+	\caption{Esquema do interpretador de comandos}
+	\label{fig:interpretador}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{maquina}
+	\caption{Esquema da maquina de estados para interpretação de comandos}
+	\label{fig:maquina}
+\end{figure}
 
 Como pode ser visto na figura \ref{fig:esq_7seg}, é necessário fazer um gerenciamento das portas RB4-7 e RD0-7 para que sejam mostrados os valores desejados nos displays de sete segmentos. Para isso, é preciso alternar qual RB está ativo fazendo a mudança nos RD0-7 para que cada display esteja mostrando um valor diferente. É importante lembrar que a frequência dessa alternância seja escolhida de modo que o olho humano não perceba que os displays estão ligando e desligando.
 
@@ -123,7 +141,7 @@ Observando a figura \ref{fig:serial}, para a manipulação da comunicação seri
 
 \section{Implementação da sintaxe do protocolo de comunicação}
 
-Após a leitura dos dados recebidos pela funçao ``sc\_receiveBuffer", o comando é interpretado pela função ``cm\_interpretCmd'' e então é executado um deternimado comportamento.
+Após a leitura dos dados recebidos pela funçao ``sc\_receiveBuffer", o comando é interpretado pela função ``cm\_interpretCmd'' e então é executado um deternimado comportamento. Como é possivel ver na figura \ref{fig:maquina}, o interpretador lê a primeira letra e trata o restante das informações recebidas de maneira diferente.
 
 A sintaxe para comunicação é definida como:
 \begin{itemize}
@@ -131,6 +149,8 @@ A sintaxe para comunicação é definida como:
 \item S[1-4] - Retorna o estado do switch [1-4]. A resposta é dada como aberta ou fechada [OC], onde O é opened e C é closed.
 \item Bx - Onde x é um inteiro, comanda o buzzer para ligar durante x milesegundos.
 \end{itemize}
+
+Apesar de estar no modelo, a implementação do Buzzer e do Switch ainda não estão completas.
 
 
 \section{Matriz de Rastreabilidade}
@@ -168,6 +188,8 @@ A matriz de rastreabilidade apresentada na tabela \ref*{tab:rastreabilidade} rel
 \section{Notas}
 % Dificuldades, observações relevantes, correções, ...
 Os maiores problemas identificados foram a dificuldade de conseguir conectar a placa com o computador e alguns mal contatos relacionados aos botões e do próprio PIC. Além disso, houve alguns conflitos com a IDE, pois muitas funcionalidades poderiam ter sido implementadas, já que a função de auto-completar é bem comum em IDE's e o duplo clique poderia selecionar a palavra em vez de colocar um breakpoint.
+
+Tivemos problemas com relação ao tempo, pois tentamos implementar as 3 funções que foram pedidas inicialmente para a porta serial, mas só conseguimos colocar a função do LED para funcionar e a função do Buzzer estava quase pronta, mas não conseguimos a tempo. Colocamos no modelo, mas a implemntação ainda está incompleta.
 
 
 \begin{thebibliography}{widestlabel}
