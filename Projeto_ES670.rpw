@@ -4,8 +4,36 @@ I-Logix-RPY-Archive version 8.5.2 Modeler * 1159120
 		- size = 0;
 	}
 	- myViewsWithID = { IRPYRawContainer 
-		- size = 3;
+		- size = 5;
 		- value = 
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -8;
+				- m_ptMaxPositionY = -31;
+				- m_nLeft = 182;
+				- m_nTop = 182;
+				- m_nRight = 863;
+				- m_nBottom = 580;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IStateChartDiagram";
+				- _filename = "Protocol.sbs";
+				- _subsystem = "Protocol";
+				- _class = "CmdMachine";
+				- _name = "StatechartDiagram";
+				- _id = GUID 05ba9a75-4660-42b1-8b10-757cc160d6e9;
+			}
+			- _UpLeft = 0 0 ;
+			- _DownRight = 644 338 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 0;
+		}
 		{ CGEMdiDiagramParams 
 			- _placement = { CCommon_WINDOWPLACEMENT 
 				- m_nLength = 44;
@@ -29,10 +57,10 @@ I-Logix-RPY-Archive version 8.5.2 Modeler * 1159120
 				- _name = "diag_definicao_blocos";
 				- _id = GUID a21c9f5f-35bf-494c-a903-3394cfe63ffe;
 			}
-			- _UpLeft = 0 210 ;
-			- _DownRight = 1026 929 ;
+			- _UpLeft = 0 0 ;
+			- _DownRight = 877 582 ;
 			- _instanceName = "";
-			- m_nDiagramIndex = 1;
+			- m_nDiagramIndex = 3;
 		}
 		{ CGEMdiDiagramParams 
 			- _placement = { CCommon_WINDOWPLACEMENT 
@@ -57,10 +85,10 @@ I-Logix-RPY-Archive version 8.5.2 Modeler * 1159120
 				- _name = "diag_pacotes";
 				- _id = GUID 604328de-2202-48b3-9d1a-353bbeb75331;
 			}
-			- _UpLeft = 0 107 ;
-			- _DownRight = 342 519 ;
+			- _UpLeft = 0 0 ;
+			- _DownRight = 342 412 ;
 			- _instanceName = "";
-			- m_nDiagramIndex = 0;
+			- m_nDiagramIndex = 2;
 		}
 		{ CGEMdiDiagramParams 
 			- _placement = { CCommon_WINDOWPLACEMENT 
@@ -88,7 +116,35 @@ I-Logix-RPY-Archive version 8.5.2 Modeler * 1159120
 			- _UpLeft = 0 0 ;
 			- _DownRight = 510 506 ;
 			- _instanceName = "";
-			- m_nDiagramIndex = 2;
+			- m_nDiagramIndex = 4;
+		}
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -8;
+				- m_ptMaxPositionY = -31;
+				- m_nLeft = 156;
+				- m_nTop = 156;
+				- m_nRight = 837;
+				- m_nBottom = 554;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IMSC";
+				- _filename = "";
+				- _subsystem = "";
+				- _class = "";
+				- _name = "diag_sequencia_interpretador";
+				- _id = GUID a47981bb-282a-4bac-b1a9-5d7c85838379;
+			}
+			- _UpLeft = 0 0 ;
+			- _DownRight = 644 318 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 1;
 		}
 	}
 	- _fullName = "D:\\Graduacao\\9sem\\ES670\\Barco\\Projeto_ES670";

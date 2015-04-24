@@ -3,8 +3,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 	- _id = GUID bc440f0f-f153-4970-881c-9b6a3048869c;
 	- _myState = 8192;
 	- _name = "SevenSeg";
-	- _objectCreation = "2228210173320151727430422";
-	- _umlDependencyID = "2426";
+	- _objectCreation = "417532175520152034644";
+	- _umlDependencyID = "2234";
 	- _theMainDiagram = { IHandle 
 		- _m2Class = "IDiagram";
 		- _filename = "";
@@ -14,8 +14,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 		- _id = GUID 604328de-2202-48b3-9d1a-353bbeb75331;
 	}
 	- _lastID = 1;
-	- weakCGTime = 4.17.2015::20:23:30;
-	- strongCGTime = 4.17.2015::19:52:37;
+	- weakCGTime = 4.17.2015::23:53:37;
+	- strongCGTime = 4.17.2015::23:2:51;
 	- _defaultComposite = GUID c9d1fee1-bf74-4d4b-b8bf-e148edde3265;
 	- _eventsBaseID = -1;
 	- Classes = { IRPYRawContainer 
@@ -25,8 +25,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 			- _id = GUID c9d1fee1-bf74-4d4b-b8bf-e148edde3265;
 			- _myState = 40960;
 			- _name = "TopLevel";
-			- _objectCreation = "2228212173320151727428422";
-			- _umlDependencyID = "2446";
+			- _objectCreation = "417534175520152034444";
+			- _umlDependencyID = "2245";
 			- weakCGTime = 4.17.2015::20:21:41;
 			- strongCGTime = 4.17.2015::19:52:37;
 			- Operations = { IRPYRawContainer 
@@ -45,17 +45,17 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 			- _id = GUID a870223c-8cc6-40d3-a74f-46cda47f3a87;
 			- _myState = 8192;
 			- _name = "sevenseg";
-			- _objectCreation = "2228214173320151727426422";
-			- _umlDependencyID = "2499";
+			- _objectCreation = "417536175520152034244";
+			- _umlDependencyID = "2298";
 			- Dependencies = { IRPYRawContainer 
-				- size = 2;
+				- size = 3;
 				- value = 
 				{ IDependency 
 					- _id = GUID 558a36a1-9c23-4825-9495-ee9e0306696d;
 					- _myState = 2048;
 					- _name = "mclab2";
-					- _objectCreation = "2228216173320151727424422";
-					- _umlDependencyID = "2196";
+					- _objectCreation = "417538175520152034044";
+					- _umlDependencyID = "1995";
 					- Stereotypes = { IRPYRawContainer 
 						- size = 1;
 						- value = 
@@ -81,8 +81,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 					- _id = GUID 63026503-40bb-4ff2-8b15-9e47496c892b;
 					- _myState = 2048;
 					- _name = "mclab2_0";
-					- _objectCreation = "2228218173320151727422422";
-					- _umlDependencyID = "2339";
+					- _objectCreation = "417540175520152033844";
+					- _umlDependencyID = "2138";
 					- Stereotypes = { IRPYRawContainer 
 						- size = 1;
 						- value = 
@@ -102,6 +102,33 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 						- _class = "";
 						- _name = "mclab2";
 						- _id = GUID aa110bb3-0172-4266-a0b1-29e5f9f27d13;
+					}
+				}
+				{ IDependency 
+					- _id = GUID 3488a48b-754e-4327-b4c3-f9978cf324eb;
+					- _myState = 2048;
+					- _name = "util";
+					- _objectCreation = "417542175520152033644";
+					- _umlDependencyID = "1880";
+					- Stereotypes = { IRPYRawContainer 
+						- size = 1;
+						- value = 
+						{ IHandle 
+							- _m2Class = "IStereotype";
+							- _filename = "PredefinedTypes.sbs";
+							- _subsystem = "PredefinedTypes";
+							- _class = "";
+							- _name = "Usage";
+							- _id = GUID 42aa4325-6112-4e88-87ce-66008878f1db;
+						}
+					}
+					- _dependsOn = { INObjectHandle 
+						- _m2Class = "IClass";
+						- _filename = "Util.sbs";
+						- _subsystem = "Util";
+						- _class = "";
+						- _name = "util";
+						- _id = GUID d00d39bc-27dd-42e5-87aa-b5bf491dbe5b;
 					}
 				}
 			}
@@ -125,8 +152,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 				- _name = "diag_definicao_blocos";
 				- _id = GUID a21c9f5f-35bf-494c-a903-3394cfe63ffe;
 			}
-			- _lastID = 4;
-			- weakCGTime = 4.17.2015::20:31:55;
+			- _lastID = 5;
+			- weakCGTime = 4.17.2015::23:54:48;
 			- strongCGTime = 4.17.2015::20:23:35;
 			- Operations = { IRPYRawContainer 
 				- size = 3;
@@ -135,8 +162,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 					- _id = GUID 8a512bf6-0e64-4060-9a7d-40a2e7630107;
 					- _myState = 8192;
 					- _name = "initSevenSeg";
-					- _objectCreation = "2228220173320151727420422";
-					- _umlDependencyID = "2862";
+					- _objectCreation = "417544175520152033444";
+					- _umlDependencyID = "2670";
 					- _virtual = 0;
 					- Args = { IRPYRawContainer 
 						- size = 0;
@@ -160,8 +187,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 					- _id = GUID d96dde49-adab-457f-9518-12569a0cc1d1;
 					- _myState = 8192;
 					- _name = "setSevenSeg";
-					- _objectCreation = "2228222173320151727418422";
-					- _umlDependencyID = "2767";
+					- _objectCreation = "417546175520152033244";
+					- _umlDependencyID = "2566";
 					- _lastID = 2;
 					- _virtual = 0;
 					- Args = { IRPYRawContainer 
@@ -170,8 +197,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 						{ IArgument 
 							- _id = GUID 66124a7e-7f4a-4f93-b130-6957fb797b80;
 							- _name = "cSSNum";
-							- _objectCreation = "2228224173320151727416422";
-							- _umlDependencyID = "2204";
+							- _objectCreation = "417548175520152033044";
+							- _umlDependencyID = "2003";
 							- _typeOf = { IHandle 
 								- _m2Class = "IType";
 								- _filename = "PredefinedTypesC++.sbs";
@@ -186,8 +213,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 						{ IArgument 
 							- _id = GUID f9e7fd45-49a9-44d8-a4d6-c9cef3494cf8;
 							- _name = "cValue";
-							- _objectCreation = "2228226173320151727414422";
-							- _umlDependencyID = "2243";
+							- _objectCreation = "417550175520152032844";
+							- _umlDependencyID = "2042";
 							- _typeOf = { IHandle 
 								- _m2Class = "IType";
 								- _filename = "PredefinedTypesC++.sbs";
@@ -219,8 +246,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 					- _id = GUID a1a5c309-99c4-4b0f-8830-58fccdef0f65;
 					- _myState = 8192;
 					- _name = "sevenseg_setWithInt";
-					- _objectCreation = "2228228173320151727412422";
-					- _umlDependencyID = "3637";
+					- _objectCreation = "417552175520152032644";
+					- _umlDependencyID = "3436";
 					- _lastID = 1;
 					- _virtual = 0;
 					- Args = { IRPYRawContainer 
