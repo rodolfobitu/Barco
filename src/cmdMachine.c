@@ -9,9 +9,13 @@
 #include "cmdMachine.h"
 #include "ledswi.h"
 #include "buzzer.h"
+#include "lcd.h"
+#include <ctype.h>
 
 void cm_ledCmd(char cCmd[]);
 void cm_buzzerCmd(char cCmd[]);
+void cm_lcdCmd(char cCmd[]);
+
 
 /* ************************************************ */
 /* Method name: 	   cm_interpretCmd		   		*/
@@ -21,7 +25,11 @@ void cm_buzzerCmd(char cCmd[]);
 /* ************************************************ */
 void cm_interpretCmd(char cCmd[]){
 	if (cCmd[0] == 'L'){
-		cm_ledCmd(cCmd);
+		if (cCmd[2] == 'D' && cCmd[1] == 'C'){
+			cm_lcdCmd(cCmd);
+		}else{
+			cm_ledCmd(cCmd);
+		}
 	} else if (cCmd[0] == 'S'){
 		//Switch
 	} else if (cCmd[0] == 'B'){
@@ -79,3 +87,26 @@ void cm_buzzerCmd(char cCmd[]){
 	bz_buzzFor(time);
 
 }
+
+/* ************************************************ */
+/* Method name: 	   cm_lcdCmd			   		*/
+/* Method description: command buzzer to buzz      */
+/* Input params:	   cCmd[] = command (LCDxxxx*)	*/
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void cm_lcdCmd(char cCmd[]){
+	int j=3;
+	char str[50];
+		
+	
+	while(cCmd[j] != '\0'){
+		str[j-3] = cCmd[j];
+		j++;
+	}
+	str[j-3]='\0';
+	lcd_WriteString2(str);
+	
+}
+
+
+

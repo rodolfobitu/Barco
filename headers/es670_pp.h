@@ -15,7 +15,7 @@
 #define FALSE 		1
 
 #define CLEAN_DATA	0x00
-#define ADC_OFF		0b00000111
+#define ADC_OFF		0b00001111
 
 
 #endif /* ES670_H */

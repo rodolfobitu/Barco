@@ -87,16 +87,20 @@ void sc_receiveBuffer(char cBuf[]) {
 	while (1) {
 		// Check if we're ready
 		if (PIR1bits.RCIF) {
-			char temp = RCREG;
+			char temp = RCREG; 
 			// Check if we're done
 			if (isprint(temp)){
 				cBuf[i] = temp;
-			} else{
+				i++;
+			} else if (temp == 8){
+				i--;
+				if (i<0) i = 0;
+			}else{
 				//we're done
 				cBuf[i] = '\0';
 				break;
 			}
-			i++;
+			
 		}
 	}
 }

@@ -14,6 +14,7 @@
 #include "serialcom.h"
 #include "cmdMachine.h"
 #include "buzzer.h"
+#include "lcd.h"
 
 /* uC init configurations */
 
@@ -54,6 +55,7 @@ void runInitialization(void) {
 	sevenseg_init();
 	sc_init();
 	bz_init();
+	lcd_initLcd();
 }
 
 
@@ -67,9 +69,11 @@ void main(void) {
 	
 	/* run uC init configs */
 	runInitialization();
-
+	lcd_dummyText();
 	sc_start();
 	
+	
+
 	/* main loop */
 	while(TRUE) {
 		char buffer[50];
