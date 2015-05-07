@@ -28,8 +28,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 		}
 	}
 	- _name = "Projeto_ES670";
-	- _objectCreation = "20780224102015331294420";
-	- _umlDependencyID = "2664";
+	- _objectCreation = "23246566220151931916523";
+	- _umlDependencyID = "2686";
 	- _lastID = 10;
 	- _UserColors = { IRPYRawContainer 
 		- size = 16;
@@ -292,8 +292,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 				}
 			}
 			- _name = "diag_requisitos";
-			- _objectCreation = "20789824102015331198420";
-			- _umlDependencyID = "3151";
+			- _objectCreation = "23247406220151931832523";
+			- _umlDependencyID = "3146";
 			- _description = { IDescription 
 				- _textRTF = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\deflang1046{\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}
 \\viewkind4\\uc1\\pard\\fs20 Diagrama de requisitos de sistema do projeto pr\\'e1tico da ES670 \\par
@@ -1662,9 +1662,9 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 				}
 			}
 			- _name = "diag_definicao_blocos";
-			- _objectCreation = "20790024102015331196420";
-			- _umlDependencyID = "3688";
-			- _lastModifiedTime = "4.24.2015::6:9:40";
+			- _objectCreation = "23247426220151931830523";
+			- _umlDependencyID = "3701";
+			- _lastModifiedTime = "5.6.2015::22:1:49";
 			- _graphicChart = { CGIClassChart 
 				- _id = GUID fb0d51a4-b372-4968-8469-f3605c2b4594;
 				- m_type = 0;
@@ -1688,7 +1688,7 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 				}
 				- m_drawBehavior = 0;
 				- m_bIsPreferencesInitialized = 0;
-				- elementList = 28;
+				- elementList = 29;
 				{ CGIClass 
 					- _id = GUID 6217d590-21ce-49b5-930b-6d079a819ff1;
 					- m_type = 78;
@@ -4584,6 +4584,84 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 					- m_ShowName = 0;
 					- m_ShowStereotype = 1;
 				}
+				{ CGIInheritance 
+					- _id = GUID 6a0bc21c-e9fa-41bf-a881-00389773bddf;
+					- _properties = { IPropertyContainer 
+						- Subjects = { IRPYRawContainer 
+							- size = 1;
+							- value = 
+							{ IPropertySubject 
+								- _Name = "General";
+								- Metaclasses = { IRPYRawContainer 
+									- size = 1;
+									- value = 
+									{ IPropertyMetaclass 
+										- _Name = "Graphics";
+										- Properties = { IRPYRawContainer 
+											- size = 1;
+											- value = 
+											{ IProperty 
+												- _Name = "ShowLabels";
+												- _Value = "False";
+												- _Type = Bool;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					- m_type = 128;
+					- m_pModelObject = { IHandle 
+						- _m2Class = "IDependency";
+						- _filename = "Protocol.sbs";
+						- _subsystem = "Protocol";
+						- _class = "CmdMachine";
+						- _name = "Serial";
+						- _id = GUID 6fb13047-6ad1-4789-97bd-15209dfcfd50;
+					}
+					- m_pParent = ;
+					- m_name = { CGIText 
+						- m_str = "Serial";
+						- m_style = "Arial" 10 0 0 0 1 ;
+						- m_color = { IColor 
+							- m_fgColor = 0;
+							- m_bgColor = 0;
+							- m_bgFlag = 0;
+						}
+						- m_position = 1 0 0  ;
+						- m_nIdent = 0;
+						- m_bImplicitSetRectPoints = 0;
+						- m_nOrientationCtrlPt = 8;
+					}
+					- m_drawBehavior = 8;
+					- m_bIsPreferencesInitialized = 1;
+					- m_pSource = GUID 0c8f3a49-28af-4499-9426-ae8c1bab4466;
+					- m_sourceType = 'F';
+					- m_pTarget = GUID 5eefa1ec-e128-479a-b6c8-6065451481e7;
+					- m_targetType = 'T';
+					- m_direction = ' ';
+					- m_rpn = { CGIText 
+						- m_str = "Usage";
+						- m_style = "Arial" 10 0 0 0 1 ;
+						- m_color = { IColor 
+							- m_fgColor = 0;
+							- m_bgColor = 0;
+							- m_bgFlag = 0;
+						}
+						- m_position = 1 0 0  ;
+						- m_nIdent = 0;
+						- m_bImplicitSetRectPoints = 0;
+						- m_nOrientationCtrlPt = 8;
+					}
+					- m_anglePoint1 = 0 0 ;
+					- m_anglePoint2 = 0 0 ;
+					- m_line_style = 0;
+					- m_SourcePort = 2 890 ;
+					- m_TargetPort = 1061 1069 ;
+					- m_ShowName = 0;
+					- m_ShowStereotype = 1;
+				}
 				
 				- m_access = 'Z';
 				- m_modified = 'N';
@@ -4731,8 +4809,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 				}
 			}
 			- _name = "diag_pacotes";
-			- _objectCreation = "20790224102015331194420";
-			- _umlDependencyID = "2772";
+			- _objectCreation = "23247446220151931828523";
+			- _umlDependencyID = "2794";
 			- _lastModifiedTime = "4.17.2015::20:57:38";
 			- _graphicChart = { CGIClassChart 
 				- _id = GUID 84c7ed09-6a53-4e4a-925b-6e70d2f9ea4a;
@@ -5614,8 +5692,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 				}
 			}
 			- _name = "diag_sequencia_interpretador";
-			- _objectCreation = "20790424102015331192420";
-			- _umlDependencyID = "4485";
+			- _objectCreation = "23247466220151931826523";
+			- _umlDependencyID = "4507";
 			- _lastModifiedTime = "4.24.2015::6:9:40";
 			- _graphicChart = { CGIMscChart 
 				- vLadderMargin = 20;
@@ -6089,16 +6167,16 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 			}
 			- m_pICollaboration = { ICollaboration 
 				- _id = GUID d40de2a9-7115-4c51-96a6-80ab22932447;
-				- _objectCreation = "20790624102015331190420";
-				- _umlDependencyID = "1521";
+				- _objectCreation = "23247486220151931824523";
+				- _umlDependencyID = "1543";
 				- ClassifierRoles = { IRPYRawContainer 
 					- size = 3;
 					- value = 
 					{ IClassifierRole 
 						- _id = GUID 26cd029a-b4b9-44c0-8336-9841c8e48f45;
 						- _myState = 2048;
-						- _objectCreation = "20790824102015331188420";
-						- _umlDependencyID = "1530";
+						- _objectCreation = "23247506220151931822523";
+						- _umlDependencyID = "1534";
 						- m_eRoleType = CLASS;
 						- m_pBase = { IHandle 
 							- _m2Class = "IClass";
@@ -6115,8 +6193,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 					{ IClassifierRole 
 						- _id = GUID f9c2e570-2cdb-4f79-8f44-a04489126c76;
 						- _myState = 2048;
-						- _objectCreation = "20791024102015331186420";
-						- _umlDependencyID = "1521";
+						- _objectCreation = "23247526220151931820523";
+						- _umlDependencyID = "1534";
 						- m_eRoleType = CLASS;
 						- m_pBase = { IHandle 
 							- _m2Class = "IClass";
@@ -6133,8 +6211,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 					{ IClassifierRole 
 						- _id = GUID 5b5a8618-51ee-4d2d-b82f-db3832ebd2b7;
 						- _myState = 2048;
-						- _objectCreation = "20791224102015331184420";
-						- _umlDependencyID = "1521";
+						- _objectCreation = "23247546220151931818523";
+						- _umlDependencyID = "1543";
 						- m_eRoleType = CLASS;
 						- m_pBase = { IHandle 
 							- _m2Class = "IClass";
@@ -6155,8 +6233,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 					{ IMessage 
 						- _id = GUID 288f17f6-075a-40c2-a03e-cb33ee4a05d6;
 						- _name = "setConfig";
-						- _objectCreation = "20791424102015331182420";
-						- _umlDependencyID = "2451";
+						- _objectCreation = "23247566220151931816523";
+						- _umlDependencyID = "2473";
 						- m_szSequence = "1.";
 						- m_szActualArgs = "";
 						- m_szReturnVal = "";
@@ -6191,8 +6269,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 						- _id = GUID 8ec97f1e-dfd7-43e9-be7d-31b6350cfe3f;
 						- _myState = 8192;
 						- _name = "receiveBuffer";
-						- _objectCreation = "20791624102015331180420";
-						- _umlDependencyID = "2862";
+						- _objectCreation = "23247586220151931814523";
+						- _umlDependencyID = "2884";
 						- m_szSequence = "2.";
 						- m_szActualArgs = "cBuf";
 						- m_szReturnVal = "";
@@ -6226,8 +6304,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 					{ IMessage 
 						- _id = GUID 479bffc5-013a-4db6-9ec9-b299bc2ae97f;
 						- _name = "interpretCmd";
-						- _objectCreation = "20791824102015331178420";
-						- _umlDependencyID = "2795";
+						- _objectCreation = "23247606220151931812523";
+						- _umlDependencyID = "2799";
 						- m_szSequence = "3.";
 						- m_szActualArgs = "cCmd";
 						- m_szReturnVal = "";
@@ -6261,8 +6339,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 					{ IMessage 
 						- _id = GUID 354a65f4-f3e1-4186-a475-ac7ee061a9e6;
 						- _name = "sendBuffer";
-						- _objectCreation = "20792024102015331176420";
-						- _umlDependencyID = "2549";
+						- _objectCreation = "23247626220151931810523";
+						- _umlDependencyID = "2562";
 						- m_szSequence = "4.";
 						- m_szActualArgs = "cBuf";
 						- m_szReturnVal = "";

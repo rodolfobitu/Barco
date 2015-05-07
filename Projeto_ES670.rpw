@@ -9,8 +9,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler * 1159120
 		{ CGEMdiDiagramParams 
 			- _placement = { CCommon_WINDOWPLACEMENT 
 				- m_nLength = 44;
-				- m_nFlags = 2;
-				- m_showCmd = 3;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
 				- m_ptMinPositionX = -1;
 				- m_ptMinPositionY = -1;
 				- m_ptMaxPositionX = -8;
@@ -30,15 +30,15 @@ I-Logix-RPY-Archive version 8.5.2 Modeler * 1159120
 				- _id = GUID 05ba9a75-4660-42b1-8b10-757cc160d6e9;
 			}
 			- _UpLeft = 0 0 ;
-			- _DownRight = 1022 519 ;
+			- _DownRight = 1370 719 ;
 			- _instanceName = "";
 			- m_nDiagramIndex = 0;
 		}
 		{ CGEMdiDiagramParams 
 			- _placement = { CCommon_WINDOWPLACEMENT 
 				- m_nLength = 44;
-				- m_nFlags = 0;
-				- m_showCmd = 1;
+				- m_nFlags = 2;
+				- m_showCmd = 3;
 				- m_ptMinPositionX = -1;
 				- m_ptMinPositionY = -1;
 				- m_ptMaxPositionX = -8;
@@ -57,8 +57,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler * 1159120
 				- _name = "diag_definicao_blocos";
 				- _id = GUID a21c9f5f-35bf-494c-a903-3394cfe63ffe;
 			}
-			- _UpLeft = 0 335 ;
-			- _DownRight = 421 842 ;
+			- _UpLeft = 0 332 ;
+			- _DownRight = 842 891 ;
 			- _instanceName = "";
 			- m_nDiagramIndex = 3;
 		}
@@ -147,7 +147,7 @@ I-Logix-RPY-Archive version 8.5.2 Modeler * 1159120
 			- m_nDiagramIndex = 1;
 		}
 	}
-	- _fullName = "C:\\RodolfoBitu\\Gradua\ç\ão\\11 semestre\\barco\\Barco\\Projeto_ES670";
+	- _fullName = "D:\\Graduacao\\9sem\\ES670\\Barco\\Projeto_ES670";
 	- m_SearchScopeList = { IRPYRawContainer 
 		- size = 0;
 	}
