@@ -23,7 +23,7 @@ typedef enum
 /* Method description: As the hardware board was    */
 /*					   designed with LEDs/Switches  */
 /*					   sharing the same pins, this  */
-/*					   method confi gures how many   */
+/*					   method configures how many   */
 /*					   LEDS and switches will be    */
 /*					   available for the application*/
 /* Input params:	   cLedNum    = num of LEDs     */

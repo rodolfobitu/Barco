@@ -1,11 +1,11 @@
 /* ***************************************************************** */
-/* File name:		 es670_pp.h							 			 */
+/* File name:		 lcd.h							 			 	 */
 /* File description: Header file containing the functions/methods    */
 /*					 interfaces for handling the LCD hardware from	 */
 /*					 the target 									 */
 /* Author name:      dloubach										 */
 /* Creation date:    16abr2015										 */
-/* Revision date:    16abr2015										 */
+/* Revision date:    04mai2015										 */
 /* ***************************************************************** */
 
 #ifndef LCD_H
@@ -49,13 +49,13 @@ void lcd_sendCommand(unsigned char ucCmd);
 
 
 /* ************************************************ */
-/* Method name: 	   lcd_WriteString				*/
+/* Method name: 	   lcd_writeString				*/
 /* Method description: Write string to be displayed */
 /* Input params:	   ccBuffer => string to be     */
 /*					   writen in LCD 				*/
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void lcd_WriteString(const rom char *ccBuffer);
+void lcd_writeString(const char *ccBuffer);
 
 
 /* ************************************************ */
@@ -76,13 +76,6 @@ void lcd_setCursor(unsigned char cLine, unsigned char cColumn);
 /* ************************************************ */
 void lcd_dummyText(void);
 
-/* ************************************************ */
-/* Method name: 	   lcd_WriteString2				*/
-/* Method description: Write a string nicely 		*/
-/* Input params:	   str => string to be written  */
-/* Outpu params:	   n/a 							*/
-/* ************************************************ */
-void lcd_WriteString2(char str[]);
 
 
 #endif /* LCD_H */

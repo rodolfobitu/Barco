@@ -4,7 +4,7 @@
 /*					 of the target development kit MCLAB2 V5.0		 */
 /* Author name:      dloubach										 */
 /* Creation date:    09jan2015										 */
-/* Revision date:    09jan2015										 */
+/* Revision date:    04mai2015										 */
 /* ***************************************************************** */
 
 #ifndef MCLAB2_H
@@ -47,25 +47,10 @@
 #define LED_04			SWITCH_04
 #define LED_04_DIR		SWITCH_04_DIR
 
-
 /* 7 Seg Diplays definition */
 
-#define SEVENSEG_01		PORTBbits.RB7
-#define SEVENSEG_02		PORTBbits.RB6
-#define SEVENSEG_03		PORTBbits.RB5
-#define SEVENSEG_04		PORTBbits.RB4
 
-#define SEVENSEG_01_DIR	TRISBbits.RB7
-#define SEVENSEG_02_DIR	TRISBbits.RB6
-#define SEVENSEG_03_DIR	TRISBbits.RB5
-#define SEVENSEG_04_DIR	TRISBbits.RB4
-
-/* Buzzer definition */
-
-#define BUZZER   PORTAbits.RA5
-#define BUZZ_DIR TRISAbits.RA5
-#define BUZ_ON 1
-#define BUZ_OFF 0
+/* LCD definitions */
 
 /* LCD Register Selector 
  * Used as register selector input
@@ -89,5 +74,14 @@
 
 #define LCD_DATA		PORTD
 #define LCD_DATA_DIR	TRISD
+
+
+/* Cooler definitions */
+#define COOLER			PORTCbits.xxx
+#define COOLER_DIR		TRISCbits.xxx
+
+#define COOLER_ON		1
+#define COOLER_OFF		0
+
 
 #endif /* MCLAB2_H */

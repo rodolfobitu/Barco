@@ -1,10 +1,10 @@
 /* ***************************************************************** */
-/* File name:		 es670.h							 			 */
+/* File name:		 es670_pp.h							 			 */
 /* File description: Header file containing a couple of defintions   */
 /*					 used for configuring the uC					 */
 /* Author name:      dloubach										 */
 /* Creation date:    09jan2015										 */
-/* Revision date:    09jan2015										 */
+/* Revision date:    16abr2015										 */
 /* ***************************************************************** */
 
 #ifndef ES670_H

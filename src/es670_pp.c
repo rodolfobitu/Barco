@@ -1,20 +1,17 @@
 /* ***************************************************************** */
-/* File name:		 es670.c							 			 */
+/* File name:		 es670_pp.c							 			 */
 /* File description: Main file for the ES670 Practical Project		 */
 /* Author name:      dloubach										 */
 /* Creation date:    20jan2015										 */
-/* Revision date:    06mar2015										 */
+/* Revision date:    07mai2015										 */
 /* ***************************************************************** */
 
 #include "es670_pp.h"
 #include "mclab2.h"
 #include "ledswi.h"
-#include "sevenseg.h"
 #include "util.h"
-#include "serialcom.h"
-#include "cmdMachine.h"
-#include "buzzer.h"
 #include "lcd.h"
+#include "cooler.h"
 
 /* uC init configurations */
 
@@ -30,15 +27,45 @@
 #pragma config WDT    = OFF			//Watchdog timer disabled
 #pragma config LVP    = OFF			//Single-Supply ICSP disabled
 
+/* globals */
+volatile unsigned int uiFlagNextPeriod = 0;	// cyclic executive flag
+
+
+/* setup the interruption */
+void isr_CyclicExecutive();
+#pragma code high_vector=0x08
+void isr_HighVector(void)
+{
+  _asm GOTO isr_CyclicExecutive _endasm
+}
+#pragma code
+
+
+/* setup the isr */
+#pragma interrupt isr_CyclicExecutive
+void isr_CyclicExecutive() 
+{	
+	/* set the cyclic executive flag */
+	uiFlagNextPeriod = 1;
+	
+	/* reset the cyclic executive counting */
+	util_resetCyclicExecutive();
+  	
+  	/* acknowledge the interrupt */
+  	INTCONbits.TMR0IF = 0;
+}
+
+
 
 /* ************************************************ */
-/* Method name: 	   runInitialization		    */
+/* Method name: 	   es670_runInitialization		*/
 /* Method description: takes care of uC intial      */
 /*					   configurations				*/
 /* Input params:	   n/a 							*/
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void runInitialization(void) {
+void es670_runInitialization(void)
+{
 	/* clean all ports */
 	PORTA = CLEAN_DATA;
 	PORTB = CLEAN_DATA;
@@ -51,11 +78,96 @@ void runInitialization(void) {
 	
 	/* init leds and switches */
 	ledswi_initLedSwitch(02, 02);
-
-	sevenseg_init();
-	sc_init();
-	bz_init();
+	
+	/* init LCD */
 	lcd_initLcd();
+	
+	/* init cooler */
+	cooler_initCooler();
+	
+	/* init TIMER1 as counter, 
+	 * used for counting the number of pulses
+	 * originated from the cooler
+	 */
+	util_initTimer1AsCounter();
+}
+
+
+
+/* ************************************************ */
+/* Method name: 	   es670_prepare			    */
+/* Method description: prepare things before execute*/
+/*					   the main program loop 		*/
+/* Input params:	   n/a 							*/
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void es670_prepare(void)
+{	
+	unsigned int i;
+	
+	/* play with leds */
+	ledswi_setLed(03);
+	
+	/* write something in the LCD */
+	lcd_sendCommand(CMD_CLEAR);
+	lcd_setCursor(0,0);
+	lcd_dummyText();
+	for(i=0; i<20; i++)
+		util_genDelay500MS();
+	
+	/* play with leds */
+	ledswi_setLed(04);
+	
+	/* init TIMER1 counter */
+	util_startTimer1Counter();
+}
+
+
+
+/* ************************************************ */
+/* Method name: 	   es670_coolerTask			    */
+/* Method description: this task (method) plays with*/
+/*					   the cooler installed on target*/
+/* Input params:	   n/a 							*/
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void es670_coolerTask(void)
+{
+	switch_status_type_e sstSwitch;
+	
+	/* if switch01 is ON, cooler is turned on */
+	sstSwitch = ledswi_getSwitchStatus(01);
+	if(SWITCH_ON == sstSwitch)
+	{
+		/* also reset the counter */
+		util_resetTimer1Counter();
+		
+		/* turn cooler on */
+		cooler_turnOnOff(COOLER_ON);
+	}
+			
+	/* if switch02 is ON, cooler is turned off */
+	sstSwitch = ledswi_getSwitchStatus(02);
+	if(SWITCH_ON == sstSwitch)
+		cooler_turnOnOff(COOLER_OFF);
+}
+
+
+
+/* ************************************************ */
+/* Method name: 	   es670_computeCoolerVelocity  */
+/* Method description: compute the cooler speed in  */
+/*					   RPS (revolutions per second) */
+/*													*/
+/*                     Period = 1 s                 */
+/*													*/
+/* Input params:	   n/a 							*/
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void es670_computeCoolerVelocity(void)
+{
+
+ 	
 }
 
 
@@ -65,20 +177,30 @@ void runInitialization(void) {
 /* Input params:	   n/a 							*/
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void main(void) {
-	
+void main(void)
+{
 	/* run uC init configs */
-	runInitialization();
-	lcd_dummyText();
-	sc_start();
+	es670_runInitialization();
 	
+	/* prepare something before entering the main loop */
+	es670_prepare();
 	
-
-	/* main loop */
-	while(TRUE) {
-		char buffer[50];
-		sc_receiveBuffer(buffer);
-		sc_sendBuffer(buffer);
-		cm_interpretCmd(buffer);
-	}
+	/* config and start the cyclic executive */
+	util_configCyclicExecutive();
+				
+	/* main system loop, runs forever */
+	while(TRUE)
+	{
+		/* compute cooler velocity task */
+		es670_computeCoolerVelocity();
+		
+		/* cooler task */
+		es670_coolerTask();
+				
+		
+		/* WAIT FOR CYCLIC EXECUTIVE PERIOD */
+		while(!uiFlagNextPeriod);
+		uiFlagNextPeriod = 0;
+		
+	} /* while(TRUE) */
 }

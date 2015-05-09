@@ -5,7 +5,7 @@
 /*					 controller										 */
 /* Author name:      dloubach										 */
 /* Creation date:    16abr2015										 */
-/* Revision date:    16abr2015										 */
+/* Revision date:    06mai2015										 */
 /* ***************************************************************** */
 
 #include "lcd.h"
@@ -77,7 +77,7 @@ void lcd_write2Lcd(unsigned char ucBuffer,  unsigned char cDataType)
 	/* enable, delay, disable LCD */
 	/* this generates a pulse in the enable pin */
 	LCD_ENABLE = LCD_ENABLED ;	
-	util_genDelay1MS();
+	util_genDelay10MS();
 	LCD_ENABLE = LCD_DISABLED;	
 	util_genDelay1MS();
 	util_genDelay1MS();
@@ -147,7 +147,7 @@ void lcd_setCursor(unsigned char cLine, unsigned char cColumn)
 /*					   writen in LCD 				*/
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void lcd_WriteString(const rom char *ccBuffer)
+void lcd_writeString(const char *ccBuffer)
 {
 	while(*ccBuffer)
 	{
@@ -165,47 +165,17 @@ void lcd_WriteString(const rom char *ccBuffer)
 /* ************************************************ */
 void lcd_dummyText(void)
 {
+	const char cDummyText[] = "*** ES670 ***";
+	const char cDummyText2[] = "Prj Sis Embarcad";
+	
 	// clear LCD
 	lcd_sendCommand(CMD_CLEAR);
 					
 	// set the cursor line 0, column 1
 	lcd_setCursor(0,1);
-
-	// send string
-	lcd_WriteString("*** ES670 ***");
+	lcd_writeString(cDummyText);
 
 	// set the cursor line 1, column 0
 	lcd_setCursor(1,0);
-	lcd_WriteString("Prj Sis Embarcad");	
-}
-
-
-/* ************************************************ */
-/* Method name: 	   lcd_WriteString2				*/
-/* Method description: Write a string nicely 		*/
-/* Input params:	   str => string to be written  */
-/* Outpu params:	   n/a 							*/
-/* ************************************************ */
-void lcd_WriteString2(char str[]) {
-	int i=0;
-
-
-	// clear LCD
-	lcd_sendCommand(CMD_CLEAR);
-	util_genDelay100MS();				
-	// set the cursor line 0, column 1
-	lcd_setCursor(0,0);
-	util_genDelay10MS();
-	
-	while (str[i] != '\0'){
-		lcd_write2Lcd(str[i], LCD_RS_DATA);
-	
-		
-		
-		i++;
-		if (i == 16){
-			lcd_setCursor(1,0);
-			util_genDelay10MS();
-		}
-	}
+	lcd_writeString(cDummyText2);	
 }
