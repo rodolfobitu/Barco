@@ -33,6 +33,8 @@
 
 /* globals */
 volatile unsigned int uiFlagNextPeriod = 0;	// cyclic executive flag
+static int speedSamples[UTIL_1S_ITERATION_NUM]; // speed samples for cooler
+static int speedIndex = 0; // index in the speedSamples vector
 
 
 /* setup the interruption */
@@ -128,6 +130,11 @@ void es670_prepare(void)
 	
 	/* init TIMER1 counter */
 	util_startTimer1Counter();
+	
+	/* zero speed samples */
+	for (i=0; i<UTIL_1S_ITERATION_NUM; i++) {
+		speedSamples[i] = 0;
+	}
 }
 
 
@@ -160,8 +167,6 @@ void es670_coolerTask(void)
 		cooler_turnOnOff(COOLER_OFF);
 }
 
-
-
 /* ************************************************ */
 /* Method name: 	   es670_computeCoolerVelocity  */
 /* Method description: compute the cooler speed in  */
@@ -172,10 +177,24 @@ void es670_coolerTask(void)
 /* Input params:	   n/a 							*/
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void es670_computeCoolerVelocity(void)
-{
-
- 	
+void es670_computeCoolerVelocity(void) {
+	int speed = 0, i;
+	char text[10];
+	
+	/* Save the current speed sample and reset the counter */
+	speedSamples[speedIndex++] = util_getTimer1Count();
+	speedIndex %= UTIL_1S_ITERATION_NUM;
+	util_resetTimer1Counter();
+	
+	/* Compute the current speed in RPS */
+	for (i=0; i<UTIL_1S_ITERATION_NUM; i++) {
+		speed += speedSamples[i];
+	}
+	speed /= COOLER_BLADES_NUM;
+	
+	/* Show the result in the LCD display */
+	util_convertFromUi2Ascii(speed, text);
+	lcd_WriteString2(text);
 }
 
 
