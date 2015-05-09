@@ -12,6 +12,10 @@
 #include "util.h"
 #include "lcd.h"
 #include "cooler.h"
+#include "sevenseg.h"
+#include "serialcom.h"
+#include "cmdMachine.h"
+#include "buzzer.h"
 
 /* uC init configurations */
 
@@ -78,6 +82,10 @@ void es670_runInitialization(void)
 	
 	/* init leds and switches */
 	ledswi_initLedSwitch(02, 02);
+	
+	sevenseg_init();
+	sc_init();
+	bz_init();
 	
 	/* init LCD */
 	lcd_initLcd();

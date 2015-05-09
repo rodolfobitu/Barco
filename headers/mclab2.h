@@ -30,6 +30,22 @@
 #define SWITCH_04		PORTBbits.RB3
 #define SWITCH_04_DIR	TRISBbits.RB3
 
+#define SEVENSEG_01		PORTBbits.RB7
+#define SEVENSEG_02		PORTBbits.RB6
+#define SEVENSEG_03		PORTBbits.RB5
+#define SEVENSEG_04		PORTBbits.RB4
+
+#define SEVENSEG_01_DIR	TRISBbits.RB7
+#define SEVENSEG_02_DIR	TRISBbits.RB6
+#define SEVENSEG_03_DIR	TRISBbits.RB5
+#define SEVENSEG_04_DIR	TRISBbits.RB4
+
+/* Buzzer definition */
+
+#define BUZZER   PORTAbits.RA5
+#define BUZZ_DIR TRISAbits.RA5
+#define BUZ_ON 1
+#define BUZ_OFF 0
 
 /* LEDs definition */
 #define LED_ON		1
@@ -77,8 +93,8 @@
 
 
 /* Cooler definitions */
-#define COOLER			PORTCbits.xxx
-#define COOLER_DIR		TRISCbits.xxx
+#define COOLER			PORTCbits.RC1
+#define COOLER_DIR		TRISCbits.RC1
 
 #define COOLER_ON		1
 #define COOLER_OFF		0

@@ -76,6 +76,12 @@ void lcd_setCursor(unsigned char cLine, unsigned char cColumn);
 /* ************************************************ */
 void lcd_dummyText(void);
 
-
+/* ************************************************ */
+/* Method name: 	   lcd_WriteString2				*/
+/* Method description: Write a string nicely 		*/
+/* Input params:	   str => string to be written  */
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void lcd_WriteString2(char str[]);
 
 #endif /* LCD_H */

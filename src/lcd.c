@@ -179,3 +179,33 @@ void lcd_dummyText(void)
 	lcd_setCursor(1,0);
 	lcd_writeString(cDummyText2);	
 }
+
+/* ************************************************ */
+/* Method name: 	   lcd_WriteString2				*/
+/* Method description: Write a string nicely 		*/
+/* Input params:	   str => string to be written  */
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void lcd_WriteString2(char str[]) {
+	int i=0;
+
+
+	// clear LCD
+	lcd_sendCommand(CMD_CLEAR);
+	util_genDelay100MS();				
+	// set the cursor line 0, column 1
+	lcd_setCursor(0,0);
+	util_genDelay10MS();
+	
+	while (str[i] != '\0'){
+		lcd_write2Lcd(str[i], LCD_RS_DATA);
+	
+		
+		
+		i++;
+		if (i == 16){
+			lcd_setCursor(1,0);
+			util_genDelay10MS();
+		}
+	}
+}
