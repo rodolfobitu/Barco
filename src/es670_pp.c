@@ -148,23 +148,27 @@ void es670_prepare(void)
 /* ************************************************ */
 void es670_coolerTask(void)
 {
+	static char prevCooler = COOLER_OFF;
 	switch_status_type_e sstSwitch;
 	
 	/* if switch01 is ON, cooler is turned on */
 	sstSwitch = ledswi_getSwitchStatus(01);
-	if(SWITCH_ON == sstSwitch)
+	if(SWITCH_ON == sstSwitch && COOLER_OFF == prevCooler)
 	{
 		/* also reset the counter */
 		util_resetTimer1Counter();
 		
 		/* turn cooler on */
 		cooler_turnOnOff(COOLER_ON);
+		prevCooler = COOLER_ON;
 	}
 			
 	/* if switch02 is ON, cooler is turned off */
 	sstSwitch = ledswi_getSwitchStatus(02);
-	if(SWITCH_ON == sstSwitch)
+	if(SWITCH_ON == sstSwitch && COOLER_ON == prevCooler) {
 		cooler_turnOnOff(COOLER_OFF);
+		prevCooler = COOLER_OFF;
+	}
 }
 
 /* ************************************************ */
