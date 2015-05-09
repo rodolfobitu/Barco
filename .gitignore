@@ -4,6 +4,7 @@ bin
 *.ko
 *.obj
 *.elf
+*.mcs
 
 # Precompiled Headers
 *.gch
