@@ -11,6 +11,13 @@
 #include "util.h" 
 #include <ctype.h>
 
+#define RCBUFFER_LEN 100
+
+/* file locals */
+static char RCBuffer[RCBUFFER_LEN];
+static char RCBufferI = 0;
+static char RCBufferLastRead = 0;
+
 /* ************************************************ */
 /* Method name: 	   sc_init		   		*/
 /* Method description: This method configures		*/
@@ -76,33 +83,81 @@ void sc_sendBuffer(char cBuf[]) {
 }
 
 /* ************************************************ */
-/* Method name: 	   sc_receiveBuffer		   		*/
-/* Method description: Receive a buffer using serial*/
-/* 						communication.				*/
-/* Input params:	   char* cBuf					*/
+/* Method name: 	   sc_read						*/
+/* Method description: Read a single char from		*/
+/*						RCREG, if available			*/
+/* Input params:	   n/a							*/
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void sc_receiveBuffer(char cBuf[]) {
-	int i=0;
-	while (1) {
-		// Check if we're ready
-		if (PIR1bits.RCIF) {
-			char temp = RCREG; 
-			// Check if we're done
-			if (isprint(temp)){
-				cBuf[i] = temp;
-				i++;
-			} else if (temp == 8){
-				i--;
-				if (i<0) i = 0;
-			}else{
-				//we're done
-				cBuf[i] = '\0';
-				break;
+void sc_read(void) {
+	if (PIR1bits.RCIF) {
+		char temp = RCREG;
+		
+		if (isprint(temp)) {
+			RCBuffer[RCBufferI++] = temp;
+		} else if (temp == '\b') {
+			if (RCBufferI != RCBufferLastRead) {
+				RCBufferI--;
 			}
-			
+		} else {
+			// End of line
+			RCBuffer[RCBufferI++] = '\0';
+		}
+		
+		// Our buffer is circular
+		if (RCBufferI < 0) {
+			RCBufferI += RCBUFFER_LEN;
+		} else if (RCBufferI >= RCBUFFER_LEN) {
+			RCBufferI -= RCBUFFER_LEN;
 		}
 	}
 }
 
-
+/* ************************************************ */
+/* Method name: 	   sc_readLine		   		*/
+/* Method description: Write the next received line */
+/*						into input buffer. If no	*/
+/*						has been received, the is	*/
+/*						emptied						*/
+/* Input params:	   char cBuf[]					*/
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void sc_readLine(char cBuf[]) {
+	char i, j, k, end, sawEnd = FALSE;
+	
+	/* Check whether there is a line in the circular buffer */
+	for (i = RCBufferLastRead; i != RCBufferI; ) {
+		if (!RCBuffer[RCBufferI]) {
+			if (!sawEnd) {
+				sawEnd = TRUE;
+				end = i;
+			}
+		} else {
+			if (sawEnd) {
+				break;
+			}
+		}
+		
+		i++;
+		if (i >= RCBUFFER_LEN) {
+			i -= RCBUFFER_LEN;
+		}
+	}
+	
+	if (i == RCBufferI) {
+		/* No line yet */
+		cBuf[0] = '\0';
+		return;
+	}
+	
+	/* Copy the line */
+	for (j = RCBufferLastRead, k = 0; j != end; ) {
+		cBuf[k++] = RCBuffer[j++];
+		if (j >= RCBUFFER_LEN) {
+			j -= RCBUFFER_LEN;
+		}
+	}
+	cBuf[k] = '\0';
+	RCBufferLastRead = i;
+	return;
+}

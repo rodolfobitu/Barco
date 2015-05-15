@@ -39,13 +39,23 @@ void sc_start(void);
 void sc_sendBuffer(char cBuf[]);
 
 /* ************************************************ */
-/* Method name: 	   sc_receiveBuffer		   		*/
-/* Method description: Receive a buffer using serial*/
-/* 						communication.				*/
+/* Method name: 	   sc_read						*/
+/* Method description: Read a single char from		*/
+/*						RCREG, if available			*/
+/* Input params:	   n/a							*/
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void sc_read(void);
+
+/* ************************************************ */
+/* Method name: 	   sc_readLine		   		*/
+/* Method description: Write the next received line */
+/*						into input buffer. If no	*/
+/*						has been received, the is	*/
+/*						emptied						*/
 /* Input params:	   char cBuf[]					*/
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void sc_receiveBuffer(char cBuf[]);
-
+void sc_readLine(char cBuf[]);
 
 #endif /* SERIALCOM_H */

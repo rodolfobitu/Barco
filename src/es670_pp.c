@@ -35,7 +35,7 @@
 volatile unsigned int uiFlagNextPeriod = 0;	// cyclic executive flag
 static int speedSamples[UTIL_1S_ITERATION_NUM]; // speed samples for cooler
 static int speedIndex = 0; // index in the speedSamples vector
-
+static char RCBuffer
 
 /* setup the interruption */
 void isr_CyclicExecutive();
@@ -49,16 +49,21 @@ void isr_HighVector(void)
 
 /* setup the isr */
 #pragma interrupt isr_CyclicExecutive
-void isr_CyclicExecutive() 
-{	
-	/* set the cyclic executive flag */
-	uiFlagNextPeriod = 1;
+void isr_CyclicExecutive() {
+	if (INTCONbits.TMR0IF) {
+		/* set the cyclic executive flag */
+		uiFlagNextPeriod = 1;
+
+		/* reset the cyclic executive counting */
+		util_resetCyclicExecutive();
+
+		/* acknowledge the interrupt */
+		INTCONbits.TMR0IF = 0;
+	}
 	
-	/* reset the cyclic executive counting */
-	util_resetCyclicExecutive();
-  	
-  	/* acknowledge the interrupt */
-  	INTCONbits.TMR0IF = 0;
+	if (PIR1.RCIF) {
+		sc_read();
+	}
 }
 
 
