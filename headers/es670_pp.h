@@ -12,7 +12,7 @@
 
 /* general constants */
 #define TRUE  		1
-#define FALSE 		1
+#define FALSE 		0
 
 #define CLEAN_DATA	0x00
 #define ADC_OFF		0b00001111

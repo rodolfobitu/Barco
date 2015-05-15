@@ -8,7 +8,8 @@
 
 #include "serialcom.h"
 #include "mclab2.h"
-#include "util.h" 
+#include "util.h"
+#include "es670_pp.h"
 #include <ctype.h>
 
 #define RCBUFFER_LEN 100

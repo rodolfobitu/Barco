@@ -35,7 +35,6 @@
 volatile unsigned int uiFlagNextPeriod = 0;	// cyclic executive flag
 static int speedSamples[UTIL_1S_ITERATION_NUM]; // speed samples for cooler
 static int speedIndex = 0; // index in the speedSamples vector
-static char RCBuffer
 
 /* setup the interruption */
 void isr_CyclicExecutive();
@@ -61,7 +60,7 @@ void isr_CyclicExecutive() {
 		INTCONbits.TMR0IF = 0;
 	}
 	
-	if (PIR1.RCIF) {
+	if (PIR1bits.RCIF) {
 		sc_read();
 	}
 }
