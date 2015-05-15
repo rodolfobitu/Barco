@@ -10,6 +10,7 @@
 #include "ledswi.h"
 #include "buzzer.h"
 #include "lcd.h"
+#include "serialcom.h"
 #include <ctype.h>
 
 void cm_ledCmd(char cCmd[]);
@@ -26,15 +27,19 @@ void cm_lcdCmd(char cCmd[]);
 void cm_interpretCmd(char cCmd[]){
 	if (cCmd[0] == 'L'){
 		if (cCmd[2] == 'D' && cCmd[1] == 'C'){
+			sc_sendBuffer("AKN");
 			cm_lcdCmd(cCmd);
 		}else{
+			sc_sendBuffer("AKN");
 			cm_ledCmd(cCmd);
 		}
 	} else if (cCmd[0] == 'S'){
 		//Switch
 	} else if (cCmd[0] == 'B'){
+		sc_sendBuffer("AKN");
 		cm_buzzerCmd(cCmd);
 	} else {
+		sc_sendBuffer("NOTAKN");
 		//invalid
 	}
 

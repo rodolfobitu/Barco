@@ -12,12 +12,17 @@
 #include "es670_pp.h"
 #include <ctype.h>
 
-#define RCBUFFER_LEN 100
+#define BUFFER_LEN 100
 
 /* file locals */
-static char RCBuffer[RCBUFFER_LEN];
+static char RCBuffer[BUFFER_LEN];
 static char RCBufferI = 0;
 static char RCBufferLastRead = 0;
+
+static char TXBuffer[BUFFER_LEN];
+static char TXBufferI = 0;
+static char TXBufferIToSend = 0;
+static char TXSendEnabled = FALSE;
 
 /* ************************************************ */
 /* Method name: 	   sc_init		   		*/
@@ -81,6 +86,41 @@ void sc_sendBuffer(char cBuf[]) {
 		while (!PIR1bits.TXIF);
 		TXREG = cBuf[i++];
 	}
+}
+
+/* ************************************************ */
+/* Method name: 	   sc_send		   		*/
+/* Method description: Sends a char from TXBuffer using */
+/* 						the serial communication.	*/
+/* Input params:	   char* cBuf					*/
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void sc_send() {
+	if (TXSendEnabled && PIR1bits.TXIF){
+		TXREG = TXBuffer[TXBufferIToSend++];
+		if (TXBufferIToSend == TXBufferI){
+			TXSendEnabled = FALSE;
+			TXBufferI = TXBufferIToSend = 0;
+		}
+	}
+}
+
+/* ************************************************ */
+/* Method name: 	   sc_sendLine					*/
+/* Method description: Populate TXBuffer with a cBuf*/
+/*						to be send					*/
+/* Input params:	   char* cBuf					*/
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void sc_sendLine(char* cBuf) {
+	int i;
+	
+	for (cBuf[i] != '\0'){
+		TXBuffer[TXBufferI+i] = cBuf[i];
+		i++;
+	}
+	sc_send();
+	
 }
 
 /* ************************************************ */

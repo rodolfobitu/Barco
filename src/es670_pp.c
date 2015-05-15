@@ -63,6 +63,10 @@ void isr_CyclicExecutive() {
 	if (PIR1bits.RCIF) {
 		sc_read();
 	}
+	
+	if (PIR1bits.TXIF){
+		sc_send();
+	}
 }
 
 
@@ -176,6 +180,20 @@ void es670_coolerTask(void)
 }
 
 /* ************************************************ */
+/* Method name: 	   es670_commandMachineTask	    */
+/* Method description: this task (method) plays with*/
+/*					   the command machine and serial com*/
+/* Input params:	   n/a 							*/
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void es670_commandMachineTask(void)
+{
+	char cBuf[50];
+	sc_readLine(cBuf);
+	cm_interpretCmd(cBuf);
+}
+
+/* ************************************************ */
 /* Method name: 	   es670_computeCoolerVelocity  */
 /* Method description: compute the cooler speed in  */
 /*					   RPS (revolutions per second) */
@@ -231,7 +249,8 @@ void main(void)
 		
 		/* cooler task */
 		es670_coolerTask();
-				
+		
+		es670_commandMachineTask();
 		
 		/* WAIT FOR CYCLIC EXECUTIVE PERIOD */
 		while(!uiFlagNextPeriod);

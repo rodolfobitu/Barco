@@ -48,6 +48,15 @@ void sc_sendBuffer(char cBuf[]);
 void sc_read(void);
 
 /* ************************************************ */
+/* Method name: 	   sc_send		   		*/
+/* Method description: Sends a char from TXBuffer using */
+/* 						the serial communication.	*/
+/* Input params:	   char* cBuf					*/
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void sc_send();
+
+/* ************************************************ */
 /* Method name: 	   sc_readLine		   		*/
 /* Method description: Write the next received line */
 /*						into input buffer. If no	*/
