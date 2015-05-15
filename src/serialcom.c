@@ -115,7 +115,7 @@ void sc_send() {
 void sc_sendLine(char* cBuf) {
 	int i;
 	
-	for (cBuf[i] != '\0'){
+	if (cBuf[i] != '\0'){
 		TXBuffer[TXBufferI+i] = cBuf[i];
 		i++;
 	}
@@ -147,9 +147,9 @@ void sc_read(void) {
 		
 		// Our buffer is circular
 		if (RCBufferI < 0) {
-			RCBufferI += RCBUFFER_LEN;
-		} else if (RCBufferI >= RCBUFFER_LEN) {
-			RCBufferI -= RCBUFFER_LEN;
+			RCBufferI += BUFFER_LEN;
+		} else if (RCBufferI >= BUFFER_LEN) {
+			RCBufferI -= BUFFER_LEN;
 		}
 	}
 }
@@ -180,8 +180,8 @@ void sc_readLine(char cBuf[]) {
 		}
 		
 		i++;
-		if (i >= RCBUFFER_LEN) {
-			i -= RCBUFFER_LEN;
+		if (i >= BUFFER_LEN) {
+			i -= BUFFER_LEN;
 		}
 	}
 	
@@ -194,8 +194,8 @@ void sc_readLine(char cBuf[]) {
 	/* Copy the line */
 	for (j = RCBufferLastRead, k = 0; j != end; ) {
 		cBuf[k++] = RCBuffer[j++];
-		if (j >= RCBUFFER_LEN) {
-			j -= RCBUFFER_LEN;
+		if (j >= BUFFER_LEN) {
+			j -= BUFFER_LEN;
 		}
 	}
 	cBuf[k] = '\0';
