@@ -54,7 +54,7 @@ void sc_read(void);
 /* Input params:	   char* cBuf					*/
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void sc_send();
+void sc_send(void);
 
 /* ************************************************ */
 /* Method name: 	   sc_readLine		   		*/

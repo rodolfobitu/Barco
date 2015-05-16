@@ -33,6 +33,7 @@
 
 /* globals */
 volatile unsigned int uiFlagNextPeriod = 0;	// cyclic executive flag
+static int speed;
 static int speedSamples[UTIL_1S_ITERATION_NUM]; // speed samples for cooler
 static int speedIndex = 0; // index in the speedSamples vector
 
@@ -188,9 +189,11 @@ void es670_coolerTask(void)
 /* ************************************************ */
 void es670_commandMachineTask(void)
 {
-	char cBuf[50];
+	char cBuf[100];
 	sc_readLine(cBuf);
-	cm_interpretCmd(cBuf);
+	if (cBuf[0] != '\0'){
+		cm_interpretCmd(cBuf);
+	}
 }
 
 /* ************************************************ */
@@ -204,7 +207,7 @@ void es670_commandMachineTask(void)
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
 void es670_computeCoolerVelocity(void) {
-	int speed = 0, i;
+	int i;
 	char text[10];
 	
 	/* Save the current speed sample and reset the counter */
@@ -218,9 +221,9 @@ void es670_computeCoolerVelocity(void) {
 	}
 	speed /= COOLER_BLADES_NUM;
 	
-	/* Show the result in the LCD display */
-	util_convertFromUi2Ascii(speed, text);
-	lcd_WriteString2(text);
+	cm_setSpeed(speed);
+	
+	
 }
 
 
@@ -251,7 +254,7 @@ void main(void)
 		es670_coolerTask();
 		
 		es670_commandMachineTask();
-		
+
 		/* WAIT FOR CYCLIC EXECUTIVE PERIOD */
 		while(!uiFlagNextPeriod);
 		uiFlagNextPeriod = 0;

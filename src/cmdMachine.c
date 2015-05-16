@@ -6,12 +6,16 @@
 /* Revision date:    17abr2015										 */
 /* ***************************************************************** */
 
+#include "es670_pp.h"
 #include "cmdMachine.h"
 #include "ledswi.h"
 #include "buzzer.h"
 #include "lcd.h"
 #include "serialcom.h"
 #include <ctype.h>
+
+static int speed;
+static char showSpeed = 0;
 
 void cm_ledCmd(char cCmd[]);
 void cm_buzzerCmd(char cCmd[]);
@@ -24,23 +28,39 @@ void cm_lcdCmd(char cCmd[]);
 /* Input params:	   cCmd[] = command				*/
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void cm_interpretCmd(char cCmd[]){
+void cm_interpretCmd(char cCmd[]){	
 	if (cCmd[0] == 'L'){
 		if (cCmd[2] == 'D' && cCmd[1] == 'C'){
-			sc_sendBuffer("AKN");
+			char akn[4] = "AKN";
+			showSpeed = FALSE;
+			sc_sendLine(akn);
 			cm_lcdCmd(cCmd);
 		}else{
-			sc_sendBuffer("AKN");
+			char akn[4] = "AKN";
+			sc_sendLine(akn);
 			cm_ledCmd(cCmd);
 		}
 	} else if (cCmd[0] == 'S'){
 		//Switch
+		if (cCmd[1] == 'P' && cCmd[2] == 'D'){
+			showSpeed = TRUE;
+		}
 	} else if (cCmd[0] == 'B'){
-		sc_sendBuffer("AKN");
+		char akn[4] = "AKN";
+		sc_sendLine(akn);
 		cm_buzzerCmd(cCmd);
 	} else {
-		sc_sendBuffer("NOTAKN");
+		char nakn[10] = "NOTAKN";
+		sc_sendLine(nakn);
 		//invalid
+	}
+
+	if (showSpeed){
+		char text[20];
+		/* Show the result in the LCD display */
+		util_convertFromUi2Ascii(speed, text);
+		lcd_WriteString2(text);
+		
 	}
 
 }
@@ -113,5 +133,15 @@ void cm_lcdCmd(char cCmd[]){
 	
 }
 
+/* ************************************************ */
+/* Method name: 	   cm_setSpeed			   		*/
+/* Method description: Set the speed static int      */
+/* Input params:	   int value							*/
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void cm_setSpeed(int value){
+	
+	speed = value;
+}
 
 

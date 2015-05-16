@@ -17,4 +17,13 @@
 /* ************************************************ */
 void cm_interpretCmd(char cCmd[]);
 
+/* ************************************************ */
+/* Method name: 	   cm_setSpeed			   		*/
+/* Method description: Set the speed static int      */
+/* Input params:	   int value							*/
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void cm_setSpeed(int value);
+
+
 #endif /* CMDMACHINE_H */

@@ -33,6 +33,7 @@ static char TXSendEnabled = FALSE;
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
 void sc_init(void) {
+	int i;
 	TRISCbits.RC7 = INPUT;
 	TRISCbits.RC6 = INPUT;
 	
@@ -49,6 +50,11 @@ void sc_init(void) {
 	
 	SPBRGH = 0;
 	SPBRG = 77;
+
+	for (i=0;i<100;i++){
+		RCBuffer[i] = 'A';
+	}
+
 }
 
 /* ************************************************ */
@@ -95,7 +101,7 @@ void sc_sendBuffer(char cBuf[]) {
 /* Input params:	   char* cBuf					*/
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void sc_send() {
+void sc_send(void) {
 	if (TXSendEnabled && PIR1bits.TXIF){
 		TXREG = TXBuffer[TXBufferIToSend++];
 		if (TXBufferIToSend == TXBufferI){
@@ -113,12 +119,13 @@ void sc_send() {
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
 void sc_sendLine(char* cBuf) {
-	int i;
+	int i=0;
 	
 	if (cBuf[i] != '\0'){
-		TXBuffer[TXBufferI+i] = cBuf[i];
+		TXBuffer[TXBufferI++] = cBuf[i];
 		i++;
 	}
+	TXSendEnabled = TRUE;
 	sc_send();
 	
 }
@@ -146,11 +153,11 @@ void sc_read(void) {
 		}
 		
 		// Our buffer is circular
-		if (RCBufferI < 0) {
+	/*	if (RCBufferI < 0) {
 			RCBufferI += BUFFER_LEN;
 		} else if (RCBufferI >= BUFFER_LEN) {
 			RCBufferI -= BUFFER_LEN;
-		}
+		}*/
 	}
 }
 
@@ -164,11 +171,11 @@ void sc_read(void) {
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
 void sc_readLine(char cBuf[]) {
-	char i, j, k, end, sawEnd = FALSE;
+	char i, j, k, end = -1, sawEnd = FALSE;
 	
 	/* Check whether there is a line in the circular buffer */
 	for (i = RCBufferLastRead; i != RCBufferI; ) {
-		if (!RCBuffer[RCBufferI]) {
+		if (!RCBuffer[i]) {
 			if (!sawEnd) {
 				sawEnd = TRUE;
 				end = i;
@@ -180,12 +187,12 @@ void sc_readLine(char cBuf[]) {
 		}
 		
 		i++;
-		if (i >= BUFFER_LEN) {
+	/*	if (i >= BUFFER_LEN) {
 			i -= BUFFER_LEN;
-		}
+		}*/
 	}
 	
-	if (i == RCBufferI) {
+	if (end == -1) {
 		/* No line yet */
 		cBuf[0] = '\0';
 		return;
@@ -194,11 +201,14 @@ void sc_readLine(char cBuf[]) {
 	/* Copy the line */
 	for (j = RCBufferLastRead, k = 0; j != end; ) {
 		cBuf[k++] = RCBuffer[j++];
-		if (j >= BUFFER_LEN) {
+	/*	if (j >= BUFFER_LEN) {
 			j -= BUFFER_LEN;
-		}
+		}*/
 	}
 	cBuf[k] = '\0';
 	RCBufferLastRead = i;
+	if (i == RCBufferI){
+		RCBufferI = RCBufferLastRead = 0;
+	}
 	return;
 }
