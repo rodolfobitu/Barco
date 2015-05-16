@@ -67,4 +67,15 @@ void sc_send(void);
 /* ************************************************ */
 void sc_readLine(char cBuf[]);
 
+
+/* ************************************************ */
+/* Method name: 	   sc_sendLine					*/
+/* Method description: Populate TXBuffer with a cBuf*/
+/*						to be send					*/
+/* Input params:	   char* cBuf					*/
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void sc_sendLine(char* cBuf);
+
+
 #endif /* SERIALCOM_H */

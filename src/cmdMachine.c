@@ -12,6 +12,7 @@
 #include "buzzer.h"
 #include "lcd.h"
 #include "serialcom.h"
+#include "util.h"
 #include <ctype.h>
 
 static int speed;
@@ -43,15 +44,20 @@ void cm_interpretCmd(char cCmd[]){
 	} else if (cCmd[0] == 'S'){
 		//Switch
 		if (cCmd[1] == 'P' && cCmd[2] == 'D'){
+			char text[20];			
 			showSpeed = TRUE;
+			util_convertFromUi2Ascii(speed, text);
+			sc_sendLine(text);
 		}
 	} else if (cCmd[0] == 'B'){
 		char akn[4] = "AKN";
 		sc_sendLine(akn);
 		cm_buzzerCmd(cCmd);
 	} else {
-		char nakn[10] = "NOTAKN";
-		sc_sendLine(nakn);
+		if (cCmd[0] != '\0'){
+			char nakn[10] = "NOTAKN";
+			sc_sendLine(nakn);
+		}
 		//invalid
 	}
 
@@ -60,6 +66,7 @@ void cm_interpretCmd(char cCmd[]){
 		/* Show the result in the LCD display */
 		util_convertFromUi2Ascii(speed, text);
 		lcd_WriteString2(text);
+		
 		
 	}
 

@@ -191,9 +191,8 @@ void es670_commandMachineTask(void)
 {
 	char cBuf[100];
 	sc_readLine(cBuf);
-	if (cBuf[0] != '\0'){
-		cm_interpretCmd(cBuf);
-	}
+	cm_interpretCmd(cBuf);
+	
 }
 
 /* ************************************************ */

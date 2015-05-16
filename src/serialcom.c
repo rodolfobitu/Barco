@@ -121,7 +121,7 @@ void sc_send(void) {
 void sc_sendLine(char* cBuf) {
 	int i=0;
 	
-	if (cBuf[i] != '\0'){
+	while (cBuf[i] != '\0') {
 		TXBuffer[TXBufferI++] = cBuf[i];
 		i++;
 	}
