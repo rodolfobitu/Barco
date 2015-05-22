@@ -96,6 +96,9 @@ Com o objetivo de cumprir o requisito de comunicação serial (REQ2), foram adic
 
 Para cumprir o requisito de exibir mensagens no display LCD, foi adicionado o bloco ``LCD'', responsável pela configuração inicial do hardware do dispositivo e implementação de uma interface de mais alto nível para mandar mensagens no formato de string para o componente.
 
+O requisito para medição de velocidade de rotação (REQ4) foi cumprido com o bloco ``Cooler'' e no prório bloco ``ES670_pp''. O bloco ``cooler'' configura o hardware para a utilização do cooler e controla o estado ligado e desligado.
+Ainda foi adicionado no `ÈS670_pp''o cíclo cooperativo, então foram colocadas 3 tasks: a que controla o estado do cooler através do botão, a que calcula a velocidade (utlizando sensores infravermelho) e a que chama a máquina de estdos.
+
 \section{Diagramas Esquemáticos}
 % Diagramas esquemáticos do target utilizados
 
@@ -141,6 +144,18 @@ Para cumprir o requisito de exibir mensagens no display LCD, foi adicionado o bl
 	\caption{Esquema do componente LCD}
 	\label{fig:maquina}
 \end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{esq_cooler}
+	\caption{Esquema do componente LCD}
+	\label{fig:maquina}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{esq_sensor}
+	\caption{Esquema do componente LCD}
+	\label{fig:maquina}
+\end{figure}
 
 Como pode ser visto na figura \ref{fig:esq_7seg}, é necessário fazer um gerenciamento das portas RB4-7 e RD0-7 para que sejam mostrados os valores desejados nos displays de sete segmentos. Para isso, é preciso alternar qual RB está ativo fazendo a mudança nos RD0-7 para que cada display esteja mostrando um valor diferente. É importante lembrar que a frequência dessa alternância seja escolhida de modo que o olho humano não perceba que os displays estão ligando e desligando.
 
@@ -156,10 +171,33 @@ A sintaxe para comunicação é definida como:
 \item S[1-4] - Retorna o estado do switch [1-4]. A resposta é dada como aberta ou fechada [OC], onde O é opened e C é closed.
 \item Bx - Onde x é um inteiro, comanda o buzzer para ligar durante x milesegundos.
 \item LCDccccc - Onde ccccc é uma sequência de no máximo 32 caracteres que deve ser exibida no LCD
+\item SPD - Mostra no LCD a velocidade do ventilador (cooler) em tempo real
 \end{itemize}
 
 Apesar de estar no modelo, a implementação do Switch ainda não está completa.
 
+
+\section{Executivo cíclo cooperativo}
+
+Para fazer o cíclo cooperativo, foram implementadas tasks para executar as tarefas que cumprem os requisitos.
+
+\subsection{Cálculo da velocidade}
+No arquivo es670_pp é chamado ``es670_computeCoolerVelocity", sua função é atualizar o valor da velocidade do cooler. Um vetor cíclico de 10 posições é usado para guardar o histórico e esse mesmo velor é usado para calcular a velocidade. Ainda é avisado para a Máquina de Estados o valor atual da velocidade.
+
+\subsection{Controle do estado do ventilador}
+No arquivo es670_pp é chamado de ``es670_coolerTask'', sua função é desligar ou ligar o cooler a partir da entrada que é fornecida a partir do botão apertado.
+Futuramente, queremos remover essa task e adicioná-la à Máquina de Estados.
+
+\subsection{Chamada para a Máquina de Estados}
+No arquivo es670_pp é chamado de ``es670_commandMachineTask'', sua função é acionar a máquina de estados a partir de um buffer que é preenchino quando a interrupção é chamada a partir do serial.
+
+\subsection{As interrupções}
+O tratamento de interrupções pode ser visto no arquivo es670_pp em ``isr_CyclicExecutive''. As interrupções tratadas estão listadas abaixo:
+\begin{itemize}
+\item Timer1: A interrupção do timer1, utilizada para fazer o cálculo da velocidade do cooler, pois o o timer1 é como contador.
+\item Leitura serial: Essa interrupção é utilizada para que o buffer utilizado pela Máquina de Estados seja preenchido com o que é recebido pelo serial. Sempre que um caractere novo é recebido, o buffer deve ser atualizado.
+\item Envio serial: Essa interrupção é utiizada para enviar informações através da porta serial sem comprometer o cíclo cooperativo. Sempre que um caractere novo pode ser enviado, ele é enviado.
+\end{itemize}
 
 \section{Matriz de Rastreabilidade}
 % Matriz de rastreabilidade de requisitos vs implementações
@@ -198,6 +236,14 @@ A matriz de rastreabilidade apresentada na tabela \ref*{tab:rastreabilidade} rel
 						& \texttt{- void lcd\_setCursor(unsigned char cLine, unsigned char cColumn)}\\
 						& \texttt{cmdMachine.c}\\ 
 						& \texttt{- void cm\_lcdCmd(char cCmd[])}\\
+        \hline REQ4     & \texttt{es670_pp.c}\\
+                        & \texttt{- void es670\_coolerTask(void)}\\
+                        & \texttt{- void es670\_commandMachineTask(void)}\\
+                        & \texttt{- void es670\_computeCoolerVelocity(void)}\\
+                        & \texttt{- void isr\_CyclicExecutive(void)}\\
+                        & \texttt{cooler.c}\\
+                        & \texttt{- void cooler\_initCooler(void)}\\
+                        & \texttt{- void cooler\_turnOnOff(const unsigned char cucOnOff)}\\
 		\hline 
 	\end{tabular} 
 	\normalsize
@@ -209,6 +255,8 @@ Os maiores problemas identificados foram a dificuldade de conseguir conectar a p
 Tivemos problemas com relação ao tempo, pois tentamos implementar as três funções que foram pedidas inicialmente para a porta serial, mas só conseguimos colocar a função do LED para funcionar e a função do Buzzer estava quase pronta, mas não conseguimos a tempo. Colocamos no modelo, mas a implemntação estava incompleta. Depois, com mais tempo, voltamos e implementamos essa funcionalidade.
 
 Na implentação do comando de exibição no LCD tivemos problema por não esperar algum tempo após enviar o comando de limpar o display para enviar os dados a serem exibidos. Sem essa espera, parte do conteúdo era ``engolido''.
+
+Durante a implementação do cíclo cooperativo, reparamos que o restante da implemtação anterior não encaixava na idéia do cíclo, portanto precisamos fazer adaptações nas implementações anteriores para fazer que os requisitos anteriores continuassem a ser cumpridos. Apesar de termos conseguido resultados positivos, ainda não resolvermos o problema do buzzer, pois ele ainda está tomando o processo para si enquanto está ativo. Pretendemos usar um timer e sua interrupção para reseolver isso, mas ainda não vimos se ainda há um terceiro timer ou precisaremos criar alguma outra solução (timer2 está reservado para o pwm).
 
 
 \begin{thebibliography}{widestlabel}
@@ -239,6 +287,9 @@ Listagem dos códigos fonte:
 \lstinputlisting[language=C, title = \lstname]{../src/buzzer.c}
 \lstinputlisting[language=C, title = \lstname]{../headers/lcd.h}
 \lstinputlisting[language=C, title = \lstname]{../src/lcd.c}
+\lstinputlisting[language=C, title = \lstname]{../headers/cooler.h}
+\lstinputlisting[language=C, title = \lstname]{../src/cooler.c}
+
 
 \end{document}
 

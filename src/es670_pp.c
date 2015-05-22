@@ -49,7 +49,7 @@ void isr_HighVector(void)
 
 /* setup the isr */
 #pragma interrupt isr_CyclicExecutive
-void isr_CyclicExecutive() {
+void isr_CyclicExecutive(void) {
 	if (INTCONbits.TMR0IF) {
 		/* set the cyclic executive flag */
 		uiFlagNextPeriod = 1;
