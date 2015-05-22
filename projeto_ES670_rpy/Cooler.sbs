@@ -3,8 +3,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 	- _id = GUID 0dee380f-e040-47f5-ae0d-7afef4b9ce54;
 	- _myState = 8192;
 	- _name = "Cooler";
-	- _objectCreation = "3335254222820151321903533";
-	- _umlDependencyID = "2244";
+	- _objectCreation = "5415987225320151631496554";
+	- _umlDependencyID = "2270";
 	- _theMainDiagram = { IHandle 
 		- _m2Class = "IDiagram";
 		- _filename = "";
@@ -25,9 +25,9 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 			- _id = GUID 25c53ead-88ed-4a06-8502-dc666324389f;
 			- _myState = 40960;
 			- _name = "TopLevel";
-			- _objectCreation = "3335256222820151321901533";
-			- _umlDependencyID = "2443";
-			- weakCGTime = 5.22.2015::14:35:7;
+			- _objectCreation = "5415989225320151631494554";
+			- _umlDependencyID = "2469";
+			- weakCGTime = 5.22.2015::16:28:26;
 			- strongCGTime = 5.22.2015::14:35:7;
 			- _multiplicity = "";
 			- _itsStateChart = { IHandle 
@@ -39,8 +39,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 			- _id = GUID 05be3471-097e-43fe-8594-fac108016653;
 			- _myState = 8192;
 			- _name = "cooler";
-			- _objectCreation = "3335258222820151321899533";
-			- _umlDependencyID = "2294";
+			- _objectCreation = "5415991225320151631492554";
+			- _umlDependencyID = "2293";
 			- Dependencies = { IRPYRawContainer 
 				- size = 1;
 				- value = 
@@ -48,8 +48,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 					- _id = GUID d4347ae5-a98b-465c-a0c4-78a7f70ad0ef;
 					- _myState = 2048;
 					- _name = "mclab2";
-					- _objectCreation = "3335260222820151321897533";
-					- _umlDependencyID = "2202";
+					- _objectCreation = "5415993225320151631490554";
+					- _umlDependencyID = "2210";
 					- Stereotypes = { IRPYRawContainer 
 						- size = 1;
 						- value = 
@@ -102,8 +102,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 					- _id = GUID 0c9c6b58-72b7-48a8-987d-08954f43fd84;
 					- _myState = 8192;
 					- _name = "cooler_initCooler";
-					- _objectCreation = "3335262222820151321895533";
-					- _umlDependencyID = "3428";
+					- _objectCreation = "5415995225320151631488554";
+					- _umlDependencyID = "3445";
 					- _virtual = 0;
 					- Args = { IRPYRawContainer 
 						- size = 0;
@@ -127,8 +127,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 					- _id = GUID 432cfc41-3449-40f6-a189-6c0ec2dc3042;
 					- _myState = 8192;
 					- _name = "cooler_turnOnOff";
-					- _objectCreation = "3335264222820151321893533";
-					- _umlDependencyID = "3309";
+					- _objectCreation = "5415997225320151631486554";
+					- _umlDependencyID = "3326";
 					- _lastID = 1;
 					- _virtual = 0;
 					- Args = { IRPYRawContainer 
@@ -137,8 +137,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 						{ IArgument 
 							- _id = GUID be79228c-c772-4b3f-a0e6-f9970c2bcffa;
 							- _name = "cucOnOff";
-							- _objectCreation = "3335266222820151321891533";
-							- _umlDependencyID = "2428";
+							- _objectCreation = "5415999225320151631484554";
+							- _umlDependencyID = "2445";
 							- _typeOf = { IHandle 
 								- _m2Class = "IType";
 								- _filename = "PredefinedTypesC++.sbs";
@@ -173,15 +173,15 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 				{ IAttribute 
 					- _id = GUID b22250e5-3381-448c-aa0d-2f2a2c7e1394;
 					- _name = "COOLER_BLADES_NUM";
-					- _objectCreation = "3335268222820151321889533";
-					- _umlDependencyID = "2959";
+					- _objectCreation = "5416001225320151631482554";
+					- _umlDependencyID = "2940";
 					- ValueSpecifications = { IRPYRawContainer 
 						- size = 1;
 						- value = 
 						{ ILiteralSpecification 
 							- _id = GUID 39ecdfb7-d692-4f76-82f5-8f451e23c70b;
-							- _objectCreation = "3335270222820151321887533";
-							- _umlDependencyID = "1641";
+							- _objectCreation = "5416003225320151631480554";
+							- _umlDependencyID = "1631";
 							- _value = "7";
 						}
 					}

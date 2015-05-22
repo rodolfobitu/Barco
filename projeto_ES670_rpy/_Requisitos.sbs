@@ -3,24 +3,24 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 	- _id = GUID 83b232d5-cbf5-48de-bd01-d866eaf248e9;
 	- _myState = 8192;
 	- _name = "_Requisitos";
-	- _objectCreation = "462187922572015106494146";
-	- _umlDependencyID = "2778";
+	- _objectCreation = "5415639225320151631844554";
+	- _umlDependencyID = "2824";
 	- Annotations = { IRPYRawContainer 
 		- size = 9;
 		- value = 
 		{ IRequirement 
 			- _id = GUID 166aaab7-cf5c-4481-a4d3-665ede382195;
 			- _name = "Requisito TECLADO";
-			- _objectCreation = "462188122572015106492146";
-			- _umlDependencyID = "3067";
+			- _objectCreation = "5415641225320151631842554";
+			- _umlDependencyID = "3113";
 			- _body = "O sistema deve permitir o monitoramento de 4 chaves tipo \"push button\".";
 			- reqID = "REQ1A";
 		}
 		{ IRequirement 
 			- _id = GUID 14f38fe2-4ee6-4a1e-950b-e3f37eef0a0a;
 			- _name = "Requisito LCD";
-			- _objectCreation = "462188322572015106490146";
-			- _umlDependencyID = "2770";
+			- _objectCreation = "5415643225320151631840554";
+			- _umlDependencyID = "2816";
 			- _body = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\deflang1046{\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}
 \\viewkind4\\uc1\\pard\\fs20 O sistema deve ser capaz de exiber mensagens alfanum\\'e9ricas num LCD.\\par
 }
@@ -30,8 +30,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 		{ IRequirement 
 			- _id = GUID ac7c8af3-17dd-4d76-b0be-04c3795263c9;
 			- _name = "Requisito LED";
-			- _objectCreation = "462188522572015106488146";
-			- _umlDependencyID = "2781";
+			- _objectCreation = "5415645225320151631838554";
+			- _umlDependencyID = "2827";
 			- _body = "O sistema deve ser capaz de acionar 4 LEDs.
 ";
 			- reqID = "REQ1B";
@@ -39,8 +39,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 		{ IRequirement 
 			- _id = GUID f955129c-5a6e-4c50-b3c4-a546def9576e;
 			- _name = "Requisito PROTOCOLO";
-			- _objectCreation = "462188722572015106486146";
-			- _umlDependencyID = "3273";
+			- _objectCreation = "5415647225320151631836554";
+			- _umlDependencyID = "3319";
 			- _body = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\deflang1046{\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}
 \\viewkind4\\uc1\\pard\\fs20 O sistema deve possuir um protocolo de comunica\\'e7\\'e3o serial capaz de receber comandos e retornar status dos perif\\'e9ricos do sistema.\\par
 }
@@ -50,8 +50,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 		{ IRequirement 
 			- _id = GUID 0b53c1e4-b7fc-476c-8788-696ee3c1a74c;
 			- _name = "Requisito VELOCIDADE";
-			- _objectCreation = "462188922572015106484146";
-			- _umlDependencyID = "3288";
+			- _objectCreation = "5415649225320151631834554";
+			- _umlDependencyID = "3334";
 			- _body = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\deflang1046{\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}
 \\viewkind4\\uc1\\pard\\fs20 O sistema deve ser capaz de realizar medi\\'e7\\'f5es de velocidade de rota\\'e7\\'e3o.\\par
 }
@@ -61,8 +61,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 		{ IRequirement 
 			- _id = GUID eaa58628-4ade-4046-9928-56f257060a65;
 			- _name = "Requisito PWM";
-			- _objectCreation = "462189122572015106482146";
-			- _umlDependencyID = "2803";
+			- _objectCreation = "5415651225320151631832554";
+			- _umlDependencyID = "2849";
 			- _body = "O sistema deve ser capaz de gerar um sinal de PWM.
 ";
 			- reqID = "REQ5";
@@ -70,8 +70,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 		{ IRequirement 
 			- _id = GUID f230e846-fc6a-4648-bf73-e3e8f72330e2;
 			- _name = "Requisito ADC";
-			- _objectCreation = "462189322572015106480146";
-			- _umlDependencyID = "2759";
+			- _objectCreation = "5415653225320151631830554";
+			- _umlDependencyID = "2805";
 			- _body = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\deflang1046{\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}
 \\viewkind4\\uc1\\pard\\fs20 O sistema deve ser capaz de realizar a leitura de sinal an\\'e1lico e tamb\\'e9m a convers\\'e3o A/D deste sinal.\\par
 \\par
@@ -82,16 +82,16 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 		{ IRequirement 
 			- _id = GUID cdd89261-7335-4387-a028-44076154e2b1;
 			- _name = "Requisito CONTROLE";
-			- _objectCreation = "462189522572015106478146";
-			- _umlDependencyID = "3182";
+			- _objectCreation = "5415655225320151631828554";
+			- _umlDependencyID = "3228";
 			- _body = "O sistema deve ser capaz de realizar a funcionalidade de controlador digital.";
 			- reqID = "REQ7";
 		}
 		{ IRequirement 
 			- _id = GUID a4b54609-cfab-4ccc-9983-191f2968bcf3;
 			- _name = "Requisito DISPLAY7SEG";
-			- _objectCreation = "462189722572015106476146";
-			- _umlDependencyID = "3380";
+			- _objectCreation = "5415657225320151631826554";
+			- _umlDependencyID = "3426";
 			- _body = "O sistema deve ser capaz de acionar 4 displays de 7 segmentos.";
 			- reqID = "REQ1C";
 		}
@@ -105,7 +105,7 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 		- _id = GUID 604328de-2202-48b3-9d1a-353bbeb75331;
 	}
 	- _lastID = 1;
-	- weakCGTime = 1.22.2015::12:57:46;
+	- weakCGTime = 5.22.2015::19:53:54;
 	- strongCGTime = 1.22.2015::11:58:6;
 	- _defaultComposite = GUID 497533ce-60d4-494e-ab2c-d6b23d135320;
 	- _eventsBaseID = -1;
@@ -116,10 +116,10 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 			- _id = GUID 497533ce-60d4-494e-ab2c-d6b23d135320;
 			- _myState = 40960;
 			- _name = "TopLevel";
-			- _objectCreation = "462189922572015106474146";
-			- _umlDependencyID = "2414";
-			- weakCGTime = 1.15.2015::17:28:33;
-			- strongCGTime = 1.15.2015::17:28:31;
+			- _objectCreation = "5415659225320151631824554";
+			- _umlDependencyID = "2460";
+			- weakCGTime = 1.22.2015::12:57:46;
+			- strongCGTime = 1.22.2015::11:58:6;
 			- _multiplicity = "";
 			- _itsStateChart = { IHandle 
 				- _m2Class = "";
