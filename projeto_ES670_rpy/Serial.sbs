@@ -3,8 +3,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 	- _id = GUID 41a4d73a-0cc4-4996-82a9-50f029d14b1e;
 	- _myState = 8192;
 	- _name = "Serial";
-	- _objectCreation = "2538287232015201303525";
-	- _umlDependencyID = "2088";
+	- _objectCreation = "382593223020151322267538";
+	- _umlDependencyID = "2199";
 	- _theMainDiagram = { IHandle 
 		- _m2Class = "IDiagram";
 		- _filename = "";
@@ -14,16 +14,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 		- _id = GUID 604328de-2202-48b3-9d1a-353bbeb75331;
 	}
 	- _lastID = 1;
-	- Declaratives = { IRPYRawContainer 
-		- size = 1;
-		- value = 
-		{ ISubsystem 
-			- fileName = "Lcd";
-			- _id = GUID 55997614-a674-4441-bebc-aac46ccdbc8b;
-		}
-	}
-	- weakCGTime = 5.7.2015::23:22:44;
-	- strongCGTime = 5.7.2015::23:22:33;
+	- weakCGTime = 5.22.2015::16:30:3;
+	- strongCGTime = 5.22.2015::16:29:57;
 	- _defaultComposite = GUID 274015df-8e49-4b9e-a8d3-50ee1d5d7016;
 	- _eventsBaseID = -1;
 	- Classes = { IRPYRawContainer 
@@ -33,10 +25,10 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 			- _id = GUID 274015df-8e49-4b9e-a8d3-50ee1d5d7016;
 			- _myState = 40960;
 			- _name = "TopLevel";
-			- _objectCreation = "2538667232015201265525";
-			- _umlDependencyID = "2300";
-			- weakCGTime = 4.18.2015::0:49:43;
-			- strongCGTime = 4.17.2015::23:2:51;
+			- _objectCreation = "382595223020151322265538";
+			- _umlDependencyID = "2402";
+			- weakCGTime = 5.22.2015::16:29:57;
+			- strongCGTime = 5.22.2015::16:29:57;
 			- _multiplicity = "";
 			- _itsStateChart = { IHandle 
 				- _m2Class = "";
@@ -47,17 +39,17 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 			- _id = GUID b71ce27e-f557-453c-93fc-9f8be5ec774f;
 			- _myState = 8192;
 			- _name = "serialcom";
-			- _objectCreation = "2538687232015201263525";
-			- _umlDependencyID = "2448";
+			- _objectCreation = "382597223020151322263538";
+			- _umlDependencyID = "2550";
 			- Dependencies = { IRPYRawContainer 
-				- size = 1;
+				- size = 3;
 				- value = 
 				{ IDependency 
 					- _id = GUID a0fdd50a-c37f-4504-b70f-9b8f56a2d5ff;
 					- _myState = 2048;
 					- _name = "mclab2";
-					- _objectCreation = "2538707232015201261525";
-					- _umlDependencyID = "2041";
+					- _objectCreation = "382599223020151322261538";
+					- _umlDependencyID = "2152";
 					- Stereotypes = { IRPYRawContainer 
 						- size = 1;
 						- value = 
@@ -77,6 +69,60 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 						- _class = "";
 						- _name = "mclab2";
 						- _id = GUID aa110bb3-0172-4266-a0b1-29e5f9f27d13;
+					}
+				}
+				{ IDependency 
+					- _id = GUID 2fe0b975-3653-41ed-979a-2cc4b7c50833;
+					- _myState = 2048;
+					- _name = "util";
+					- _objectCreation = "382601223020151322259538";
+					- _umlDependencyID = "2028";
+					- Stereotypes = { IRPYRawContainer 
+						- size = 1;
+						- value = 
+						{ IHandle 
+							- _m2Class = "IStereotype";
+							- _filename = "PredefinedTypes.sbs";
+							- _subsystem = "PredefinedTypes";
+							- _class = "";
+							- _name = "Usage";
+							- _id = GUID 42aa4325-6112-4e88-87ce-66008878f1db;
+						}
+					}
+					- _dependsOn = { INObjectHandle 
+						- _m2Class = "IClass";
+						- _filename = "Util.sbs";
+						- _subsystem = "Util";
+						- _class = "";
+						- _name = "util";
+						- _id = GUID d00d39bc-27dd-42e5-87aa-b5bf491dbe5b;
+					}
+				}
+				{ IDependency 
+					- _id = GUID 181aa81b-dbf4-4923-87e3-96200f0b4230;
+					- _myState = 2048;
+					- _name = "es670";
+					- _objectCreation = "382603223020151322257538";
+					- _umlDependencyID = "1955";
+					- Stereotypes = { IRPYRawContainer 
+						- size = 1;
+						- value = 
+						{ IHandle 
+							- _m2Class = "IStereotype";
+							- _filename = "PredefinedTypes.sbs";
+							- _subsystem = "PredefinedTypes";
+							- _class = "";
+							- _name = "Usage";
+							- _id = GUID 42aa4325-6112-4e88-87ce-66008878f1db;
+						}
+					}
+					- _dependsOn = { INObjectHandle 
+						- _m2Class = "IClass";
+						- _filename = "Main.sbs";
+						- _subsystem = "Main";
+						- _class = "";
+						- _name = "es670";
+						- _id = GUID 24edaf1f-6db0-4e29-bf9d-2cfd75f2e63c;
 					}
 				}
 			}
@@ -100,18 +146,18 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 				- _name = "diag_definicao_blocos";
 				- _id = GUID a21c9f5f-35bf-494c-a903-3394cfe63ffe;
 			}
-			- _lastID = 4;
-			- weakCGTime = 5.7.2015::22:49:29;
-			- strongCGTime = 5.7.2015::22:49:29;
+			- _lastID = 13;
+			- weakCGTime = 5.22.2015::16:29:57;
+			- strongCGTime = 5.22.2015::16:29:57;
 			- Operations = { IRPYRawContainer 
-				- size = 3;
+				- size = 7;
 				- value = 
 				{ IPrimitiveOperation 
-					- _id = GUID 70dccff3-6284-431e-834a-3bb29872994b;
+					- _id = GUID f49b63c3-5fef-4b7b-a4b1-1ecb2d571848;
 					- _myState = 8192;
-					- _name = "setConfig";
-					- _objectCreation = "2538727232015201259525";
-					- _umlDependencyID = "2419";
+					- _name = "sc_init";
+					- _objectCreation = "382605223020151322255538";
+					- _umlDependencyID = "2327";
 					- _virtual = 0;
 					- Args = { IRPYRawContainer 
 						- size = 0;
@@ -132,21 +178,46 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 					- _constant = 0;
 				}
 				{ IPrimitiveOperation 
-					- _id = GUID a9423267-51da-466d-b8d1-fd009d9f9ddd;
+					- _id = GUID a45d9f29-0cb9-4784-9fcf-95e4a1cce42c;
 					- _myState = 8192;
-					- _name = "sendBuffer";
-					- _objectCreation = "2538747232015201257525";
-					- _umlDependencyID = "2517";
+					- _name = "sc_start";
+					- _objectCreation = "382607223020151322253538";
+					- _umlDependencyID = "2449";
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+				{ IPrimitiveOperation 
+					- _id = GUID 87b8e49a-38f6-4262-8868-cee13373ab90;
+					- _myState = 8192;
+					- _name = "sc_sendBuffer";
+					- _objectCreation = "382609223020151322251538";
+					- _umlDependencyID = "2919";
 					- _lastID = 1;
 					- _virtual = 0;
 					- Args = { IRPYRawContainer 
 						- size = 1;
 						- value = 
 						{ IArgument 
-							- _id = GUID 69baad8e-d601-40d3-a017-967d5433fc40;
+							- _id = GUID ffc29f79-295e-4dab-845f-6edb68e487a1;
 							- _name = "cBuf";
-							- _objectCreation = "2538767232015201255525";
-							- _umlDependencyID = "1873";
+							- _objectCreation = "382611223020151322249538";
+							- _umlDependencyID = "1966";
 							- _typeOf = { IHandle 
 								- _m2Class = "IType";
 								- _filename = "PredefinedTypesC++.sbs";
@@ -175,21 +246,114 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 					- _constant = 0;
 				}
 				{ IPrimitiveOperation 
-					- _id = GUID e473e9d1-433e-4e6c-8e0e-88f38abfc0cd;
+					- _id = GUID 15de9992-d346-4c14-86c4-5b307c56081c;
 					- _myState = 8192;
-					- _name = "receiveBuffer";
-					- _objectCreation = "2538787232015201253525";
-					- _umlDependencyID = "2830";
+					- _name = "sc_read";
+					- _objectCreation = "382613223020151322247538";
+					- _umlDependencyID = "2303";
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+				{ IPrimitiveOperation 
+					- _id = GUID ed5a3dfc-0694-49e1-8cf2-01cf59863c64;
+					- _myState = 8192;
+					- _name = "sc_send";
+					- _objectCreation = "382615223020151322245538";
+					- _umlDependencyID = "2317";
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 0;
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+				{ IPrimitiveOperation 
+					- _id = GUID 158298b8-f6fd-43bd-84c3-f094375b539c;
+					- _myState = 8192;
+					- _name = "sc_readLine";
+					- _objectCreation = "382617223020151322243538";
+					- _umlDependencyID = "2695";
 					- _lastID = 1;
 					- _virtual = 0;
 					- Args = { IRPYRawContainer 
 						- size = 1;
 						- value = 
 						{ IArgument 
-							- _id = GUID e70f3b2e-0192-47fd-8407-526111abf2e2;
+							- _id = GUID 39f5676b-4e68-4e58-a08b-a866b0174c6d;
 							- _name = "cBuf";
-							- _objectCreation = "2538807232015201251525";
-							- _umlDependencyID = "1864";
+							- _objectCreation = "382619223020151322241538";
+							- _umlDependencyID = "1966";
+							- _typeOf = { IHandle 
+								- _m2Class = "IType";
+								- _filename = "PredefinedTypesC++.sbs";
+								- _subsystem = "PredefinedTypesCpp";
+								- _class = "";
+								- _name = "char*";
+								- _id = GUID a1f818e6-c022-42d5-bbc0-075bf073b055;
+							}
+							- _isOrdered = 0;
+							- _argumentDirection = In;
+						}
+					}
+					- _returnType = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesC++.sbs";
+						- _subsystem = "PredefinedTypesCpp";
+						- _class = "";
+						- _name = "void";
+						- _id = GUID c6b70728-b655-45a0-abb7-8ea5d3da94be;
+					}
+					- _abstract = 0;
+					- _final = 0;
+					- _concurrency = Sequential;
+					- _protection = iPublic;
+					- _static = 0;
+					- _constant = 0;
+				}
+				{ IPrimitiveOperation 
+					- _id = GUID bf027998-b090-4a1a-bf2a-c910342775f9;
+					- _myState = 8192;
+					- _name = "sc_sendLine";
+					- _objectCreation = "382621223020151322239538";
+					- _umlDependencyID = "2709";
+					- _lastID = 1;
+					- _virtual = 0;
+					- Args = { IRPYRawContainer 
+						- size = 1;
+						- value = 
+						{ IArgument 
+							- _id = GUID d5b449a9-7b20-4daf-b7b9-56612378673d;
+							- _name = "cBuf";
+							- _objectCreation = "382623223020151322237538";
+							- _umlDependencyID = "1966";
 							- _typeOf = { IHandle 
 								- _m2Class = "IType";
 								- _filename = "PredefinedTypesC++.sbs";
@@ -225,6 +389,6 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 			- _classModifier = Unspecified;
 		}
 	}
-	- _configurationRelatedTime = 1.2.1990::0:0:0;
+	- _configurationRelatedTime = 5.22.2015::16:30:3;
 }
 

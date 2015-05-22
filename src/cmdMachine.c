@@ -143,12 +143,12 @@ void cm_lcdCmd(char cCmd[]){
 /* ************************************************ */
 /* Method name: 	   cm_setSpeed			   		*/
 /* Method description: Set the speed static int      */
-/* Input params:	   int value							*/
+/* Input params:	   int iValue							*/
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void cm_setSpeed(int value){
+void cm_setSpeed(int iValue){
 	
-	speed = value;
+	speed = iValue;
 }
 
 
