@@ -254,9 +254,11 @@ void util_stopTimer1Counter(void)
 unsigned int util_getTimer1Count(void)
 {
 	unsigned int uiCount;
+	unsigned int uiCountLow;
   
   	/* return the MSB + LSB parts */
-  	uiCount = (((unsigned int)TMR1H) << 8) + TMR1L;
+	uiCountLow = TMR1L;
+  	uiCount = (((unsigned int)TMR1H) << 8) + uiCountLow;
   
   	return uiCount;
 }

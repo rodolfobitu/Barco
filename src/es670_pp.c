@@ -16,6 +16,7 @@
 #include "serialcom.h"
 #include "cmdMachine.h"
 #include "buzzer.h"
+#include "pwm.h"
 
 /* uC init configurations */
 
@@ -109,6 +110,8 @@ void es670_runInitialization(void)
 	 * originated from the cooler
 	 */
 	util_initTimer1AsCounter();
+
+	pwm_initPwm();
 }
 
 

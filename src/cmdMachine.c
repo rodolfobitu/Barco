@@ -12,7 +12,9 @@
 #include "buzzer.h"
 #include "lcd.h"
 #include "serialcom.h"
+#include "pwm.h"
 #include "util.h"
+#include <stdlib.h>
 #include <ctype.h>
 
 static int speed;
@@ -21,7 +23,7 @@ static char showSpeed = 0;
 void cm_ledCmd(char cCmd[]);
 void cm_buzzerCmd(char cCmd[]);
 void cm_lcdCmd(char cCmd[]);
-
+void cm_fanCmd(char cCmd[]);
 
 /* ************************************************ */
 /* Method name: 	   cm_interpretCmd		   		*/
@@ -29,15 +31,15 @@ void cm_lcdCmd(char cCmd[]);
 /* Input params:	   cCmd[] = command				*/
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void cm_interpretCmd(char cCmd[]){	
+void cm_interpretCmd(char cCmd[]) {
+	char akn[] = "AKN\r\n";
+
 	if (cCmd[0] == 'L'){
 		if (cCmd[2] == 'D' && cCmd[1] == 'C'){
-			char akn[4] = "AKN";
 			showSpeed = FALSE;
 			sc_sendLine(akn);
 			cm_lcdCmd(cCmd);
 		}else{
-			char akn[4] = "AKN";
 			sc_sendLine(akn);
 			cm_ledCmd(cCmd);
 		}
@@ -50,12 +52,15 @@ void cm_interpretCmd(char cCmd[]){
 			sc_sendLine(text);
 		}
 	} else if (cCmd[0] == 'B'){
-		char akn[4] = "AKN";
 		sc_sendLine(akn);
 		cm_buzzerCmd(cCmd);
+	} else if (cCmd[0] == 'F' && cCmd[1] == 'A' && cCmd[2] == 'N') {
+		// Set PWM duty cycle
+		cm_fanCmd(cCmd+3);
+		sc_sendLine(akn);
 	} else {
 		if (cCmd[0] != '\0'){
-			char nakn[10] = "NOTAKN";
+			char nakn[] = "INVALID CMD\r\n";
 			sc_sendLine(nakn);
 		}
 		//invalid
@@ -66,10 +71,7 @@ void cm_interpretCmd(char cCmd[]){
 		/* Show the result in the LCD display */
 		util_convertFromUi2Ascii(speed, text);
 		lcd_WriteString2(text);
-		
-		
 	}
-
 }
 
 /* ************************************************ */
@@ -141,13 +143,25 @@ void cm_lcdCmd(char cCmd[]){
 }
 
 /* ************************************************ */
+/* Method name: 	   cm_fanCmd			   		*/
+/* Method description: Set the PWMduty cycle 	    */
+/* Input params:	   cCmd[] = command				*/
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void cm_fanCmd(char cCmd[]){
+	unsigned long int dutyCycle = (unsigned long int)atoi(cCmd);
+	dutyCycle *= 1023;
+	dutyCycle /= 100;
+	pwm_setDutyCycle((unsigned int)dutyCycle);
+}
+
+/* ************************************************ */
 /* Method name: 	   cm_setSpeed			   		*/
-/* Method description: Set the speed static int      */
-/* Input params:	   int iValue							*/
+/* Method description: Set the speed static int     */
+/* Input params:	   int iValue					*/
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
 void cm_setSpeed(int iValue){
-	
 	speed = iValue;
 }
 
