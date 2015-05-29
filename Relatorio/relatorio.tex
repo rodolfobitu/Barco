@@ -98,6 +98,8 @@ Para cumprir o requisito de exibir mensagens no display LCD, foi adicionado o bl
 
 O requisito para medição de velocidade de rotação (REQ4) foi cumprido com o bloco ``Cooler'' e no próprio bloco ``ES670\_pp''. O bloco ``cooler'' configura o hardware para a utilização do cooler e controla o estado ligado e desligado.
 
+O requisito para acionar o cooler com PWM (REQ5) foi cumprido com o bloco ``pwm'', responsável por fazer a configuração inicial do dispositivo e tambem por ajustar o duty cycle durante a execução.
+
 Ainda foi adicionado no ``ES670\_pp''o executivo cíclico cooperativo, então foram colocadas 3 tasks: a que controla o estado do cooler através do botão, a que calcula a velocidade (utilizando sensores infravermelho) e a que chama a máquina de estados.
 
 \section{Diagramas Esquemáticos}
@@ -173,6 +175,7 @@ A sintaxe para comunicação é definida como:
 \item Bx - Onde x é um inteiro, comanda o buzzer para ligar durante x milissegundos.
 \item LCDccccc - Onde ccccc é uma sequência de no máximo 32 caracteres que deve ser exibida no LCD
 \item SPD - Mostra no LCD a velocidade do ventilador (cooler) em tempo real
+\item FANddd - Ajusta o duty cycle para o valor (entre 0 e 100) desejado
 \end{itemize}
 
 Apesar de estar no modelo, a implementação do Switch ainda não está completa.
@@ -181,6 +184,13 @@ Apesar de estar no modelo, a implementação do Switch ainda não está completa
 \section{Executivo cíclico cooperativo}
 
 Para fazer o executivo cíclico cooperativo, foram implementadas tasks para executar as tarefas que cumprem os requisitos.
+
+\subsection{Período do PWM}
+No arquivo pwm, o período do PWM é ajustado para 46.875 kHz. Para obter esse valor, o registrador PR2 é escrito com o valor da fórmula abaixo
+
+\begin{equation}
+PR2 = \frac{Period}{4*Tosc*pre}-1 = 255
+\end{equation}
 
 \subsection{Cálculo da velocidade}
 No arquivo es670\_pp é chamado ``es670\_computeCoolerVelocity", sua função é atualizar o valor da velocidade do cooler. Um vetor cíclico de 10 posições é usado para guardar o histórico e esse mesmo valor é usado para calcular a velocidade. Ainda é avisado para a Máquina de Estados o valor atual da velocidade.
@@ -245,6 +255,11 @@ A matriz de rastreabilidade apresentada na tabela \ref*{tab:rastreabilidade} rel
                         & \texttt{cooler.c}\\
                         & \texttt{- void cooler\_initCooler(void)}\\
                         & \texttt{- void cooler\_turnOnOff(const unsigned char cucOnOff)}\\
+        \hline REQ5     & \texttt{pwm.c}\\
+                        & \texttt{- void pwm\_initPwm(void)}\\
+                        & \texttt{- void pwm\_setDutyCycle(const unsigned int uiDutyCycle)}\\
+                        & \texttt{cmdMachine.c}\\
+                        & \texttt{- void cm\_fanCmd(char cCmd[])}\\
 		\hline 
 	\end{tabular} 
 	\normalsize
@@ -259,12 +274,13 @@ Na implementação do comando de exibição no LCD tivemos problema por não esp
 
 Durante a implementação do executivo cíclico cooperativo, reparamos que o restante da implementação anterior não encaixava na ideia do ciclo, portanto precisamos fazer adaptações nas implementações anteriores para fazer que os requisitos anteriores continuassem a ser cumpridos. Apesar de termos conseguido resultados positivos, ainda não resolvermos o problema do buzzer, pois ele ainda está tomando o processo para si enquanto está ativo. Pretendemos usar um timer e sua interrupção para resolver isso, mas ainda não vimos se ainda há um terceiro timer ou precisaremos criar alguma outra solução (timer2 está reservado para o PWM).
 
+Durante os testes iniciais do cooler com acionamento usando PWM, ele pareceu não funcionar. Depois descobrimos que um leve empurrão era suficiente para desemperrá-lo e fazê-lo começar a girar.
 
 \begin{thebibliography}{widestlabel}
 	\bibitem{bb:roteiro}{Roteiro de Laboratório - Semanas 04 e 05 (disponibilizado para os alunos)}
 	\bibitem{bb:modelo}{Projeto do Modelo Inicial do Sistema (disponibilizado para os alunos)}
 	\bibitem{bb:codigo}{Código Fonte Inicial em Linguagem C (disponibilizado para os alunos)}
-	\bibitem{bb:github}{Código Fonte no\href{https://github.com/rodolfobitu/Barco/tree/bbf444209c75c920969b1e1d208ab825b013e332}{GitHub}}
+	\bibitem{bb:github}{Código Fonte no\href{https://github.com/rodolfobitu/Barco/tree/464d2176edcfa32e06b84f98a16c3a4c83943600}{GitHub}}
 
 \end{thebibliography}
 
@@ -290,6 +306,8 @@ Listagem dos códigos fonte:
 \lstinputlisting[language=C, title = \lstname]{../src/lcd.c}
 \lstinputlisting[language=C, title = \lstname]{../headers/cooler.h}
 \lstinputlisting[language=C, title = \lstname]{../src/cooler.c}
+\lstinputlisting[language=C, title = \lstname]{../headers/pwm.h}
+\lstinputlisting[language=C, title = \lstname]{../src/pwm.c}
 
 
 \end{document}
