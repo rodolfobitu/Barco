@@ -1,7 +1,7 @@
 I-Logix-RPY-Archive version 8.5.2 Modeler * 1159120
 
 - filesTable = { IRPYRawContainer 
-	- size = 15;
+	- size = 16;
 	- value = "Projects.rpl" ""
 	"Projeto_ES670.rpy" ""
 	"Projeto_ES670_rpy\\Buzzer.sbs" "Buzzer"
@@ -11,6 +11,7 @@ I-Logix-RPY-Archive version 8.5.2 Modeler * 1159120
 	"Projeto_ES670_rpy\\MCLAB2.cmp" "MCLAB2"
 	"Projeto_ES670_rpy\\Main.sbs" "Main"
 	"Projeto_ES670_rpy\\McLab2.sbs" "McLab2"
+	"Projeto_ES670_rpy\\PWM.sbs" "PWM"
 	"Projeto_ES670_rpy\\Protocol.sbs" "Protocol"
 	"Projeto_ES670_rpy\\Serial.sbs" "Serial"
 	"Projeto_ES670_rpy\\SevenSeg.sbs" "SevenSeg"
