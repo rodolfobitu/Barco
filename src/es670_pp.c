@@ -3,7 +3,7 @@
 /* File description: Main file for the ES670 Practical Project		 */
 /* Author name:      dloubach										 */
 /* Creation date:    20jan2015										 */
-/* Revision date:    07mai2015										 */
+/* Revision date:    22mai2015										 */
 /* ***************************************************************** */
 
 #include "es670_pp.h"
@@ -17,6 +17,7 @@
 #include "cmdMachine.h"
 #include "buzzer.h"
 #include "pwm.h"
+#include "adc.h"
 
 /* uC init configurations */
 
@@ -24,7 +25,6 @@
 #pragma config PLLDIV = 1 			//Divide by 1 (04 MHz oscillator input) 
 #pragma config CPUDIV = OSC1_PLL2 	//96 MHz PLL Src: /2
 #pragma config FOSC   = XTPLL_XT	//XT oscillator, PLL enabled
-
 #pragma config IESO   = OFF			//Oscillator Switchover mode disabled 
 #pragma config PWRT   = ON			//Power-up Timer enabled
 #pragma config BOR    = ON			//Brown-out Reset enabled
@@ -32,11 +32,28 @@
 #pragma config WDT    = OFF			//Watchdog timer disabled
 #pragma config LVP    = OFF			//Single-Supply ICSP disabled
 
+
 /* globals */
 volatile unsigned int uiFlagNextPeriod = 0;	// cyclic executive flag
-static int speed;
-static int speedSamples[UTIL_1S_ITERATION_NUM]; // speed samples for cooler
-static int speedIndex = 0; // index in the speedSamples vector
+
+/* state machine related to ADC task */
+#define ADC_TASK_STATE_INIT			0
+#define ADC_TASK_STATE_CONVERTING	1
+#define ADC_TASK_STATE_DONE			2
+
+/* transfer equation for AD to Temperature 
+ * f(y) = ax + b 
+ * the parameters apply only in the range 
+ * ~28ºC to ~89ºC
+ * ADC_TRANSF_EQ_LOW_LIM to ADC_TRANSF_EQ_HIG_LIM
+ * which could be obtained when heater is in 50% duty cycle PWM
+ */
+#define ADC_TRANSF_EQ_LOW_LIM		350
+#define ADC_TRANSF_EQ_HIG_LIM		500
+#define ADC_TRANSF_EQ_PARAM_A		0.4073
+#define ADC_TRANSF_EQ_PARAM_B		-123.75
+
+
 
 /* setup the interruption */
 void isr_CyclicExecutive();
@@ -89,9 +106,9 @@ void es670_runInitialization(void)
 	PORTD = CLEAN_DATA;
 	PORTE = CLEAN_DATA;
 	
-	/* ADC off */
-	ADCON1 = ADC_OFF;
-	
+	/* init ADC */
+	adc_initAdc();
+		
 	/* init leds and switches */
 	ledswi_initLedSwitch(02, 02);
 	
@@ -110,8 +127,14 @@ void es670_runInitialization(void)
 	 * originated from the cooler
 	 */
 	util_initTimer1AsCounter();
-
-	pwm_initPwm();
+	
+	/* init PWM module for cooler */
+	pwm_initPwm(PWM_COOLER);
+	
+	/* init PWM module for heater */
+//	pwm_initPwm(PWM_HEATER);
+	/* set DC for heater PWM in 50% */
+//	pwm_setDutyCycle(PWM_DC_50, PWM_HEATER);
 }
 
 
@@ -126,15 +149,13 @@ void es670_runInitialization(void)
 void es670_prepare(void)
 {	
 	unsigned int i;
-	
-	/* play with leds */
-	ledswi_setLed(03);
+	char cLine1[] = "COOLER VELOCITY & TEMPERATURE \n\r";
 	
 	/* write something in the LCD */
 	lcd_sendCommand(CMD_CLEAR);
 	lcd_setCursor(0,0);
 	lcd_dummyText();
-	for(i=0; i<20; i++)
+	for(i=0; i<10; i++)
 		util_genDelay500MS();
 	
 	/* play with leds */

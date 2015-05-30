@@ -4,7 +4,7 @@
 /*					 interfaces for handling the PWM module from uC  */
 /* Author name:      dloubach										 */
 /* Creation date:    14mai2015										 */
-/* Revision date:    14mai2015										 */
+/* Revision date:    22mai2015										 */
 /* ***************************************************************** */
 
 #ifndef PWM_H
@@ -18,13 +18,17 @@
 #define PWM_DC_00		0
 #define PWM_INIT_DC		PWM_DC_00
 
+#define PWM_COOLER		0
+#define PWM_HEATER		1
+
 /* ************************************************ */
 /* Method name: 	   pwm_initPwm					*/
 /* Method description: initialize the PWM configs   */
-/* Input params:	   n/a                          */
+/* Input params:	   ucDevice => PWM_COOLER       */
+/*                              => PWM_HEATER       */
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void pwm_initPwm(void);
+void pwm_initPwm(unsigned char ucDevice);
 
 
 /* ************************************************ */
@@ -32,9 +36,12 @@ void pwm_initPwm(void);
 /* Method description: configure PWM duty cycle     */
 /* Input params:	   uiDutyCycle => duty cyle value*/
 /*                     from 0 to 2^10 -1			*/
+/*              	   ucDevice => PWM_COOLER       */
+/*                              => PWM_HEATER       */
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void pwm_setDutyCycle(const unsigned int uiDutyCycle);
+void pwm_setDutyCycle(const unsigned int uiDutyCycle,
+					  unsigned char ucDevice);
 
 
 #endif /* PWM_H */
