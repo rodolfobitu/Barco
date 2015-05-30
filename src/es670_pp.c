@@ -38,6 +38,8 @@ volatile unsigned int uiFlagNextPeriod = 0;	// cyclic executive flag
 static int speed;
 static int speedSamples[UTIL_1S_ITERATION_NUM]; // speed samples for cooler
 static int speedIndex = 0; // index in the speedSamples vector
+static unsigned int uiTemperature;
+static unsigned int uiTempCelsius;
 
 /* state machine related to ADC task */
 #define ADC_TASK_STATE_INIT			0
@@ -135,9 +137,9 @@ void es670_runInitialization(void)
 	pwm_initPwm(PWM_COOLER);
 
 	/* init PWM module for heater */
-//	pwm_initPwm(PWM_HEATER);
+	pwm_initPwm(PWM_HEATER);
 	/* set DC for heater PWM in 50% */
-//	pwm_setDutyCycle(PWM_DC_50, PWM_HEATER);
+	pwm_setDutyCycle(PWM_DC_25, PWM_HEATER);
 }
 
 
@@ -247,7 +249,7 @@ void es670_computeCoolerVelocity(void) {
 	}
 	speed /= COOLER_BLADES_NUM;
 
-	cm_setSpeed(speed);
+	//cm_setSpeed(speed);
 
 
 }
@@ -263,7 +265,22 @@ void es670_computeCoolerVelocity(void) {
 /* Outpu params:          n/a						*/
 /* ************************************************ */
 void es670_computeTemperatureTask(void) {
-	// TODO
+
+	static int state = ADC_TASK_STATE_INIT;
+
+	if (state == ADC_TASK_STATE_INIT){
+		adc_startConvertion();
+		state = ADC_TASK_STATE_CONVERTING;
+	} else if (state == ADC_TASK_STATE_CONVERTING){
+		if (adc_isAdcDone()){
+			uiTemperature = adc_getValue();
+			state = ADC_TASK_STATE_DONE;
+		}
+	} else if (state == ADC_TASK_STATE_DONE){
+		uiTempCelsius = ADC_TRANSF_EQ_PARAM_A * uiTemperature + ADC_TRANSF_EQ_PARAM_B;
+		state = ADC_TASK_STATE_INIT;
+		cm_setSpeed(uiTempCelsius);
+	}
 }
 
 /* ************************************************ */
@@ -293,6 +310,8 @@ void main(void)
 		es670_coolerTask();
 
 		es670_commandMachineTask();
+		
+		es670_computeTemperatureTask();
 
 		/* WAIT FOR CYCLIC EXECUTIVE PERIOD */
 		while(!uiFlagNextPeriod);
