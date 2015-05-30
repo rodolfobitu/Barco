@@ -68,12 +68,12 @@
 
 /* LCD definitions */
 
-/* LCD Register Selector 
+/* LCD Register Selector
  * Used as register selector input
  * When (LCD_RS = LCD_RS_HIGH) => DATA register is selected
  * When (LCD_RS = LCD_RS_LOW)  => INSTRUCTION register is selected
 */
-#define LCD_RS			PORTEbits.RE0 
+#define LCD_RS			PORTEbits.RE0
 #define LCD_RS_DIR		TRISEbits.RE0
 
 #define LCD_RS_HIGH		1
@@ -82,8 +82,8 @@
 #define LCD_RS_LOW 		0
 #define LCD_RS_CMD   	LCD_RS_LOW
 
-#define LCD_ENABLE		PORTEbits.RE1 
-#define LCD_ENABLE_DIR	TRISEbits.RE1 
+#define LCD_ENABLE		PORTEbits.RE1
+#define LCD_ENABLE_DIR	TRISEbits.RE1
 
 #define LCD_ENABLED		1
 #define LCD_DISABLED	0
@@ -98,6 +98,14 @@
 
 #define COOLER_ON		1
 #define COOLER_OFF		0
+
+
+/* Heater definitions */
+#define HEATER			PORTCbits.RC2
+#define HEATER_DIR		TRISCbits.RC2
+
+#define HEATER_ON		1
+#define HEATER_OFF		0
 
 
 #endif /* MCLAB2_H */

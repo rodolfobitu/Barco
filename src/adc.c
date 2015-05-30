@@ -19,24 +19,24 @@
 void adc_initAdc(void)
 {
 	/* let's select the CHANNEL 0 */
-	ADCON0bits.CHS = <to be completed>;
-	
+	ADCON0bits.CHS = 0;
+
 	/* config the reference voltage */
-	ADCON1bits.VCFG1 = <to be completed>; //VSS
-	ADCON1bits.VCFG0 = <to be completed>; //VDD	
+	ADCON1bits.VCFG1 = 0; //VSS
+	ADCON1bits.VCFG0 = 0; //VDD
 	/* AD port configuration, for AN0 going to ANALOG INPUT */
-	ADCON1bits.PCFG = <to be completed>;
-	
+	ADCON1bits.PCFG = 0b1110;
+
 	/* right justfied */
-	ADCON2bits.ADFM = <to be completed>;
+	ADCON2bits.ADFM = 1;
 	/* acquistion time */
-	ADCON2bits.ACQT = <to be completed>; // 12 TAD
-	
+	ADCON2bits.ACQT = 0b101;  // 12 TAD
+
 	/* converstion clock */
-	ADCON2bits.ADCS = <to be completed>; // 64 TOSC
-	
+	ADCON2bits.ADCS = 0b110;  // 64 TOSC
+
 	/* ADC module ON */
-	ADCON0bits.ADON = <to be completed>;
+	ADCON0bits.ADON = 1;
 }
 
 
@@ -52,16 +52,16 @@ int adc_isAdcDone(void)
 {
 	unsigned char ucAdcStatus;
 	int iReturn;
-	
+
 	/* get the ADC convertion status */
-	ucAdcStatus = <to be completed>;
-	
+	ucAdcStatus = ADCON0bits.GO_DONE;
+
 	/* check it */
 	if(ucAdcStatus)
 		iReturn = ADC_CONVERTION_PROCESSING;
 	else
 		iReturn = ADC_CONVERTION_DONE;
-		
+
 	/* return the result */
 	return (iReturn);
 }
@@ -76,7 +76,7 @@ int adc_isAdcDone(void)
 /* ************************************************ */
 void adc_startConvertion(void)
 {
-	ADCON0bits.GO_DONE = <to be completed>;
+	ADCON0bits.GO_DONE = 1;
 }
 
 
@@ -92,10 +92,10 @@ unsigned int adc_getValue(void)
 {
 	unsigned int uiAdcLowValue;
 	unsigned int uiAdcValue;
-	
+
 	/* return the MSB + LSB parts */
 	uiAdcLowValue = ADRESL;
 	uiAdcValue = (((unsigned int)ADRESH & 0x03) << 8) + uiAdcLowValue;
-		
+
 	return(uiAdcValue);
 }

@@ -46,7 +46,7 @@ void cm_interpretCmd(char cCmd[]) {
 	} else if (cCmd[0] == 'S'){
 		//Switch
 		if (cCmd[1] == 'P' && cCmd[2] == 'D'){
-			char text[20];			
+			char text[20];
 			showSpeed = TRUE;
 			util_convertFromUi2Ascii(speed, text);
 			sc_sendLine(text);
@@ -131,15 +131,15 @@ void cm_buzzerCmd(char cCmd[]){
 void cm_lcdCmd(char cCmd[]){
 	int j=3;
 	char str[50];
-		
-	
+
+
 	while(cCmd[j] != '\0'){
 		str[j-3] = cCmd[j];
 		j++;
 	}
 	str[j-3]='\0';
 	lcd_WriteString2(str);
-	
+
 }
 
 /* ************************************************ */
@@ -152,7 +152,7 @@ void cm_fanCmd(char cCmd[]){
 	unsigned long int dutyCycle = (unsigned long int)atoi(cCmd);
 	dutyCycle *= 1023;
 	dutyCycle /= 100;
-	pwm_setDutyCycle((unsigned int)dutyCycle);
+	pwm_setDutyCycle((unsigned int)dutyCycle, PWM_COOLER);
 }
 
 /* ************************************************ */

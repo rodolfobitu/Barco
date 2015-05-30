@@ -22,10 +22,10 @@
 /* uC init configurations */
 
 /* uC @ 48 MHz */
-#pragma config PLLDIV = 1 			//Divide by 1 (04 MHz oscillator input) 
+#pragma config PLLDIV = 1 			//Divide by 1 (04 MHz oscillator input)
 #pragma config CPUDIV = OSC1_PLL2 	//96 MHz PLL Src: /2
 #pragma config FOSC   = XTPLL_XT	//XT oscillator, PLL enabled
-#pragma config IESO   = OFF			//Oscillator Switchover mode disabled 
+#pragma config IESO   = OFF			//Oscillator Switchover mode disabled
 #pragma config PWRT   = ON			//Power-up Timer enabled
 #pragma config BOR    = ON			//Brown-out Reset enabled
 #pragma config BORV   = 0			//Brown-out Reset to maximum setting
@@ -35,15 +35,18 @@
 
 /* globals */
 volatile unsigned int uiFlagNextPeriod = 0;	// cyclic executive flag
+static int speed;
+static int speedSamples[UTIL_1S_ITERATION_NUM]; // speed samples for cooler
+static int speedIndex = 0; // index in the speedSamples vector
 
 /* state machine related to ADC task */
 #define ADC_TASK_STATE_INIT			0
 #define ADC_TASK_STATE_CONVERTING	1
 #define ADC_TASK_STATE_DONE			2
 
-/* transfer equation for AD to Temperature 
- * f(y) = ax + b 
- * the parameters apply only in the range 
+/* transfer equation for AD to Temperature
+ * f(y) = ax + b
+ * the parameters apply only in the range
  * ~28ºC to ~89ºC
  * ADC_TRANSF_EQ_LOW_LIM to ADC_TRANSF_EQ_HIG_LIM
  * which could be obtained when heater is in 50% duty cycle PWM
@@ -78,11 +81,11 @@ void isr_CyclicExecutive(void) {
 		/* acknowledge the interrupt */
 		INTCONbits.TMR0IF = 0;
 	}
-	
+
 	if (PIR1bits.RCIF) {
 		sc_read();
 	}
-	
+
 	if (PIR1bits.TXIF){
 		sc_send();
 	}
@@ -105,32 +108,32 @@ void es670_runInitialization(void)
 	PORTC = CLEAN_DATA;
 	PORTD = CLEAN_DATA;
 	PORTE = CLEAN_DATA;
-	
+
 	/* init ADC */
 	adc_initAdc();
-		
+
 	/* init leds and switches */
 	ledswi_initLedSwitch(02, 02);
-	
+
 	sevenseg_init();
 	sc_init();
 	bz_init();
-	
+
 	/* init LCD */
 	lcd_initLcd();
-	
+
 	/* init cooler */
 	cooler_initCooler();
-	
-	/* init TIMER1 as counter, 
+
+	/* init TIMER1 as counter,
 	 * used for counting the number of pulses
 	 * originated from the cooler
 	 */
 	util_initTimer1AsCounter();
-	
+
 	/* init PWM module for cooler */
 	pwm_initPwm(PWM_COOLER);
-	
+
 	/* init PWM module for heater */
 //	pwm_initPwm(PWM_HEATER);
 	/* set DC for heater PWM in 50% */
@@ -147,23 +150,23 @@ void es670_runInitialization(void)
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
 void es670_prepare(void)
-{	
+{
 	unsigned int i;
 	char cLine1[] = "COOLER VELOCITY & TEMPERATURE \n\r";
-	
+
 	/* write something in the LCD */
 	lcd_sendCommand(CMD_CLEAR);
 	lcd_setCursor(0,0);
 	lcd_dummyText();
 	for(i=0; i<10; i++)
 		util_genDelay500MS();
-	
+
 	/* play with leds */
 	ledswi_setLed(04);
-	
+
 	/* init TIMER1 counter */
 	util_startTimer1Counter();
-	
+
 	/* zero speed samples */
 	for (i=0; i<UTIL_1S_ITERATION_NUM; i++) {
 		speedSamples[i] = 0;
@@ -183,19 +186,19 @@ void es670_coolerTask(void)
 {
 	static char prevCooler = COOLER_OFF;
 	switch_status_type_e sstSwitch;
-	
+
 	/* if switch01 is ON, cooler is turned on */
 	sstSwitch = ledswi_getSwitchStatus(01);
 	if(SWITCH_ON == sstSwitch && COOLER_OFF == prevCooler)
 	{
 		/* also reset the counter */
 		util_resetTimer1Counter();
-		
+
 		/* turn cooler on */
 		cooler_turnOnOff(COOLER_ON);
 		prevCooler = COOLER_ON;
 	}
-			
+
 	/* if switch02 is ON, cooler is turned off */
 	sstSwitch = ledswi_getSwitchStatus(02);
 	if(SWITCH_ON == sstSwitch && COOLER_ON == prevCooler) {
@@ -216,7 +219,7 @@ void es670_commandMachineTask(void)
 	char cBuf[100];
 	sc_readLine(cBuf);
 	cm_interpretCmd(cBuf);
-	
+
 }
 
 /* ************************************************ */
@@ -232,23 +235,36 @@ void es670_commandMachineTask(void)
 void es670_computeCoolerVelocity(void) {
 	int i;
 	char text[10];
-	
+
 	/* Save the current speed sample and reset the counter */
 	speedSamples[speedIndex++] = util_getTimer1Count();
 	speedIndex %= UTIL_1S_ITERATION_NUM;
 	util_resetTimer1Counter();
-	
+
 	/* Compute the current speed in RPS */
 	for (i=0; i<UTIL_1S_ITERATION_NUM; i++) {
 		speed += speedSamples[i];
 	}
 	speed /= COOLER_BLADES_NUM;
-	
+
 	cm_setSpeed(speed);
-	
-	
+
+
 }
 
+/* ************************************************ */
+/* Method name:        es670_computeTemperatureTask */
+/* Method description: compute the temperature based*/
+/*						in the target sensor D1     */
+/*													*/
+/*                     Period = 500 ms              */
+/*													*/
+/* Input params:          n/a						*/
+/* Outpu params:          n/a						*/
+/* ************************************************ */
+void es670_computeTemperatureTask(void) {
+	// TODO
+}
 
 /* ************************************************ */
 /* Method name: 	   main						    */
@@ -260,27 +276,27 @@ void main(void)
 {
 	/* run uC init configs */
 	es670_runInitialization();
-	
+
 	/* prepare something before entering the main loop */
 	es670_prepare();
-	
+
 	/* config and start the cyclic executive */
 	util_configCyclicExecutive();
-				
+
 	/* main system loop, runs forever */
 	while(TRUE)
 	{
 		/* compute cooler velocity task */
 		es670_computeCoolerVelocity();
-		
+
 		/* cooler task */
 		es670_coolerTask();
-		
+
 		es670_commandMachineTask();
 
 		/* WAIT FOR CYCLIC EXECUTIVE PERIOD */
 		while(!uiFlagNextPeriod);
 		uiFlagNextPeriod = 0;
-		
+
 	} /* while(TRUE) */
 }
