@@ -17,8 +17,6 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-static int speed;
-static char showSpeed = 0;
 
 void cm_ledCmd(char cCmd[]);
 void cm_buzzerCmd(char cCmd[]);
@@ -36,7 +34,6 @@ void cm_interpretCmd(char cCmd[]) {
 
 	if (cCmd[0] == 'L'){
 		if (cCmd[2] == 'D' && cCmd[1] == 'C'){
-			showSpeed = FALSE;
 			sc_sendLine(akn);
 			cm_lcdCmd(cCmd);
 		}else{
@@ -46,10 +43,9 @@ void cm_interpretCmd(char cCmd[]) {
 	} else if (cCmd[0] == 'S'){
 		//Switch
 		if (cCmd[1] == 'P' && cCmd[2] == 'D'){
-			char text[20];
-			showSpeed = TRUE;
-			util_convertFromUi2Ascii(speed, text);
-			sc_sendLine(text);
+		//	char text[20];
+		//	util_convertFromUi2Ascii(speed, text);
+		//	sc_sendLine(text);
 		}
 	} else if (cCmd[0] == 'B'){
 		sc_sendLine(akn);
@@ -64,13 +60,6 @@ void cm_interpretCmd(char cCmd[]) {
 			sc_sendLine(nakn);
 		}
 		//invalid
-	}
-
-	if (showSpeed){
-		char text[20];
-		/* Show the result in the LCD display */
-		util_convertFromUi2Ascii(speed, text);
-		lcd_WriteString2(text);
 	}
 }
 
@@ -154,15 +143,3 @@ void cm_fanCmd(char cCmd[]){
 	dutyCycle /= 100;
 	pwm_setDutyCycle((unsigned int)dutyCycle, PWM_COOLER);
 }
-
-/* ************************************************ */
-/* Method name: 	   cm_setSpeed			   		*/
-/* Method description: Set the speed static int     */
-/* Input params:	   int iValue					*/
-/* Outpu params:	   n/a 							*/
-/* ************************************************ */
-void cm_setSpeed(int iValue){
-	speed = iValue;
-}
-
-

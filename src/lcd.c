@@ -188,7 +188,7 @@ void lcd_dummyText(void)
 /* ************************************************ */
 void lcd_WriteString2(char str[]) {
 	int i=0;
-
+	char cursorLine = 0;
 
 	// clear LCD
 	lcd_sendCommand(CMD_CLEAR);
@@ -198,12 +198,19 @@ void lcd_WriteString2(char str[]) {
 	util_genDelay10MS();
 	
 	while (str[i] != '\0'){
-		lcd_write2Lcd(str[i], LCD_RS_DATA);
-	
+		if (str[i] == '\n' && cursorLine == 0){
+			lcd_setCursor(1,0);
+			util_genDelay10MS();
+			cursorLine = 1;
+		} else {
+			lcd_write2Lcd(str[i], LCD_RS_DATA);
+		}
+		
 		
 		
 		i++;
-		if (i == 16){
+		if (i == 16 && cursorLine == 0){
+			cursorLine = 1;
 			lcd_setCursor(1,0);
 			util_genDelay10MS();
 		}

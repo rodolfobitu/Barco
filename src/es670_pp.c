@@ -18,6 +18,7 @@
 #include "buzzer.h"
 #include "pwm.h"
 #include "adc.h"
+#include <stdio.h>
 
 /* uC init configurations */
 
@@ -40,6 +41,8 @@ static int speedSamples[UTIL_1S_ITERATION_NUM]; // speed samples for cooler
 static int speedIndex = 0; // index in the speedSamples vector
 static unsigned int uiTemperature;
 static unsigned int uiTempCelsius;
+
+static char showSpeed = 0;
 
 /* state machine related to ADC task */
 #define ADC_TASK_STATE_INIT			0
@@ -218,8 +221,33 @@ void es670_coolerTask(void)
 /* ************************************************ */
 void es670_commandMachineTask(void)
 {
-	char cBuf[100];
+	char cBuf[50];
+	auto char text[20];
+	char spd[10];
+	char temp[10];
 	sc_readLine(cBuf);
+	
+	if (cBuf[0] == 'S' && cBuf[1] == 'P' && cBuf[2] == 'D'){
+		showSpeed = TRUE;
+	} else if (cBuf[0] == 'L' && cBuf[1] == 'C' && cBuf[2] == 'D'){
+		showSpeed = FALSE;
+	}
+
+	if (showSpeed){
+		
+		util_convertFromUi2Ascii(speed, spd);
+
+		if (uiTemperature < ADC_TRANSF_EQ_LOW_LIM || uiTemperature > ADC_TRANSF_EQ_HIG_LIM){
+			temp[0] = '!';
+			util_convertFromUi2Ascii(uiTemperature, temp+1);
+		}else {
+			util_convertFromUi2Ascii(uiTempCelsius, temp);
+		}
+		 
+		sprintf (text, (far rom char *)"Spd: %s\nTemp: %s", spd, temp);
+		lcd_WriteString2(text);
+	}
+
 	cm_interpretCmd(cBuf);
 
 }
@@ -249,7 +277,6 @@ void es670_computeCoolerVelocity(void) {
 	}
 	speed /= COOLER_BLADES_NUM;
 
-	//cm_setSpeed(speed);
 
 
 }
@@ -279,7 +306,6 @@ void es670_computeTemperatureTask(void) {
 	} else if (state == ADC_TASK_STATE_DONE){
 		uiTempCelsius = ADC_TRANSF_EQ_PARAM_A * uiTemperature + ADC_TRANSF_EQ_PARAM_B;
 		state = ADC_TASK_STATE_INIT;
-		cm_setSpeed(uiTempCelsius);
 	}
 }
 
