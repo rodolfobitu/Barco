@@ -1,9 +1,9 @@
 /* ***************************************************************** */
-/* File name:		 es670_pp.c							 			 */
-/* File description: Main file for the ES670 Practical Project		 */
-/* Author name:      dloubach										 */
-/* Creation date:    20jan2015										 */
-/* Revision date:    22mai2015										 */
+/* File name:		 es670_pp.c					*/
+/* File description: Main file for the ES670 Practical Project		*/
+/* Author name:      dloubach						*/
+/* Creation date:    20jan2015						*/
+/* Revision date:    22mai2015						*/
 /* ***************************************************************** */
 
 #include "es670_pp.h"
@@ -52,7 +52,7 @@ static char showSpeed = 0;
 /* transfer equation for AD to Temperature
  * f(y) = ax + b
  * the parameters apply only in the range
- * ~28ºC to ~89ºC
+ * ~28oC to ~89oC
  * ADC_TRANSF_EQ_LOW_LIM to ADC_TRANSF_EQ_HIG_LIM
  * which could be obtained when heater is in 50% duty cycle PWM
  */
