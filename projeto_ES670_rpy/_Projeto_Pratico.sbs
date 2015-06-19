@@ -3,8 +3,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 	- _id = GUID 20246198-4c47-4bfe-9397-a7aa14ffd20f;
 	- _myState = 8192;
 	- _name = "_Projeto_Pratico";
-	- _objectCreation = "5415623225320151631860554";
-	- _umlDependencyID = "3291";
+	- _objectCreation = "2333173194120151519343623";
+	- _umlDependencyID = "3288";
 	- Annotations = { IRPYRawContainer 
 		- size = 3;
 		- value = 
@@ -12,8 +12,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler C++ 1159120
 			- _id = GUID 28f0689a-ecff-4bb0-941d-4a8badc4b580;
 			- _myState = 2048;
 			- _name = "comment_0";
-			- _objectCreation = "5415625225320151631858554";
-			- _umlDependencyID = "2547";
+			- _objectCreation = "2333175194120151519341623";
+			- _umlDependencyID = "2535";
 			- _description = { IDescription 
 				- _textRTF = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\deflang1046{\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}
 \\viewkind4\\uc1\\pard\\b\\fs20 ES670 -  Projeto de Sistemas Embarcados\\par
@@ -29,14 +29,14 @@ Diagrama de Requisitos de Sistema\\par
 			- _id = GUID dec1f94f-1152-46e1-904d-55660096766c;
 			- _myState = 2048;
 			- _name = "comment_14";
-			- _objectCreation = "5415627225320151631856554";
-			- _umlDependencyID = "2600";
+			- _objectCreation = "2333177194120151519339623";
+			- _umlDependencyID = "2597";
 			- _description = { IDescription 
 				- _textRTF = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\deflang1046{\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}
 \\viewkind4\\uc1\\pard\\b\\fs20 ES670 -  Projeto de Sistemas Embarcados\\par
 \\b0 Projeto Pr\\'e1tico - 1o semestre/2015\\par
 \\par
-Diagrama de Sequ\\'eancia - Interpretador de comandos\\par
+Diagrama de m\\'e1quina de estados da tarefa de computar temperatura\\par
 }
 ";
 			}
@@ -46,8 +46,8 @@ Diagrama de Sequ\\'eancia - Interpretador de comandos\\par
 			- _id = GUID ff49df2e-66b1-405c-9a1d-efad749c7d2c;
 			- _myState = 2048;
 			- _name = "comment_21";
-			- _objectCreation = "5415629225320151631854554";
-			- _umlDependencyID = "2598";
+			- _objectCreation = "2333179194120151519337623";
+			- _umlDependencyID = "2595";
 			- _description = { IDescription 
 				- _textRTF = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\deflang1046{\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}
 \\viewkind4\\uc1\\pard\\b\\fs20 ES670 -  Projeto de Sistemas Embarcados\\par
@@ -76,15 +76,15 @@ Diagrama de Pacotes\\par
 			- _id = GUID bdee0ab5-d5a0-4569-8f02-ac8f107b96c3;
 			- _myState = 8192;
 			- _name = "File";
-			- _objectCreation = "5415631225320151631852554";
-			- _umlDependencyID = "2024";
+			- _objectCreation = "2333181194120151519335623";
+			- _umlDependencyID = "2021";
 			- _m2Classes = { IRPYRawContainer 
 				- size = 1;
 				- value = "Class"; 
 			}
 		}
 	}
-	- weakCGTime = 5.7.2015::23:22:33;
+	- weakCGTime = 6.19.2015::18:12:5;
 	- strongCGTime = 5.7.2015::23:22:33;
 	- _defaultComposite = GUID 0d5184b0-4db2-4cdb-a85e-27b5b9b2898f;
 	- _eventsBaseID = -1;
@@ -95,8 +95,8 @@ Diagrama de Pacotes\\par
 			- _id = GUID 0d5184b0-4db2-4cdb-a85e-27b5b9b2898f;
 			- _myState = 40960;
 			- _name = "TopLevel";
-			- _objectCreation = "5415633225320151631850554";
-			- _umlDependencyID = "2451";
+			- _objectCreation = "2333183194120151519333623";
+			- _umlDependencyID = "2448";
 			- weakCGTime = 5.7.2015::23:22:33;
 			- strongCGTime = 5.7.2015::23:22:33;
 			- _multiplicity = "";
@@ -109,8 +109,8 @@ Diagrama de Pacotes\\par
 			- _id = GUID d32248dd-74d9-479b-b8a9-cc8ac7ccc303;
 			- _myState = 8192;
 			- _name = "p18F4550";
-			- _objectCreation = "5415635225320151631848554";
-			- _umlDependencyID = "2142";
+			- _objectCreation = "2333185194120151519331623";
+			- _umlDependencyID = "2130";
 			- _theMainDiagram = { IHandle 
 				- _m2Class = "IDiagram";
 				- _filename = "";
@@ -131,8 +131,8 @@ Diagrama de Pacotes\\par
 			- _id = GUID ebd52265-60d8-45a5-ad81-f99c8da3cf9a;
 			- _myState = 10240;
 			- _name = "class_22";
-			- _objectCreation = "5415637225320151631846554";
-			- _umlDependencyID = "2378";
+			- _objectCreation = "2333187194120151519329623";
+			- _umlDependencyID = "2375";
 			- _theMainDiagram = { IHandle 
 				- _m2Class = "IDiagram";
 				- _filename = "";
