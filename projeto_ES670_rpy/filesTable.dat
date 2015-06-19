@@ -1,9 +1,10 @@
 I-Logix-RPY-Archive version 8.5.2 Modeler * 1159120
 
 - filesTable = { IRPYRawContainer 
-	- size = 16;
+	- size = 17;
 	- value = "Projects.rpl" ""
 	"Projeto_ES670.rpy" ""
+	"Projeto_ES670_rpy\\ADC.sbs" "ADC"
 	"Projeto_ES670_rpy\\Buzzer.sbs" "Buzzer"
 	"Projeto_ES670_rpy\\Cooler.sbs" "Cooler"
 	"Projeto_ES670_rpy\\Lcd.sbs" "Lcd"
