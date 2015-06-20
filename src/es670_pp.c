@@ -41,7 +41,7 @@ static int speed;
 static int speedSamples[UTIL_1S_ITERATION_NUM]; // speed samples for cooler
 static int speedIndex = 0; // index in the speedSamples vector
 static unsigned int uiTemperature;
-static unsigned int uiTempCelsius;
+static int iTempCelsius;
 
 PID pid;
 unsigned int uiControlEffort;
@@ -64,11 +64,11 @@ unsigned int uiControlEffort;
 #define ADC_TRANSF_EQ_PARAM_B		-123.75
 
 /* Constants used on PID controller */
-#define KP	1
-#define KI	0.1
+#define KP	10
+#define KI	0
 #define KD	0
 
-#define TEMP_REF 40
+#define TEMP_REF 30
 
 typedef enum {
 	
@@ -123,8 +123,7 @@ void isr_CyclicExecutive(void) {
 /* Input params:	   n/a 							*/
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void es670_runInitialization(void)
-{
+void es670_runInitialization(void) {
 	/* clean all ports */
 	PORTA = CLEAN_DATA;
 	PORTB = CLEAN_DATA;
@@ -239,12 +238,8 @@ void es670_coolerTask(void)
 /* Input params:	   n/a 							*/
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void es670_commandMachineTask(void)
-{
+void es670_commandMachineTask(void) {
 	char cBuf[50];
-	auto char text[20];
-	char spd[10];
-	char temp[10];
 	sc_readLine(cBuf);
 	
 	if (cBuf[0] == 'S' && cBuf[1] == 'P' && cBuf[2] == 'D'){
@@ -281,9 +276,6 @@ void es670_computeCoolerVelocity(void) {
 		speed += speedSamples[i];
 	}
 	speed /= COOLER_BLADES_NUM;
-
-
-
 }
 
 /* ************************************************ */
@@ -309,7 +301,7 @@ void es670_computeTemperatureTask(void) {
 			state = ADC_TASK_STATE_DONE;
 		}
 	} else if (state == ADC_TASK_STATE_DONE){
-		uiTempCelsius = ADC_TRANSF_EQ_PARAM_A * uiTemperature + ADC_TRANSF_EQ_PARAM_B;
+		iTempCelsius = ADC_TRANSF_EQ_PARAM_A * uiTemperature + ADC_TRANSF_EQ_PARAM_B;
 		state = ADC_TASK_STATE_INIT;
 	}
 }
@@ -324,11 +316,8 @@ void es670_computeTemperatureTask(void) {
 void es670_controlTask(void) {
 	double dControlEffort;
 	
-	dControlEffort = pid_update(&pid, TEMP_REF, uiTempCelsius);
-	
-	dControlEffort *= 1023;
-	dControlEffort /= 100;
-	dControlEffort = dControlEffort > 100 ? 100 : dControlEffort;
+	dControlEffort = -pid_update(&pid, TEMP_REF, iTempCelsius);
+	dControlEffort = dControlEffort > 1023 ? 1023 : dControlEffort;
 	dControlEffort = dControlEffort < 0 ? 0 : dControlEffort;
 	uiControlEffort = (unsigned int)dControlEffort;
 	pwm_setDutyCycle(uiControlEffort, PWM_COOLER);
@@ -342,17 +331,18 @@ void es670_controlTask(void) {
 /* Outpu params:          n/a						*/
 /* ************************************************ */
 void es670_displayTask(void) {
-	
-	if (eDisplayState == DISPLAY_MONIT) {
+	auto char text[20];
+	char cTemp[10];
 
+	if (eDisplayState == DISPLAY_MONIT) {
 		if (uiTemperature < ADC_TRANSF_EQ_LOW_LIM || uiTemperature > ADC_TRANSF_EQ_HIG_LIM) {
-			temp[0] = '!';
-			util_convertFromUi2Ascii(uiTemperature, temp+1);
+			cTemp[0] = '!';
+			util_convertFromUi2Ascii(uiTemperature, cTemp+1);
 		} else {
-			util_convertFromUi2Ascii(uiTempCelsius, temp);
+			util_convertFromUi2Ascii(iTempCelsius, cTemp);
 		}
 		 
-		sprintf(text, (far rom char *)"Spd: %d Temp: %s\nCEffort: %d", speed, temp, uiControlEffort);
+		sprintf(text, (far rom char *)"V: %d T: %s\nPWM: %d", speed, cTemp, uiControlEffort);
 		lcd_WriteString2(text);
 	}
 	

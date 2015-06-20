@@ -18,11 +18,11 @@
 /* ************************************************ */
 PID pid_init(double dP, double dI, double dD) {
 	PID pid = {
-		.dP = dP,
-		.dI = dI,
-		.dD = dD,
-		.dErrorSum = 0,
-		.dLast = 0
+		dP,
+		dI,
+		dD,
+		0,
+		0
 	};
 	return pid;
 }
@@ -41,9 +41,9 @@ double pid_update(PID *pid, double dRef, double dSensorValue) {
 	
 	/* Update the PID state */
 	dError = dRef - dSensorValue;
-	dErroSum = (pid->dErrorSum += dError);
+	dErrorSum = (pid->dErrorSum += dError);
 	dDiff = dSensorValue - pid->dLast;
 	pid->dLast = dSensorValue;
 	
-	return (pid->dP * dError) + (pid->dI * dErroSum) + (pid->dD * dDiff);
+	return (pid->dP * dError) + (pid->dI * dErrorSum) + (pid->dD * dDiff);
 }
