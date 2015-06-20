@@ -18,6 +18,7 @@
 #include "buzzer.h"
 #include "pwm.h"
 #include "adc.h"
+#include "pid.h"
 #include <stdio.h>
 
 /* uC init configurations */
@@ -42,7 +43,8 @@ static int speedIndex = 0; // index in the speedSamples vector
 static unsigned int uiTemperature;
 static unsigned int uiTempCelsius;
 
-static char showSpeed = 0;
+PID pid;
+unsigned int uiControlEffort;
 
 /* state machine related to ADC task */
 #define ADC_TASK_STATE_INIT			0
@@ -61,7 +63,23 @@ static char showSpeed = 0;
 #define ADC_TRANSF_EQ_PARAM_A		0.4073
 #define ADC_TRANSF_EQ_PARAM_B		-123.75
 
+/* Constants used on PID controller */
+#define KP	1
+#define KI	0.1
+#define KD	0
 
+#define TEMP_REF 40
+
+typedef enum {
+	
+	/* LCD stay static */
+	DISPLAY_STATIC,	
+	/* LCD monitoring control values */
+	DISPLAY_MONIT	
+	
+} display_state_e;
+
+display_state_e eDisplayState = DISPLAY_STATIC;
 
 /* setup the interruption */
 void isr_CyclicExecutive();
@@ -143,6 +161,8 @@ void es670_runInitialization(void)
 	pwm_initPwm(PWM_HEATER);
 	/* set DC for heater PWM in 50% */
 	pwm_setDutyCycle(PWM_DC_25, PWM_HEATER);
+	
+	pid = pid_init(KP, KI, KD);
 }
 
 
@@ -228,24 +248,9 @@ void es670_commandMachineTask(void)
 	sc_readLine(cBuf);
 	
 	if (cBuf[0] == 'S' && cBuf[1] == 'P' && cBuf[2] == 'D'){
-		showSpeed = TRUE;
+		eDisplayState = DISPLAY_MONIT;
 	} else if (cBuf[0] == 'L' && cBuf[1] == 'C' && cBuf[2] == 'D'){
-		showSpeed = FALSE;
-	}
-
-	if (showSpeed){
-		
-		util_convertFromUi2Ascii(speed, spd);
-
-		if (uiTemperature < ADC_TRANSF_EQ_LOW_LIM || uiTemperature > ADC_TRANSF_EQ_HIG_LIM){
-			temp[0] = '!';
-			util_convertFromUi2Ascii(uiTemperature, temp+1);
-		}else {
-			util_convertFromUi2Ascii(uiTempCelsius, temp);
-		}
-		 
-		sprintf (text, (far rom char *)"Spd: %s\nTemp: %s", spd, temp);
-		lcd_WriteString2(text);
+		eDisplayState = DISPLAY_STATIC;
 	}
 
 	cm_interpretCmd(cBuf);
@@ -310,6 +315,51 @@ void es670_computeTemperatureTask(void) {
 }
 
 /* ************************************************ */
+/* Method name:        es670_controlTask			*/
+/* Method description: Update PID and control the 	*/
+/*					   cooler						*/
+/* Input params:          n/a						*/
+/* Outpu params:          n/a						*/
+/* ************************************************ */
+void es670_controlTask(void) {
+	double dControlEffort;
+	
+	dControlEffort = pid_update(&pid, TEMP_REF, uiTempCelsius);
+	
+	dControlEffort *= 1023;
+	dControlEffort /= 100;
+	dControlEffort = dControlEffort > 100 ? 100 : dControlEffort;
+	dControlEffort = dControlEffort < 0 ? 0 : dControlEffort;
+	uiControlEffort = (unsigned int)dControlEffort;
+	pwm_setDutyCycle(uiControlEffort, PWM_COOLER);
+	
+}
+
+/* ************************************************ */
+/* Method name:        es670_displayTask			*/
+/* Method description: Update LCD display			*/
+/* Input params:          n/a						*/
+/* Outpu params:          n/a						*/
+/* ************************************************ */
+void es670_displayTask(void) {
+	
+	if (eDisplayState == DISPLAY_MONIT) {
+
+		if (uiTemperature < ADC_TRANSF_EQ_LOW_LIM || uiTemperature > ADC_TRANSF_EQ_HIG_LIM) {
+			temp[0] = '!';
+			util_convertFromUi2Ascii(uiTemperature, temp+1);
+		} else {
+			util_convertFromUi2Ascii(uiTempCelsius, temp);
+		}
+		 
+		sprintf(text, (far rom char *)"Spd: %d Temp: %s\nCEffort: %d", speed, temp, uiControlEffort);
+		lcd_WriteString2(text);
+	}
+	
+}
+
+
+/* ************************************************ */
 /* Method name: 	   main						    */
 /* Method description: main program function        */
 /* Input params:	   n/a 							*/
@@ -338,6 +388,10 @@ void main(void)
 		es670_commandMachineTask();
 		
 		es670_computeTemperatureTask();
+		
+		es670_displayTask();
+		
+		es670_controlTask();
 
 		/* WAIT FOR CYCLIC EXECUTIVE PERIOD */
 		while(!uiFlagNextPeriod);
