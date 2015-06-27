@@ -42,6 +42,7 @@ static int speedSamples[UTIL_1S_ITERATION_NUM]; // speed samples for cooler
 static int speedIndex = 0; // index in the speedSamples vector
 static unsigned int uiTemperature;
 static int iTempCelsius;
+int iRefTemperature = 30;
 
 PID pid;
 unsigned int uiControlEffort;
@@ -62,17 +63,6 @@ unsigned int uiControlEffort;
 #define KP	30
 #define KI	1
 #define KD	0
-
-#define TEMP_REF 30
-
-typedef enum {
-	
-	/* LCD stay static */
-	DISPLAY_STATIC,	
-	/* LCD monitoring control values */
-	DISPLAY_MONIT	
-	
-} display_state_e;
 
 display_state_e eDisplayState = DISPLAY_MONIT;
 
@@ -244,7 +234,6 @@ void es670_commandMachineTask(void) {
 	}
 
 	cm_interpretCmd(cBuf);
-
 }
 
 /* ************************************************ */
@@ -302,7 +291,7 @@ void es670_computeTemperatureTask(void) {
 void es670_controlTask(void) {
 	double dControlEffort;
 	
-	dControlEffort = -pid_update(&pid, TEMP_REF, iTempCelsius);
+	dControlEffort = -pid_update(&pid, iRefTemperature, iTempCelsius);
 	dControlEffort = dControlEffort > 1023 ? 1023 : dControlEffort;
 	dControlEffort = dControlEffort < 0 ? 0 : dControlEffort;
 	uiControlEffort = (unsigned int)dControlEffort;
@@ -330,12 +319,10 @@ void es670_displayTask(void) {
 			util_convertFromUi2Ascii(iTempCelsius, cTemp);
 		}
 		 
-		sprintf(text, (far rom char *)"V: %d T: %s\nPWM: %d", speed, cTemp, uiControlEffort);
+		sprintf(text, (far rom char *)"V: %d T: %s/%d\nPWM: %d", speed, cTemp, iRefTemperature, uiControlEffort);
 		lcd_WriteString2(text);
 	}
-	
 }
-
 
 /* ************************************************ */
 /* Method name: 	   main						    */
@@ -343,8 +330,7 @@ void es670_displayTask(void) {
 /* Input params:	   n/a 							*/
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void main(void)
-{
+void main(void) {
 	/* run uC init configs */
 	es670_runInitialization();
 
@@ -355,8 +341,7 @@ void main(void)
 	util_configCyclicExecutive();
 
 	/* main system loop, runs forever */
-	while(TRUE)
-	{
+	while(TRUE) {
 		/* compute cooler velocity task */
 		es670_computeCoolerVelocity();
 

@@ -16,5 +16,11 @@
 
 #define CLEAN_DATA	0x00
 
+typedef enum {
+	/* LCD stay static */
+	DISPLAY_STATIC,	
+	/* LCD monitoring control values */
+	DISPLAY_MONIT	
+} display_state_e;
 
 #endif /* ES670_H */

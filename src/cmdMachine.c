@@ -17,11 +17,14 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+extern int iRefTemperature;
+extern display_state_e eDisplayState;
 
 void cm_ledCmd(char cCmd[]);
 void cm_buzzerCmd(char cCmd[]);
 void cm_lcdCmd(char cCmd[]);
 void cm_fanCmd(char cCmd[]);
+void cm_refCmd(char cCmd[]);
 
 /* ************************************************ */
 /* Method name: 	   cm_interpretCmd		   		*/
@@ -33,19 +36,19 @@ void cm_interpretCmd(char cCmd[]) {
 	char akn[] = "AKN\r\n";
 
 	if (cCmd[0] == 'L'){
-		if (cCmd[2] == 'D' && cCmd[1] == 'C'){
-			sc_sendLine(akn);
+		if (cCmd[1] == 'C' && cCmd[2] == 'D') {
+			eDisplayState = DISPLAY_STATIC;
 			cm_lcdCmd(cCmd);
-		}else{
+			sc_sendLine(akn);
+		} else {
 			sc_sendLine(akn);
 			cm_ledCmd(cCmd);
 		}
 	} else if (cCmd[0] == 'S'){
 		//Switch
 		if (cCmd[1] == 'P' && cCmd[2] == 'D'){
-		//	char text[20];
-		//	util_convertFromUi2Ascii(speed, text);
-		//	sc_sendLine(text);
+			eDisplayState = DISPLAY_MONIT;
+			sc_sendLine(akn);
 		}
 	} else if (cCmd[0] == 'B'){
 		sc_sendLine(akn);
@@ -53,6 +56,9 @@ void cm_interpretCmd(char cCmd[]) {
 	} else if (cCmd[0] == 'F' && cCmd[1] == 'A' && cCmd[2] == 'N') {
 		// Set PWM duty cycle
 		cm_fanCmd(cCmd+3);
+		sc_sendLine(akn);
+	} else if (cCmd[0] == 'R' && cCmd[1] == 'E' && cCmd[2] == 'F') {
+		cm_refCmd(cCmd+3);
 		sc_sendLine(akn);
 	} else {
 		if (cCmd[0] != '\0'){
@@ -142,4 +148,14 @@ void cm_fanCmd(char cCmd[]){
 	dutyCycle *= 1023;
 	dutyCycle /= 100;
 	pwm_setDutyCycle((unsigned int)dutyCycle, PWM_COOLER);
+}
+
+/* ************************************************ */
+/* Method name: 	   cm_refCmd			   		*/
+/* Method description: Set the reference temperature*/
+/* Input params:	   cCmd[] = command				*/
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void cm_refCmd(char cCmd[]){
+	iRefTemperature = (int)atoi(cCmd);
 }
