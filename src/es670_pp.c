@@ -43,6 +43,7 @@ static int speedIndex = 0; // index in the speedSamples vector
 static unsigned int uiTemperature;
 static int iTempCelsius;
 int iRefTemperature = 30;
+unsigned int uiHeaterDutyCicle = 50;
 
 PID pid;
 unsigned int uiControlEffort;
@@ -60,8 +61,8 @@ unsigned int uiControlEffort;
 #define ADC_TRANSF_EQ_PARAM_B		-123.75
 
 /* Constants used on PID controller */
-#define KP	30
-#define KI	1
+#define KP	50
+#define KI	0.5
 #define KD	0
 
 display_state_e eDisplayState = DISPLAY_MONIT;
@@ -74,7 +75,6 @@ void isr_HighVector(void)
   _asm GOTO isr_CyclicExecutive _endasm
 }
 #pragma code
-
 
 /* setup the isr */
 #pragma interrupt isr_CyclicExecutive
@@ -98,8 +98,6 @@ void isr_CyclicExecutive(void) {
 		sc_send();
 	}
 }
-
-
 
 /* ************************************************ */
 /* Method name: 	   es670_runInitialization		*/
@@ -144,12 +142,10 @@ void es670_runInitialization(void) {
 	/* init PWM module for heater */
 	pwm_initPwm(PWM_HEATER);
 	/* set DC for heater PWM in 50% */
-	pwm_setDutyCycle(PWM_DC_25, PWM_HEATER);
+	pwm_setDutyCycle(PWM_DC_50, PWM_HEATER);
 	
 	pid = pid_init(KP, KI, KD);
 }
-
-
 
 /* ************************************************ */
 /* Method name: 	   es670_prepare			    */
@@ -158,8 +154,7 @@ void es670_runInitialization(void) {
 /* Input params:	   n/a 							*/
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void es670_prepare(void)
-{
+void es670_prepare(void) {
 	unsigned int i;
 	char cLine1[] = "COOLER VELOCITY & TEMPERATURE \n\r";
 
@@ -181,8 +176,6 @@ void es670_prepare(void)
 		speedSamples[i] = 0;
 	}
 }
-
-
 
 /* ************************************************ */
 /* Method name: 	   es670_coolerTask			    */
@@ -309,6 +302,7 @@ void es670_displayTask(void) {
 	static int iCounter = 0;
 	auto char text[20];
 	char cTemp[10];
+	long int liControlEffort;
 
 	iCounter++;
 	if (eDisplayState == DISPLAY_MONIT && iCounter % 5 == 0) {
@@ -318,8 +312,9 @@ void es670_displayTask(void) {
 		} else {
 			util_convertFromUi2Ascii(iTempCelsius, cTemp);
 		}
-		 
-		sprintf(text, (far rom char *)"V: %d T: %s/%d\nPWM: %d", speed, cTemp, iRefTemperature, uiControlEffort);
+		
+		liControlEffort = ((long int)uiControlEffort)*100/1023;
+		sprintf(text, (far rom char *)"V:%d T:%s/%d\nFAN:%ld%% HTR:%d%%", speed, cTemp, iRefTemperature, liControlEffort, uiHeaterDutyCicle);
 		lcd_WriteString2(text);
 	}
 }

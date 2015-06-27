@@ -19,11 +19,13 @@
 
 extern int iRefTemperature;
 extern display_state_e eDisplayState;
+extern unsigned int uiHeaterDutyCicle;
 
 void cm_ledCmd(char cCmd[]);
 void cm_buzzerCmd(char cCmd[]);
 void cm_lcdCmd(char cCmd[]);
 void cm_fanCmd(char cCmd[]);
+void cm_htrCmd(char cCmd[]);
 void cm_refCmd(char cCmd[]);
 
 /* ************************************************ */
@@ -56,6 +58,10 @@ void cm_interpretCmd(char cCmd[]) {
 	} else if (cCmd[0] == 'F' && cCmd[1] == 'A' && cCmd[2] == 'N') {
 		// Set PWM duty cycle
 		cm_fanCmd(cCmd+3);
+		sc_sendLine(akn);
+	} else if (cCmd[0] == 'H' && cCmd[1] == 'T' && cCmd[2] == 'R') {
+		// Set HEATER duty cycle
+		cm_htrCmd(cCmd+3);
 		sc_sendLine(akn);
 	} else if (cCmd[0] == 'R' && cCmd[1] == 'E' && cCmd[2] == 'F') {
 		cm_refCmd(cCmd+3);
@@ -148,6 +154,21 @@ void cm_fanCmd(char cCmd[]){
 	dutyCycle *= 1023;
 	dutyCycle /= 100;
 	pwm_setDutyCycle((unsigned int)dutyCycle, PWM_COOLER);
+}
+
+/* ************************************************ */
+/* Method name: 	   cm_htrCmd			   		*/
+/* Method description: Set the PWMduty cycle 	    */
+/* Input params:	   cCmd[] = command				*/
+/* Outpu params:	   n/a 							*/
+/* ************************************************ */
+void cm_htrCmd(char cCmd[]){
+	unsigned long int dutyCycle = (unsigned long int)atoi(cCmd);
+	dutyCycle = dutyCyle > 75 ? 75 : dutyCycle;
+	uiHeaterDutyCicle = dutyCycle;
+	dutyCycle *= 1023;
+	dutyCycle /= 100;
+	pwm_setDutyCycle((unsigned int)dutyCycle, PWM_HEATER);
 }
 
 /* ************************************************ */
