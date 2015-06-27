@@ -46,11 +46,6 @@ static int iTempCelsius;
 PID pid;
 unsigned int uiControlEffort;
 
-/* state machine related to ADC task */
-#define ADC_TASK_STATE_INIT			0
-#define ADC_TASK_STATE_CONVERTING	1
-#define ADC_TASK_STATE_DONE			2
-
 /* transfer equation for AD to Temperature
  * f(y) = ax + b
  * the parameters apply only in the range
@@ -64,8 +59,8 @@ unsigned int uiControlEffort;
 #define ADC_TRANSF_EQ_PARAM_B		-123.75
 
 /* Constants used on PID controller */
-#define KP	10
-#define KI	0
+#define KP	30
+#define KI	1
 #define KD	0
 
 #define TEMP_REF 30
@@ -79,7 +74,7 @@ typedef enum {
 	
 } display_state_e;
 
-display_state_e eDisplayState = DISPLAY_STATIC;
+display_state_e eDisplayState = DISPLAY_MONIT;
 
 /* setup the interruption */
 void isr_CyclicExecutive();
@@ -290,20 +285,11 @@ void es670_computeCoolerVelocity(void) {
 /* ************************************************ */
 void es670_computeTemperatureTask(void) {
 
-	static int state = ADC_TASK_STATE_INIT;
+	adc_startConvertion();
+	while (!adc_isAdcDone());
 
-	if (state == ADC_TASK_STATE_INIT){
-		adc_startConvertion();
-		state = ADC_TASK_STATE_CONVERTING;
-	} else if (state == ADC_TASK_STATE_CONVERTING){
-		if (adc_isAdcDone()){
-			uiTemperature = adc_getValue();
-			state = ADC_TASK_STATE_DONE;
-		}
-	} else if (state == ADC_TASK_STATE_DONE){
-		iTempCelsius = ADC_TRANSF_EQ_PARAM_A * uiTemperature + ADC_TRANSF_EQ_PARAM_B;
-		state = ADC_TASK_STATE_INIT;
-	}
+	uiTemperature = adc_getValue();
+	iTempCelsius = ADC_TRANSF_EQ_PARAM_A * uiTemperature + ADC_TRANSF_EQ_PARAM_B;
 }
 
 /* ************************************************ */
