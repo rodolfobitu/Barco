@@ -305,7 +305,7 @@ void es670_displayTask(void) {
 	long int liControlEffort;
 
 	iCounter++;
-	if (eDisplayState == DISPLAY_MONIT && iCounter % 5 == 0) {
+	if (eDisplayState == DISPLAY_MONIT && iCounter % 3 == 0) {
 		if (uiTemperature < ADC_TRANSF_EQ_LOW_LIM || uiTemperature > ADC_TRANSF_EQ_HIG_LIM) {
 			cTemp[0] = '!';
 			util_convertFromUi2Ascii(uiTemperature, cTemp+1);
@@ -314,7 +314,7 @@ void es670_displayTask(void) {
 		}
 		
 		liControlEffort = ((long int)uiControlEffort)*100/1023;
-		sprintf(text, (far rom char *)"V:%d T:%s/%d\nFAN:%ld%% HTR:%d%%", speed, cTemp, iRefTemperature, liControlEffort, uiHeaterDutyCicle);
+		sprintf(text, (far rom char *)"V:%d T:%s/%d\nFAN:%3ld%% HTR:%d%%", speed, cTemp, iRefTemperature, liControlEffort, uiHeaterDutyCicle);
 		lcd_WriteString2(text);
 	}
 }

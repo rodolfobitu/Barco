@@ -76,14 +76,11 @@ void lcd_write2Lcd(unsigned char ucBuffer,  unsigned char cDataType)
 		
 	/* enable, delay, disable LCD */
 	/* this generates a pulse in the enable pin */
-	LCD_ENABLE = LCD_ENABLED ;	
-	util_genDelay10MS();
+	LCD_ENABLE = LCD_ENABLED;
 	LCD_ENABLE = LCD_DISABLED;	
 	util_genDelay1MS();
 	util_genDelay1MS();
 }
-
-
 
 /* ************************************************ */
 /* Method name: 	   lcd_writeData				*/
@@ -91,8 +88,7 @@ void lcd_write2Lcd(unsigned char ucBuffer,  unsigned char cDataType)
 /* Input params:	   ucData => char to be writen  */
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void lcd_writeData(unsigned char ucData)
-{
+void lcd_writeData(unsigned char ucData) {
 	/* just a relay to send data */
 	lcd_write2Lcd(ucData, LCD_RS_DATA);
 }
@@ -105,13 +101,10 @@ void lcd_writeData(unsigned char ucData)
 /* Input params:	   ucCmd => command to be executed*/
 /* Outpu params:	   n/a 							*/
 /* ************************************************ */
-void lcd_sendCommand(unsigned char ucCmd)
-{
+void lcd_sendCommand(unsigned char ucCmd) {
 	/* just a relay to send command */
 	lcd_write2Lcd(ucCmd, LCD_RS_CMD);
 }
-
-
 
 /* ************************************************ */
 /* Method name: 	   lcd_setCursor         		*/
@@ -191,28 +184,23 @@ void lcd_WriteString2(char str[]) {
 	char cursorLine = 0;
 
 	// clear LCD
-	lcd_sendCommand(CMD_CLEAR);
-	util_genDelay100MS();				
+	lcd_sendCommand(CMD_CLEAR);	
+	util_genDelay10MS();		
 	// set the cursor line 0, column 1
 	lcd_setCursor(0,0);
-	util_genDelay10MS();
 	
 	while (str[i] != '\0'){
 		if (str[i] == '\n' && cursorLine == 0){
 			lcd_setCursor(1,0);
-			util_genDelay10MS();
 			cursorLine = 1;
 		} else {
 			lcd_write2Lcd(str[i], LCD_RS_DATA);
 		}
 		
-		
-		
 		i++;
 		if (i == 16 && cursorLine == 0){
 			cursorLine = 1;
 			lcd_setCursor(1,0);
-			util_genDelay10MS();
 		}
 	}
 }

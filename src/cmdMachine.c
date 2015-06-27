@@ -164,7 +164,7 @@ void cm_fanCmd(char cCmd[]){
 /* ************************************************ */
 void cm_htrCmd(char cCmd[]){
 	unsigned long int dutyCycle = (unsigned long int)atoi(cCmd);
-	dutyCycle = dutyCyle > 75 ? 75 : dutyCycle;
+	dutyCycle = dutyCycle > 75 ? 75 : dutyCycle;
 	uiHeaterDutyCicle = dutyCycle;
 	dutyCycle *= 1023;
 	dutyCycle /= 100;
