@@ -317,10 +317,12 @@ void es670_controlTask(void) {
 /* Outpu params:          n/a						*/
 /* ************************************************ */
 void es670_displayTask(void) {
+	static int iCounter = 0;
 	auto char text[20];
 	char cTemp[10];
 
-	if (eDisplayState == DISPLAY_MONIT) {
+	iCounter++;
+	if (eDisplayState == DISPLAY_MONIT && iCounter % 5 == 0) {
 		if (uiTemperature < ADC_TRANSF_EQ_LOW_LIM || uiTemperature > ADC_TRANSF_EQ_HIG_LIM) {
 			cTemp[0] = '!';
 			util_convertFromUi2Ascii(uiTemperature, cTemp+1);
