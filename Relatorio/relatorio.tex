@@ -184,12 +184,6 @@ A informação da converesão então é salva e é mostrada no LCD quando solici
 	\caption{Esquema do aquecedor}
 	\label{fig:esq_aquecedor}
 \end{figure}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.9\linewidth]{maq_temperatura}
-	\caption{Maquina de estados do cálculo da temperatura}
-	\label{fig:maq_temperatura}
-\end{figure}
 
 Como pode ser visto na figura \ref{fig:esq_7seg}, é necessário fazer um gerenciamento das portas RB4-7 e RD0-7 para que sejam mostrados os valores desejados nos displays de sete segmentos. Para isso, é preciso alternar qual RB está ativo fazendo a mudança nos RD0-7 para que cada display esteja mostrando um valor diferente. É importante lembrar que a frequência dessa alternância seja escolhida de modo que o olho humano não perceba que os displays estão ligando e desligando.
 
@@ -235,8 +229,8 @@ Futuramente, queremos remover essa task e adicioná-la à Máquina de Estados.
 No arquivo es670\_pp é chamado de ``es670\_commandMachineTask'', sua função é acionar a máquina de estados a partir de um buffer que é preenchido quando a interrupção é chamada a partir do serial. Ela ainda verifica se deve ou não continuar mostrando e atualizando a velocidade do cooler e a temperatura no LCD.
 
 \subsection{Cálculo da temperatura}
-No arquivo es670\_pp é chamado ``es670\_computeTemperatureTask'', sua função é gerenciar a máquina de estados \ref{fig:maq_temperatura} para o cálculo da temperatura.
-Essa máquina consiste de 3 estados:
+No arquivo es670\_pp é chamado ``es670\_computeTemperatureTask'', sua função é gerenciar o conversor analógico-digital para o cálculo da temperatura.
+A task é logicamente dividida em três etapas, todas executadas no mesmo ciclo:
 \begin{itemize}
 \item Inicio: Onde é feito o começo da conversão do ADC;
 \item Convertendo: Onde é feita a espera pelo resultado da conversão ADC;
